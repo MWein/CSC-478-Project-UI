@@ -1,0 +1,19 @@
+{
+  "name": "csc-478-project-ui",
+  "version": "1.0.0",
+  "description": "Capstone class project - UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinuteMan92/CSC-478-Project-UI.git"
+  },
+  "author": "Team Hex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MinuteMan92/CSC-478-Project-UI/issues"
+  },
+  "homepage": "https://github.com/MinuteMan92/CSC-478-Project-UI#readme"
+}
