@@ -13,6 +13,8 @@ import { actions as loginActions } from '../redux/actions/loginActions'
 
 
 const ForgotPasswordDialog = ({
+  login,
+  answerError,
   open,
   username,
   step,
@@ -46,8 +48,9 @@ const ForgotPasswordDialog = ({
       </DialogContentText>
       <TextField
         autoFocus
+        error={answerError}
         fullWidth
-        label='Answer'
+        label={answerError ? 'Incorrect Answer' : 'Answer'}
         margin='dense'
         onChange={event => setSecurityAnswer(event.target.value)}
         value={securityAnswer}
@@ -86,10 +89,7 @@ const ForgotPasswordDialog = ({
     if (step === 0) {
       getSecurityQuestion()
     } else if (step === 1) {
-      // Validate security answer
-      console.log('Validate answer')
-      console.log('Login if correct')
-      console.log('Error if incorrect')
+      login()
     }
   }
   const cancelButtonClicked = () => {
@@ -127,7 +127,9 @@ const ForgotPasswordDialog = ({
 
 
 ForgotPasswordDialog.propTypes = {
+  answerError: PropTypes.bool.isRequired,
   getSecurityQuestion: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   resetFP: PropTypes.func.isRequired,
   securityAnswer: PropTypes.string.isRequired,
@@ -147,6 +149,7 @@ const mapStateToProps = state => ({
   securityQuestion: state.login.securityQuestion,
   securityAnswer: state.login.securityAnswer,
   usernameError: state.login.usernameError,
+  answerError: state.login.answerError,
 })
 
 const actions = {
