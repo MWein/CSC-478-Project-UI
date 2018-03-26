@@ -4,7 +4,6 @@ import {
   select,
   takeLatest,
 } from 'redux-saga/effects'
-import { actions as appActions } from '../actions/appActions'
 import { getUsername } from '../selectors'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
@@ -20,8 +19,6 @@ export function* getSecurityQuestionsSaga() {
     url,
     body: JSON.stringify(body),
   })
-
-  console.log(response.payload)
 
   if (response.payload.error) {
     yield dispatch(loginActions.setUsernameError(response.payload.errorMsg))

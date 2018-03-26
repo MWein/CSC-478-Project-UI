@@ -1,8 +1,6 @@
 import {
   call,
-  //put as dispatch,
 } from 'redux-saga/effects'
-//import { actions as appActions } from '../actions/appActions'
 import { get } from './helpers/makeFetchCall'
 
 export function* getStatusSaga() {

@@ -128,7 +128,6 @@ const ForgotPasswordDialog = ({
 
 ForgotPasswordDialog.propTypes = {
   getSecurityQuestion: PropTypes.func.isRequired,
-  nextFPStep: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   resetFP: PropTypes.func.isRequired,
   securityAnswer: PropTypes.string.isRequired,
