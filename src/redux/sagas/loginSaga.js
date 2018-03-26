@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { getPassword, getSecAnswer, getUsername } from '../selectors'
+import { actions as appActions } from '../actions/appActions'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
 
@@ -27,9 +28,9 @@ export function* loginSaga() {
   })
 
   if (response.payload.error) {
-    console.log(response.payload)
+    yield dispatch(loginActions.setLoginError(response.payload.errorMsg))
   } else {
-    console.log(response.payload)
+    yield dispatch(appActions.setToken(response.payload.token))
   }
 }
 
