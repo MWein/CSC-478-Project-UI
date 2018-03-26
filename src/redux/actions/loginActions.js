@@ -6,4 +6,5 @@ export const {
 } = createActions('app', {
   setUsername: 'SET_USERNAME',
   setPassword: 'SET_PASSWORD',
+  setForgotPassword: 'SET_FORGOT_PASSWORD',
 })

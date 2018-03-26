@@ -16,10 +16,18 @@ const password = (state = '', action = {}) => {
   }
 }
 
+const forgotPassword = (state = false, action = {}) => {
+  switch (action.type) {
+    case loginConstants.SET_FORGOT_PASSWORD: return action.payload
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   username,
   password,
+  forgotPassword,
 })
 
 export default reducer

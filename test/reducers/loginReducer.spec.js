@@ -5,6 +5,7 @@ import reducer from '../../src/redux/reducers/loginReducer'
 const initialState = {
   username: '',
   password: '',
+  forgotPassword: false,
 }
 
 
@@ -38,6 +39,21 @@ describe('Login reducer spec', () => {
     const expected = {
       ...initialState,
       password: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_FORGOT_PASSWORD', () => {
+    const action = {
+      type: loginActions.SET_FORGOT_PASSWORD,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      forgotPassword: action.payload,
     }
 
     const actual = reducer(initialState, action)
