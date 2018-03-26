@@ -18,10 +18,12 @@ import { actions as loginActions } from '../redux/actions/loginActions'
 const ForgotPasswordDialog = ({
   open,
   username,
+  step,
   setForgotPassword,
   setUsername,
+  nextFPStep,
+  resetFP,
 }) => {
-
   const getUsernameContent = () => {
     return (
       <div>
@@ -39,12 +41,28 @@ const ForgotPasswordDialog = ({
 
 
   const contentByStep = () => {
-    return {
-      content: getUsernameContent(),
-      button: 'Next',
+    switch (step) {
+      case 0: return {
+        content: getUsernameContent(),
+        button: 'Next',
+      }
+      default: return {
+        content: '',
+        button: '',
+      }
     }
   }
   const content = contentByStep()
+
+
+  const primaryButtonClicked = () => {
+    nextFPStep()
+  }
+
+  const cancelButtonClicked = () => {
+    setForgotPassword(false)
+    setTimeout(resetFP, 1000)
+  }
 
 
   return (
@@ -59,11 +77,14 @@ const ForgotPasswordDialog = ({
       <DialogActions>
         <Button
           color='primary'
-          onClick={() => setForgotPassword(false)}
+          onClick={cancelButtonClicked}
         >
           Cancel
         </Button>
-        <Button color='primary'>
+        <Button
+          color='primary'
+          onClick={primaryButtonClicked}
+        >
           {content.button}
         </Button>
       </DialogActions>
@@ -73,15 +94,19 @@ const ForgotPasswordDialog = ({
 
 
 ForgotPasswordDialog.propTypes = {
+  nextFPStep: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  resetFP: PropTypes.func.isRequired,
   setForgotPassword: PropTypes.func.isRequired,
   setUsername: PropTypes.func.isRequired,
+  step: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   open: state.login.forgotPassword,
   username: state.login.username,
+  step: state.login.forgotPasswordStep,
 })
 
 const actions = {
