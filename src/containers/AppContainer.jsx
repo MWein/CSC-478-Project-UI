@@ -1,4 +1,4 @@
-import LoginPanel from '../components/LoginPanel'
+import LoginPanel from './LoginPanel'
 import React from 'react'
 
 const AppContainer = () => (

@@ -1,18 +1,14 @@
 import Button from 'material-ui/Button'
-//import Checkbox from 'material-ui/Checkbox'
-//import { FormControlLabel } from 'material-ui/Form'
+import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
-//import { actions as appActions } from '../redux/actions/appActions'
 import { connect } from 'react-redux'
-import Grid from 'material-ui/Grid'
 
 
 const LoginPanel = () => {
   const paperPadding = '30px'
-
   const style = {
     paper: {
       width: '300px',
