@@ -17,7 +17,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'), // eslint-disable-line no-undef
     compress: true,
-    port: 8080,
+    port: 8081,
   },
   module: {
     loaders: [
