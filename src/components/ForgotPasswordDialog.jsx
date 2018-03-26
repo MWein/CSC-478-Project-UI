@@ -97,7 +97,7 @@ const ForgotPasswordDialog = ({
       aria-labelledby='form-dialog-title'
       open={open}
     >
-      <DialogTitle id='form-dialog-title'>Reset Password</DialogTitle>
+      <DialogTitle id='form-dialog-title'>Forgot Password</DialogTitle>
       <DialogContent>
         {content.content}
       </DialogContent>
