@@ -6,4 +6,5 @@ export const {
 } = createActions('app', {
   incLoading: 'INC_LOADING',
   decLoading: 'DEC_LOADING',
+  setToken: 'SET_TOKEN',
 })

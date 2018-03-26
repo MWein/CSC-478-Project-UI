@@ -4,6 +4,7 @@ import reducer from '../../../src/redux/reducers/appReducer'
 
 const initialState = {
   loading: 0,
+  token: '',
 }
 
 
@@ -45,6 +46,21 @@ describe('App reducer spec', () => {
     }
 
     const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_TOKEN', () => {
+    const action = {
+      type: appActions.SET_TOKEN,
+      payload: 'asdfasdfasdf',
+    }
+
+    const expected = {
+      ...initialState,
+      token: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
     expect(actual).toEqual(expected)
   })
 })

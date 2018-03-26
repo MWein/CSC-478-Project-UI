@@ -10,9 +10,17 @@ const loading = (state = 0, action = {}) => {
   }
 }
 
+const token = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_TOKEN: return action.payload
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   loading,
+  token,
 })
 
 export default reducer
