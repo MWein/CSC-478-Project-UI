@@ -7,6 +7,8 @@ const initialState = {
   password: '',
   forgotPassword: false,
   forgotPasswordStep: 0,
+  securityQuestion: '',
+  securityAnswer: '',
 }
 
 
@@ -81,6 +83,36 @@ describe('Login reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+  it('Responds to SET_SECURITY_QUESTION', () => {
+    const action = {
+      type: loginActions.SET_SECURITY_QUESTION,
+      payload: 'Whats your dogs name?',
+    }
+
+    const expected = {
+      ...initialState,
+      securityQuestion: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_SECURITY_ANSWER', () => {
+    const action = {
+      type: loginActions.SET_SECURITY_ANSWER,
+      payload: 'Spike',
+    }
+
+    const expected = {
+      ...initialState,
+      securityAnswer: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to RESET_FP', () => {
     const action = {
       type: loginActions.RESET_FP,
@@ -90,11 +122,15 @@ describe('Login reducer spec', () => {
     const mockState = {
       ...initialState,
       forgotPasswordStep: 2,
+      securityQuestion: 'Why is the sky blue?',
+      securityAnswer: 'Idk, infantry or something'
     }
 
     const expected = {
       ...initialState,
       forgotPasswordStep: 0,
+      securityQuestion: '',
+      securityAnswer: '',
     }
 
     const actual = reducer(mockState, action)

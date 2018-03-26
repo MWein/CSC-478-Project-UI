@@ -31,12 +31,30 @@ const forgotPasswordStep = (state = 0, action = {}) => {
   }
 }
 
+const securityQuestion = (state = '', action = {}) => {
+  switch (action.type) {
+    case loginConstants.SET_SECURITY_QUESTION: return action.payload
+    case loginConstants.RESET_FP: return ''
+    default: return state
+  }
+}
+
+const securityAnswer = (state = '', action = {}) => {
+  switch (action.type) {
+    case loginConstants.SET_SECURITY_ANSWER: return action.payload
+    case loginConstants.RESET_FP: return ''
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   username,
   password,
   forgotPassword,
   forgotPasswordStep,
+  securityQuestion,
+  securityAnswer,
 })
 
 export default reducer
