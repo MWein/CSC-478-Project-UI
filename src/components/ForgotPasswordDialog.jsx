@@ -73,8 +73,16 @@ const ForgotPasswordDialog = ({
   const content = contentByStep()
 
 
+  const primaryButtonEnabled = () => {
+    switch (step) {
+      case 0: return username !== ''
+      case 1: return securityAnswer !== ''
+      default: return true
+    }
+  }
   const primaryButtonClicked = () => {
-    // Do an action
+    // Retrieve security question for username
+    // Validate security answer
 
     nextFPStep()
   }
@@ -101,6 +109,7 @@ const ForgotPasswordDialog = ({
         </Button>
         <Button
           color='primary'
+          disabled={!primaryButtonEnabled()}
           onClick={primaryButtonClicked}
         >
           {content.button}
