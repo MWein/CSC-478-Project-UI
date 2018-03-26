@@ -81,9 +81,15 @@ const ForgotPasswordDialog = ({
     }
   }
   const primaryButtonClicked = () => {
-    // Retrieve security question for username for step 0
-    // Validate security answer for step 1
-    // Login for step 2
+    if (step === 0) {
+      // Retrieve security question for username
+      console.log('Get security question')
+    } else if (step === 1) {
+      // Validate security answer
+      console.log('Validate answer')
+      console.log('Login if correct')
+      console.log('Error if incorrect')
+    }
 
     nextFPStep()
   }
@@ -103,7 +109,7 @@ const ForgotPasswordDialog = ({
       </DialogContent>
       <DialogActions>
         <Button
-          color='primary'
+          color='secondary'
           onClick={cancelButtonClicked}
         >
           Cancel
