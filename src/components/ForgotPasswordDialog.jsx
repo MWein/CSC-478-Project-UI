@@ -62,7 +62,7 @@ const ForgotPasswordDialog = ({
       }
       case 1: return {
         content: securityQuestionContent(),
-        button: 'Reset Password',
+        button: 'Login',
       }
       default: return {
         content: '',
@@ -81,8 +81,9 @@ const ForgotPasswordDialog = ({
     }
   }
   const primaryButtonClicked = () => {
-    // Retrieve security question for username
-    // Validate security answer
+    // Retrieve security question for username for step 0
+    // Validate security answer for step 1
+    // Login for step 2
 
     nextFPStep()
   }
