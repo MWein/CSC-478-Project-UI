@@ -5,9 +5,14 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as loginActions } from '../redux/actions/loginActions'
 
-
-const LoginPanel = () => {
+const LoginPanel = ({
+  username,
+  password,
+  setUsername,
+  setPassword,
+}) => {
   const paperPadding = '30px'
   const style = {
     paper: {
@@ -38,7 +43,9 @@ const LoginPanel = () => {
             id='name'
             label='Username'
             margin='normal'
+            onChange={event => setUsername(event.target.value)}
             style={style.textField}
+            value={username}
           />
         </Grid>
 
@@ -48,8 +55,10 @@ const LoginPanel = () => {
             id='password-input'
             label='Password'
             margin='normal'
+            onChange={event => setPassword(event.target.value)}
             style={style.textField}
             type='password'
+            value={password}
           />
         </Grid>
 
@@ -72,12 +81,19 @@ const LoginPanel = () => {
 
 
 LoginPanel.propTypes = {
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+  username: state.login.username,
+  password: state.login.password,
 })
 
 const actions = {
+  ...loginActions,
 }
 
 export default connect(mapStateToProps, actions)(LoginPanel)
