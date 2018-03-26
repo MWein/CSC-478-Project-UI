@@ -11,6 +11,7 @@ export const {
   setPassword: 'SET_PASSWORD',
   setUsernameError: 'SET_USERNAME_ERROR',
   setLoginError: 'SET_LOGIN_ERROR',
+  setAnswerError: 'SET_ANSWER_ERROR',
   setForgotPassword: 'SET_FORGOT_PASSWORD',
   setSecurityQuestion: 'SET_SECURITY_QUESTION',
   setSecurityAnswer: 'SET_SECURITY_ANSWER',

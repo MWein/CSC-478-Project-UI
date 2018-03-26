@@ -17,10 +17,18 @@ const usernameError = (state = '', action = {}) => {
   }
 }
 
-const loginError = (state = '', action = {}) => {
+const loginError = (state = false, action = {}) => {
   switch (action.type) {
     case loginConstants.SET_LOGIN_ERROR: return action.payload
-    case loginConstants.RESET_FP: return ''
+    case loginConstants.RESET_FP: return false
+    default: return state
+  }
+}
+
+const answerError = (state = false, action = {}) => {
+  switch (action.type) {
+    case loginConstants.SET_ANSWER_ERROR: return action.payload
+    case loginConstants.RESET_FP: return false
     default: return state
   }
 }
@@ -69,6 +77,7 @@ const reducer = combineReducers({
   password,
   usernameError,
   loginError,
+  answerError,
   forgotPassword,
   forgotPasswordStep,
   securityQuestion,

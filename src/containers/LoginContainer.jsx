@@ -35,8 +35,8 @@ const LoginContainer = ({
   }
 
   const loginHeader = () => (
-    <div style={loginError === '' ? style.title : { ...style.title, color: 'red' }}>
-        Login {loginError === '' ? '' : ' - Invalid Credentials'}
+    <div style={loginError ? { ...style.title, color: 'red' } : style.title}>
+        Login {loginError ? ' - Invalid Credentials' : ''}
     </div>
   )
 
@@ -98,7 +98,7 @@ const LoginContainer = ({
 
 LoginContainer.propTypes = {
   login: PropTypes.func.isRequired,
-  loginError: PropTypes.string.isRequired,
+  loginError: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
   setForgotPassword: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,

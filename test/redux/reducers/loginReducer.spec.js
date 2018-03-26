@@ -6,7 +6,8 @@ const initialState = {
   username: '',
   password: '',
   usernameError: '',
-  loginError: '',
+  loginError: false,
+  answerError: false,
   forgotPassword: false,
   forgotPasswordStep: 0,
   securityQuestion: '',
@@ -133,12 +134,27 @@ describe('Login reducer spec', () => {
   it('Responds to SET_LOGIN_ERROR', () => {
     const action = {
       type: loginActions.SET_LOGIN_ERROR,
-      payload: 'ERRORROROR',
+      payload: true,
     }
 
     const expected = {
       ...initialState,
       loginError: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_ANSWER_ERROR', () => {
+    const action = {
+      type: loginActions.SET_ANSWER_ERROR,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      answerError: action.payload,
     }
 
     const actual = reducer(initialState, action)
@@ -157,6 +173,8 @@ describe('Login reducer spec', () => {
       securityQuestion: 'Why is the sky blue?',
       securityAnswer: 'Idk, infantry or something',
       usernameError: 'Something bad happened',
+      loginError: true,
+      answerError: true,
     }
 
     const expected = {
@@ -165,6 +183,8 @@ describe('Login reducer spec', () => {
       securityQuestion: '',
       securityAnswer: '',
       usernameError: '',
+      loginError: false,
+      answerError: false,
     }
 
     const actual = reducer(mockState, action)

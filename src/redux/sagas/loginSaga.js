@@ -28,8 +28,9 @@ export function* loginSaga() {
   })
 
   if (response.payload.error) {
-    yield dispatch(loginActions.setLoginError(response.payload.errorMsg))
+    yield dispatch(loginActions.setLoginError(true))
   } else {
+    yield dispatch(loginActions.setLoginError(false))
     yield dispatch(appActions.setToken(response.payload.token))
   }
 }
