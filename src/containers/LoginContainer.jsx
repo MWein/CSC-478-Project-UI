@@ -1,4 +1,5 @@
 import Button from 'material-ui/Button'
+import ForgotPasswordDialog from '../components/ForgotPasswordDialog'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
@@ -7,11 +8,12 @@ import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as loginActions } from '../redux/actions/loginActions'
 
-const LoginPanel = ({
+const LoginContainer = ({
   username,
   password,
   setUsername,
   setPassword,
+  setForgotPassword,
 }) => {
   const paperPadding = '30px'
   const style = {
@@ -32,6 +34,7 @@ const LoginPanel = ({
 
   return (
     <Paper style={style.paper}>
+      <ForgotPasswordDialog />
       <div style={style.title}>
         Login
       </div>
@@ -63,7 +66,10 @@ const LoginPanel = ({
         </Grid>
 
         <Grid item xs={8}>
-          <Button color='primary'>
+          <Button
+            color='secondary'
+            onClick={() => setForgotPassword(true)}
+          >
             Forgot Password
           </Button>
         </Grid>
@@ -80,8 +86,9 @@ const LoginPanel = ({
 }
 
 
-LoginPanel.propTypes = {
+LoginContainer.propTypes = {
   password: PropTypes.string.isRequired,
+  setForgotPassword: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
   setUsername: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
@@ -96,4 +103,4 @@ const actions = {
   ...loginActions,
 }
 
-export default connect(mapStateToProps, actions)(LoginPanel)
+export default connect(mapStateToProps, actions)(LoginContainer)
