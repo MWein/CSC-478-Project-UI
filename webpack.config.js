@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Sudoku Solver',
+      title: 'Lackluster Video',
       template: './index.html',
     }),
   ],
