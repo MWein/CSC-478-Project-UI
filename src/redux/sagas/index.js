@@ -1,7 +1,7 @@
 import { call, fork } from 'redux-saga/effects'
-//import saga
+import { getStatusSaga } from './getStatusSaga'
 
 export default function* sagasMain() {
-  // yield call(<saga>)
   // yield fork(<saga>)
+  yield call(getStatusSaga)
 }
