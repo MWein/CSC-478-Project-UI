@@ -6,6 +6,7 @@ const initialState = {
   username: '',
   password: '',
   usernameError: '',
+  loginError: '',
   forgotPassword: false,
   forgotPasswordStep: 0,
   securityQuestion: '',
@@ -123,6 +124,21 @@ describe('Login reducer spec', () => {
     const expected = {
       ...initialState,
       usernameError: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_LOGIN_ERROR', () => {
+    const action = {
+      type: loginActions.SET_LOGIN_ERROR,
+      payload: 'ERRORROROR',
+    }
+
+    const expected = {
+      ...initialState,
+      loginError: action.payload,
     }
 
     const actual = reducer(initialState, action)
