@@ -75,7 +75,10 @@ const LoginContainer = ({
         </Grid>
 
         <Grid item xs={4}>
-          <Button color='primary'>
+          <Button
+            color='primary'
+            disabled={!(username !== '' && password !== '')}
+          >
             Login
           </Button>
         </Grid>
