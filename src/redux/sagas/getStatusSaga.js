@@ -10,9 +10,8 @@ export function* getStatusSaga() {
   yield dispatch(appActions.incLoading())
 
   const url = 'http://csc478team301.uisad.uis.edu:8080/status'
-  const response = yield call(get, { url })
 
-  console.log(response)
+  yield call(get, { url })
 
   yield dispatch(appActions.decLoading())
 }
