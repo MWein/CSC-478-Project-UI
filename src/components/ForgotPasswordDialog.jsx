@@ -18,18 +18,20 @@ const ForgotPasswordDialog = ({
   step,
   securityQuestion,
   securityAnswer,
+  usernameError,
   setForgotPassword,
   setUsername,
   setSecurityAnswer,
-  nextFPStep,
+  getSecurityQuestion,
   resetFP,
 }) => {
   const getUsernameContent = () => (
     <div>
       <TextField
         autoFocus
+        error={usernameError !== ''}
         fullWidth
-        label='Username'
+        label={usernameError === '' ? 'Username' : usernameError}
         margin='dense'
         onChange={event => setUsername(event.target.value)}
         value={username}
@@ -82,16 +84,13 @@ const ForgotPasswordDialog = ({
   }
   const primaryButtonClicked = () => {
     if (step === 0) {
-      // Retrieve security question for username
-      console.log('Get security question')
+      getSecurityQuestion()
     } else if (step === 1) {
       // Validate security answer
       console.log('Validate answer')
       console.log('Login if correct')
       console.log('Error if incorrect')
     }
-
-    nextFPStep()
   }
   const cancelButtonClicked = () => {
     setForgotPassword(false)
@@ -128,6 +127,7 @@ const ForgotPasswordDialog = ({
 
 
 ForgotPasswordDialog.propTypes = {
+  getSecurityQuestion: PropTypes.func.isRequired,
   nextFPStep: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   resetFP: PropTypes.func.isRequired,
@@ -138,6 +138,7 @@ ForgotPasswordDialog.propTypes = {
   setUsername: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
+  usernameError: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -146,6 +147,7 @@ const mapStateToProps = state => ({
   step: state.login.forgotPasswordStep,
   securityQuestion: state.login.securityQuestion,
   securityAnswer: state.login.securityAnswer,
+  usernameError: state.login.usernameError,
 })
 
 const actions = {
