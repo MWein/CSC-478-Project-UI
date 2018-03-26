@@ -1,8 +1,9 @@
+import LoginPanel from '../components/LoginPanel'
 import React from 'react'
 
 const AppContainer = () => (
   <div style={{ display: 'flex', justifyContent: 'center' }}>
-    Hello World
+    <LoginPanel />
   </div>
 )
 
