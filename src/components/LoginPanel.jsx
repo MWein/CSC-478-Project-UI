@@ -12,21 +12,26 @@ import Grid from 'material-ui/Grid'
 
 const LoginPanel = () => {
   const paperPadding = '30px'
-  const paddingStyle = {
-    width: '300px',
-    paddingTop: paperPadding,
-    paddingBottom: paperPadding,
-    paddingLeft: paperPadding,
-    paddingRight: paperPadding,
-  }
 
-  const textFieldStyle = {
-    width: '100%',
+  const style = {
+    paper: {
+      width: '300px',
+      paddingTop: paperPadding,
+      paddingBottom: paperPadding,
+      paddingLeft: paperPadding,
+      paddingRight: paperPadding,
+    },
+    textField: {
+      width: '100%',
+    },
+    title: {
+      fontSize: 20,
+    },
   }
 
   return (
-    <Paper style={paddingStyle}>
-      <div style={{ fontSize: 20 }}>
+    <Paper style={style.paper}>
+      <div style={style.title}>
         Login
       </div>
 
@@ -37,7 +42,7 @@ const LoginPanel = () => {
             id='name'
             label='Username'
             margin='normal'
-            style={textFieldStyle}
+            style={style.textField}
           />
         </Grid>
 
@@ -47,7 +52,7 @@ const LoginPanel = () => {
             id='password-input'
             label='Password'
             margin='normal'
-            style={textFieldStyle}
+            style={style.textField}
             type='password'
           />
         </Grid>
