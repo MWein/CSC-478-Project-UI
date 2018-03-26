@@ -23,11 +23,20 @@ const forgotPassword = (state = false, action = {}) => {
   }
 }
 
+const forgotPasswordStep = (state = 0, action = {}) => {
+  switch (action.type) {
+    case loginConstants.NEXT_FP_STEP: return state + 1
+    case loginConstants.RESET_FP: return 0
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   username,
   password,
   forgotPassword,
+  forgotPasswordStep,
 })
 
 export default reducer

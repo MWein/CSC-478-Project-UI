@@ -7,4 +7,6 @@ export const {
   setUsername: 'SET_USERNAME',
   setPassword: 'SET_PASSWORD',
   setForgotPassword: 'SET_FORGOT_PASSWORD',
+  nextFPStep: 'NEXT_FP_STEP',
+  resetFP: 'RESET_FP',
 })
