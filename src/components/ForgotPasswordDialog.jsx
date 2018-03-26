@@ -5,9 +5,6 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
-import Checkbox from 'material-ui/Checkbox'
-import { FormControlLabel } from 'material-ui/Form'
-import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
@@ -24,20 +21,32 @@ const ForgotPasswordDialog = ({
   nextFPStep,
   resetFP,
 }) => {
-  const getUsernameContent = () => {
-    return (
-      <div>
-        <TextField
-          autoFocus
-          fullWidth
-          label='Username'
-          margin='dense'
-          onChange={event => setUsername(event.target.value)}
-          value={username}
-        />
-      </div>
-    )
-  }
+  const getUsernameContent = () => (
+    <div>
+      <TextField
+        autoFocus
+        fullWidth
+        label='Username'
+        margin='dense'
+        onChange={event => setUsername(event.target.value)}
+        value={username}
+      />
+    </div>
+  )
+
+  const securityQuestionContent = () => (
+    <div>
+      <DialogContentText>
+        SOME SECURITY QUESTION
+      </DialogContentText>
+      <TextField
+        autoFocus
+        fullWidth
+        label='Answer'
+        margin='dense'
+      />
+    </div>
+  )
 
 
   const contentByStep = () => {
@@ -45,6 +54,10 @@ const ForgotPasswordDialog = ({
       case 0: return {
         content: getUsernameContent(),
         button: 'Next',
+      }
+      case 1: return {
+        content: securityQuestionContent(),
+        button: 'Reset Password',
       }
       default: return {
         content: '',
@@ -56,14 +69,14 @@ const ForgotPasswordDialog = ({
 
 
   const primaryButtonClicked = () => {
+    // Do an action
+
     nextFPStep()
   }
-
   const cancelButtonClicked = () => {
     setForgotPassword(false)
     setTimeout(resetFP, 1000)
   }
-
 
   return (
     <Dialog
