@@ -1,5 +1,5 @@
-import { constants as loginActions } from '../../src/redux/actions/loginActions'
-import reducer from '../../src/redux/reducers/loginReducer'
+import { constants as loginActions } from '../../../src/redux/actions/loginActions'
+import reducer from '../../../src/redux/reducers/loginReducer'
 
 
 const initialState = {

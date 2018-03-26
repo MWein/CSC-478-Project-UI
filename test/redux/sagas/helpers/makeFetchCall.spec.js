@@ -1,7 +1,7 @@
 import {
   get,
   makeFetchCall,
-} from '../../../../src/client/redux/sagas/helpers/makeFetchCall'
+} from '../../../../src/redux/sagas/helpers/makeFetchCall'
 
 const fetchSuccess = {
   ok: true,
