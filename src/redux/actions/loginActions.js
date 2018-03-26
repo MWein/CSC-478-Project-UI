@@ -5,6 +5,7 @@ export const {
   actions,
 } = createActions('login', {
   getSecurityQuestion: 'GET_SECURITY_QUESTION',
+  login: 'LOGIN',
 
   setUsername: 'SET_USERNAME',
   setPassword: 'SET_PASSWORD',
