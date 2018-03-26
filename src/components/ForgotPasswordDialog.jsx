@@ -16,8 +16,11 @@ const ForgotPasswordDialog = ({
   open,
   username,
   step,
+  securityQuestion,
+  securityAnswer,
   setForgotPassword,
   setUsername,
+  setSecurityAnswer,
   nextFPStep,
   resetFP,
 }) => {
@@ -37,13 +40,15 @@ const ForgotPasswordDialog = ({
   const securityQuestionContent = () => (
     <div>
       <DialogContentText>
-        SOME SECURITY QUESTION
+        {securityQuestion}
       </DialogContentText>
       <TextField
         autoFocus
         fullWidth
         label='Answer'
         margin='dense'
+        onChange={event => setSecurityAnswer(event.target.value)}
+        value={securityAnswer}
       />
     </div>
   )
@@ -75,7 +80,7 @@ const ForgotPasswordDialog = ({
   }
   const cancelButtonClicked = () => {
     setForgotPassword(false)
-    setTimeout(resetFP, 1000)
+    setTimeout(resetFP, 500)
   }
 
   return (
@@ -110,7 +115,10 @@ ForgotPasswordDialog.propTypes = {
   nextFPStep: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   resetFP: PropTypes.func.isRequired,
+  securityAnswer: PropTypes.string.isRequired,
+  securityQuestion: PropTypes.string.isRequired,
   setForgotPassword: PropTypes.func.isRequired,
+  setSecurityAnswer: PropTypes.func.isRequired,
   setUsername: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
@@ -120,6 +128,8 @@ const mapStateToProps = state => ({
   open: state.login.forgotPassword,
   username: state.login.username,
   step: state.login.forgotPasswordStep,
+  securityQuestion: state.login.securityQuestion,
+  securityAnswer: state.login.securityAnswer,
 })
 
 const actions = {
