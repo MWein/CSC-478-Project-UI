@@ -9,8 +9,10 @@ import { connect } from 'react-redux'
 import { actions as loginActions } from '../redux/actions/loginActions'
 
 const LoginContainer = ({
+  login,
   username,
   password,
+  loginError,
   setUsername,
   setPassword,
   setForgotPassword,
@@ -32,12 +34,16 @@ const LoginContainer = ({
     },
   }
 
+  const loginHeader = () => (
+    <div style={loginError === '' ? style.title : { ...style.title, color: 'red' }}>
+        Login {loginError === '' ? '' : ' - Invalid Credentials'}
+    </div>
+  )
+
   return (
     <Paper style={style.paper}>
       <ForgotPasswordDialog />
-      <div style={style.title}>
-        Login
-      </div>
+      {loginHeader()}
 
       <Grid container>
 
@@ -78,6 +84,7 @@ const LoginContainer = ({
           <Button
             color='primary'
             disabled={username === '' || password === ''}
+            onClick={login}
           >
             Login
           </Button>
@@ -90,6 +97,8 @@ const LoginContainer = ({
 
 
 LoginContainer.propTypes = {
+  login: PropTypes.func.isRequired,
+  loginError: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   setForgotPassword: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
@@ -100,6 +109,7 @@ LoginContainer.propTypes = {
 const mapStateToProps = state => ({
   username: state.login.username,
   password: state.login.password,
+  loginError: state.login.loginError,
 })
 
 const actions = {
