@@ -4,7 +4,6 @@ export const {
   constants,
   actions,
 } = createActions('app', {
-  setPuzzleState: 'SET_PUZZLE_STATE',
-  setEnabled: 'SET_ENABLED',
-  setFocusCell: 'SET_FOCUS_CELL',
+  setUsername: 'SET_USERNAME',
+  setPassword: 'SET_PASSWORD',
 })
