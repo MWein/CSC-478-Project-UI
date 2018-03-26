@@ -5,6 +5,7 @@ import reducer from '../../../src/redux/reducers/loginReducer'
 const initialState = {
   username: '',
   password: '',
+  usernameError: '',
   forgotPassword: false,
   forgotPasswordStep: 0,
   securityQuestion: '',
@@ -113,6 +114,21 @@ describe('Login reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+  it('Responds to SET_USERNAME_ERROR', () => {
+    const action = {
+      type: loginActions.SET_USERNAME_ERROR,
+      payload: 'ERRORROROR',
+    }
+
+    const expected = {
+      ...initialState,
+      usernameError: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to RESET_FP', () => {
     const action = {
       type: loginActions.RESET_FP,
@@ -123,7 +139,8 @@ describe('Login reducer spec', () => {
       ...initialState,
       forgotPasswordStep: 2,
       securityQuestion: 'Why is the sky blue?',
-      securityAnswer: 'Idk, infantry or something'
+      securityAnswer: 'Idk, infantry or something',
+      usernameError: 'Something bad happened',
     }
 
     const expected = {
@@ -131,6 +148,7 @@ describe('Login reducer spec', () => {
       forgotPasswordStep: 0,
       securityQuestion: '',
       securityAnswer: '',
+      usernameError: '',
     }
 
     const actual = reducer(mockState, action)

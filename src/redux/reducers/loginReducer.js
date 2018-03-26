@@ -9,6 +9,14 @@ const username = (state = '', action = {}) => {
   }
 }
 
+const usernameError = (state = '', action = {}) => {
+  switch (action.type) {
+    case loginConstants.SET_USERNAME_ERROR: return action.payload
+    case loginConstants.RESET_FP: return ''
+    default: return state
+  }
+}
+
 const password = (state = '', action = {}) => {
   switch (action.type) {
     case loginConstants.SET_PASSWORD: return action.payload
@@ -51,6 +59,7 @@ const securityAnswer = (state = '', action = {}) => {
 const reducer = combineReducers({
   username,
   password,
+  usernameError,
   forgotPassword,
   forgotPasswordStep,
   securityQuestion,

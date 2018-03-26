@@ -8,6 +8,7 @@ export const {
 
   setUsername: 'SET_USERNAME',
   setPassword: 'SET_PASSWORD',
+  setUsernameError: 'SET_USERNAME_ERROR',
   setForgotPassword: 'SET_FORGOT_PASSWORD',
   setSecurityQuestion: 'SET_SECURITY_QUESTION',
   setSecurityAnswer: 'SET_SECURITY_ANSWER',
