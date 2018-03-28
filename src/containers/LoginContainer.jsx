@@ -26,9 +26,6 @@ const LoginContainer = ({
       paddingLeft: paperPadding,
       paddingRight: paperPadding,
     },
-    textField: {
-      width: '100%',
-    },
     title: {
       fontSize: 20,
     },
@@ -49,11 +46,11 @@ const LoginContainer = ({
 
         <Grid item xs={12}>
           <TextField
+            fullWidth
             id='name'
             label='Username'
             margin='normal'
             onChange={event => setUsername(event.target.value)}
-            style={style.textField}
             value={username}
           />
         </Grid>
@@ -61,11 +58,11 @@ const LoginContainer = ({
         <Grid item xs={12}>
           <TextField
             autoComplete='current-password'
+            fullWidth
             id='password-input'
             label='Password'
             margin='normal'
             onChange={event => setPassword(event.target.value)}
-            style={style.textField}
             type='password'
             value={password}
           />
