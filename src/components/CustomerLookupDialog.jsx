@@ -32,8 +32,14 @@ const CustomerLookupDialog = () => {
           label='Last Name'
         />
 
+        &nbsp;
+
+        <Button>
+          Search
+        </Button>
+
       </DialogContent>
-      <DialogActions>
+      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
           color='secondary'
         >
