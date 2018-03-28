@@ -11,16 +11,27 @@ import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 
 
-
 const CustomerLookupDialog = () => {
   return (
     <Dialog
       aria-labelledby='form-dialog-title'
       open
     >
-      <DialogTitle id='form-dialog-title'>This is the title</DialogTitle>
+      <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
       <DialogContent>
-        Dialog content
+
+        <TextField
+          label='Phone Number'
+        />
+        
+        &nbsp;&nbsp;&nbsp;
+        OR
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <TextField
+          label='Last Name'
+        />
+
       </DialogContent>
       <DialogActions>
         <Button
