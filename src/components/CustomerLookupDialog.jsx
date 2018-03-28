@@ -38,6 +38,26 @@ const CustomerLookupDialog = () => {
           Search
         </Button>
 
+
+        <br /><br />
+
+
+        <Button
+          color='primary'
+          style={{ width: '100%' }}
+        >
+          Mike Weinberg - 7088024340
+        </Button>
+
+        <Button
+          color='primary'
+          style={{ width: '100%' }}
+        >
+          Tony Weinberg - 7081234567
+        </Button>
+
+
+
       </DialogContent>
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
