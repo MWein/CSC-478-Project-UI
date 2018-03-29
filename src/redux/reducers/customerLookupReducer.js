@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { constants as lookupConstants } from '../actions/customerLookupActions.js'
 
 
-const open = (state = true, action = {}) => {
+const open = (state = false, action = {}) => {
   switch (action.type) {
     case lookupConstants.OPEN_CUSTOMER_LOOKUP: return true
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return false

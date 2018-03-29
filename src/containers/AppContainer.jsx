@@ -1,3 +1,4 @@
+import Button from 'material-ui/Button'
 import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import LoadingDialog from '../components/LoadingDialog'
 import LoginContainer from './LoginContainer'
@@ -5,10 +6,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 //import TransactionContainer from './TransactionContainer'
-
+import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
 
 const AppContainer = ({
   token,
+  openCustomerLookup,
 }) => {
   const router = () => {
     if (token === '') {
@@ -18,7 +20,15 @@ const AppContainer = ({
     }
 
     return (
-      <CustomerLookupDialog />
+      <div>
+        <Button
+          color='secondary'
+          onClick={openCustomerLookup}
+        >
+          Customer Lookup
+        </Button>
+        <CustomerLookupDialog />
+      </div>
     )
   }
 
@@ -31,6 +41,7 @@ const AppContainer = ({
 }
 
 AppContainer.propTypes = {
+  openCustomerLookup: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
 }
 
@@ -39,6 +50,7 @@ const mapStateToProps = state => ({
 })
 
 const actions = {
+  ...customerLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(AppContainer)
