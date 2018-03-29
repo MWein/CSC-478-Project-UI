@@ -3,6 +3,7 @@ import reducer from '../../../src/redux/reducers/customerLookupReducer'
 
 
 const initialState = {
+  open: false,
   phone: '',
   lName: '',
   customers: [],
@@ -14,6 +15,43 @@ describe('Customer Lookup reducer spec', () => {
     const actual = reducer()
     expect(actual).toEqual(initialState)
   })
+
+  it('Responds to OPEN_CUSTOMER_LOOKUP', () => {
+    const action = {
+      type: lookupActions.OPEN_CUSTOMER_LOOKUP,
+      payload: null,
+    }
+
+    const expected = {
+      ...initialState,
+      open: true,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+
+  it('Responds to CLOSE_CUSTOMER_LOOKUP', () => {
+    const action = {
+      type: lookupActions.CLOSE_CUSTOMER_LOOKUP,
+      payload: null,
+    }
+
+    const mockState = {
+      open: true,
+      phone: '123456',
+      lName: 'Weinberg',
+      customers: [ 'some', 'list' ],
+      selectedCustomer: 'asdfasdf',
+    }
+
+    const expected = initialState
+
+    const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
 
   it('Responds to SET_PHONE_NUMBER', () => {
     const action = {
