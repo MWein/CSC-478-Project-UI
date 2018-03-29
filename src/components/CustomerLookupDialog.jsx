@@ -179,9 +179,9 @@ const CustomerLookupDialog = ({
   )
 
 
-  const router = () => mode === 'add' || mode === 'edit' ?
-    addEditCustomerDialog() :
-    searchCustomerDialog()
+  const router = () => mode === '' ?
+    searchCustomerDialog() :
+    addEditCustomerDialog()
 
 
   return (
