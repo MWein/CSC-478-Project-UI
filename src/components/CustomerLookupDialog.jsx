@@ -4,6 +4,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
@@ -57,9 +58,7 @@ const CustomerLookupDialog = ({
         <div>
           {notFoundText()}
 
-          <Button
-            variant='raised'
-          >
+          <Button onClick={() => setMode('add')} variant='raised'>
             Add New Customer
           </Button>
         </div>
@@ -103,10 +102,7 @@ const CustomerLookupDialog = ({
 
           &nbsp;&nbsp;
 
-        <Button
-          onClick={searchCustomers}
-          variant='raised'
-        >
+        <Button onClick={searchCustomers} variant='raised'>
             Search
         </Button>
 
@@ -115,66 +111,45 @@ const CustomerLookupDialog = ({
         {customerListTable()}
 
       </DialogContent>
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-        <Button
-          color='secondary'
-          onClick={closeCustomerLookup}
-        >
-            Cancel
-        </Button>
-        <Button
-          color='primary'
-          disabled={Object.keys(selectedCustomer).length === 0}
-          variant='raised'
-        >
-            Select
-        </Button>
-      </DialogActions>
     </div>
   )
-
-
 
   const addEditCustomerDialog = () => (
     <div>
       <DialogContent>
-
-        <TextField
-          label='First Name'
-        />
-
-        <TextField
-          label='Last Name'
-        />
-
-        <TextField
-          label='Phone Number'
-        />
-
-        <TextField
-          label='Email'
-        />
-
-        <TextField
-          label='Address'
-        />
-
+        <Grid container>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='First Name'
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Last Name'
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Phone Number'
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Email'
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Address'
+            />
+          </Grid>
+        </Grid>
       </DialogContent>
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-        <Button
-          color='secondary'
-          onClick={closeCustomerLookup}
-        >
-            Cancel
-        </Button>
-        <Button
-          color='primary'
-          disabled={Object.keys(selectedCustomer).length === 0}
-          variant='raised'
-        >
-            Select
-        </Button>
-      </DialogActions>
     </div>
   )
 
@@ -184,13 +159,55 @@ const CustomerLookupDialog = ({
     addEditCustomerDialog()
 
 
+  const calcConfirmButtonProps = () => {
+    const confirmButtonDisabled = () => {
+      if (mode === '') {
+        return Object.keys(selectedCustomer).length === 0
+      }
+    }
+
+    switch (mode) {
+      case 'add': return {
+        text: 'Create',
+        action: null,
+        disabled: confirmButtonDisabled(),
+      }
+      case 'edit': return {
+        text: 'Verify',
+        action: null,
+        disabled: confirmButtonDisabled(),
+      }
+      default: return {
+        text: 'Select',
+        action: () => setMode('edit'),
+        disabled: confirmButtonDisabled(),
+      }
+    }
+  }
+  const confirmButtonProps = calcConfirmButtonProps()
+
+
   return (
-    <Dialog
-      aria-labelledby='form-dialog-title'
-      open={open}
-    >
+    <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
       {router()}
+
+      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        <Button
+          color='secondary'
+          onClick={closeCustomerLookup}
+        >
+            Cancel
+        </Button>
+        <Button
+          color='primary'
+          disabled={confirmButtonProps.disabled}
+          onClick={confirmButtonProps.action}
+          variant='raised'
+        >
+          {confirmButtonProps.text}
+        </Button>
+      </DialogActions>
     </Dialog>
   )
 }
