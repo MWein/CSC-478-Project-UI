@@ -27,7 +27,7 @@ const AddEditCustomerDialog = ({
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label='First Name'
+            label='First Name - Required'
             onChange={event => setFirstName(event.target.value)}
             value={fName}
           />
@@ -35,7 +35,7 @@ const AddEditCustomerDialog = ({
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label='Last Name'
+            label='Last Name - Required'
             onChange={event => setLastName(event.target.value)}
             value={lName}
           />
@@ -43,7 +43,7 @@ const AddEditCustomerDialog = ({
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label='Phone Number'
+            label='Phone Number - Required'
             onChange={event => setPhoneNumber(event.target.value)}
             value={phone}
           />
@@ -51,7 +51,7 @@ const AddEditCustomerDialog = ({
         <Grid item xs={12}>
           <TextField
             fullWidth
-            label='Email'
+            label='Email - Required'
             onChange={event => setEmail(event.target.value)}
             value={email}
           />
