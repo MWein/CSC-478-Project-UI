@@ -59,13 +59,23 @@ const CustomerLookupDialog = ({
       ) :
       null
 
-    return customerTable.length > 0 ? customerTable :
+    const addNewCustomerButton = () => (
+      <Button onClick={() => setMode('add')} variant='raised'>
+        Add New Customer
+      </Button>
+    )
+
+    return customerTable.length > 0 ? (
+      <div>
+        {customerTable}
+        <br /><br />
+        {addNewCustomerButton()}
+      </div>
+    ) :
       (
         <div>
           {notFoundText()}
-          <Button onClick={() => setMode('add')} variant='raised'>
-            Add New Customer
-          </Button>
+          {addNewCustomerButton()}
         </div>
       )
   }
