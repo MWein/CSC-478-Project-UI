@@ -1,7 +1,6 @@
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
@@ -9,32 +8,16 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
 
 
-const CustomerLookupDialog = () => {
-  const testCustomerList = [
-    {
-      id: 'fvlcrwbwej',
-      f_name: 'Sydney',
-      l_name: 'Australia',
-      phone: '123456',
-      address: '123 Fake Street',
-      active: true,
-      email: 'something@yahoo.com',
-    },
-    {
-      id: 'fdjksdksdfkjsfd',
-      f_name: 'Jack',
-      l_name: 'Bower',
-      phone: '466789',
-      address: '123 Fake Street',
-      active: true,
-      email: 'something@yahoo.com',
-    },
-  ]
-
-
-  const customerListTable = () => testCustomerList.map(customer => (
+const CustomerLookupDialog = ({
+  open,
+  selectedCustomer,
+  customerList,
+  closeCustomerLookup,
+}) => {
+  const customerListTable = () => customerList.map(customer => (
     <Button
       color='primary'
       key={customer.id}
@@ -48,7 +31,7 @@ const CustomerLookupDialog = () => {
   return (
     <Dialog
       aria-labelledby='form-dialog-title'
-      open
+      open={open}
     >
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
       <DialogContent>
@@ -79,13 +62,16 @@ const CustomerLookupDialog = () => {
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
           color='secondary'
+          onClick={closeCustomerLookup}
         >
           Cancel
         </Button>
         <Button
           color='primary'
+          disabled={selectedCustomer === ''}
+          variant='raised'
         >
-          Some button
+          Select
         </Button>
       </DialogActions>
     </Dialog>
@@ -94,12 +80,20 @@ const CustomerLookupDialog = () => {
 
 
 CustomerLookupDialog.propTypes = {
+  closeCustomerLookup: PropTypes.func.isRequired,
+  customerList: PropTypes.array.isRequired,
+  open: PropTypes.bool.isRequied,
+  selectedCustomer: PropTypes.string.isRequred,
 }
 
 const mapStateToProps = state => ({
+  customerList: state.customerLookup.customers,
+  open: state.customerLookup.open,
+  selectedCustomer: state.customerLookup.selectedCustomer,
 })
 
 const actions = {
+  ...customerLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(CustomerLookupDialog)
