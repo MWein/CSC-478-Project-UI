@@ -2,13 +2,13 @@ import Dialog, {
   DialogActions,
   DialogTitle,
 } from 'material-ui/Dialog'
+import AddEditCustomerDialog from './CustomerLookupDialogContents/AddEditCustomer'
 import Button from 'material-ui/Button'
 import PropTypes from 'prop-types'
 import React from 'react'
-import addEditCustomer from './CustomerLookupDialogContents/addEditCustomer'
+import SearchCustomerDialog from './CustomerLookupDialogContents/SearchCustomer'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
-import searchCustomer from './CustomerLookupDialogContents/searchCustomer'
 
 
 const CustomerLookupDialog = ({
@@ -63,7 +63,7 @@ const CustomerLookupDialog = ({
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
-      {mode === '' ? (<searchCustomer />) : (<addEditCustomer />)}
+      {mode === '' ? (<SearchCustomerDialog />) : (<AddEditCustomerDialog />)}
 
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button

@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../../redux/actions/customerLookupActions'
 
 
-const addEditCustomerDialog = ({
+const AddEditCustomerDialog = ({
   fName,
   lName,
   phone,
@@ -70,7 +70,7 @@ const addEditCustomerDialog = ({
 )
 
 
-addEditCustomerDialog.propTypes = {
+AddEditCustomerDialog.propTypes = {
   address: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   fName: PropTypes.string.isRequired,
@@ -95,4 +95,4 @@ const actions = {
   ...customerLookupActions,
 }
 
-export default connect(mapStateToProps, actions)(addEditCustomerDialog)
+export default connect(mapStateToProps, actions)(AddEditCustomerDialog)
