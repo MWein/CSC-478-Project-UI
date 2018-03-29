@@ -107,7 +107,7 @@ const CustomerLookupDialog = ({
         &nbsp;&nbsp;
 
         <Button onClick={searchCustomers} variant='raised'>
-            Search
+          Search
         </Button>
 
         <br /><br />
