@@ -10,9 +10,9 @@ const open = (state = true, action = {}) => {
   }
 }
 
-const phone = (state = '', action = {}) => {
+const fName = (state = '', action = {}) => {
   switch (action.type) {
-    case lookupConstants.SET_PHONE_NUMBER: return action.payload
+    case lookupConstants.SET_FIRST_NAME: return action.payload
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
     default: return state
   }
@@ -21,6 +21,30 @@ const phone = (state = '', action = {}) => {
 const lName = (state = '', action = {}) => {
   switch (action.type) {
     case lookupConstants.SET_LAST_NAME: return action.payload
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    default: return state
+  }
+}
+
+const phone = (state = '', action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_PHONE_NUMBER: return action.payload
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    default: return state
+  }
+}
+
+const email = (state = '', action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_EMAIL: return action.payload
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    default: return state
+  }
+}
+
+const address = (state = '', action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_ADDRESS: return action.payload
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
     default: return state
   }
@@ -68,8 +92,11 @@ const mode = (state = '', action = {}) => {
 
 const reducer = combineReducers({
   open,
-  phone,
+  fName,
   lName,
+  phone,
+  email,
+  address,
   customers,
   filteredCustomers,
   notFound,

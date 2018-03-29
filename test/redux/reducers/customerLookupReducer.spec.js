@@ -4,8 +4,11 @@ import reducer from '../../../src/redux/reducers/customerLookupReducer'
 
 const initialState = {
   open: false,
-  phone: '',
+  fName: '',
   lName: '',
+  phone: '',
+  email: '',
+  address: '',
   customers: [],
   filteredCustomers: [],
   notFound: false,
@@ -43,8 +46,11 @@ describe('Customer Lookup reducer spec', () => {
 
     const mockState = {
       open: true,
-      phone: '123456',
+      fName: 'Mike',
       lName: 'Weinberg',
+      phone: '123456',
+      email: 'mwein2@uis.edu',
+      address: '123 Fake Street',
       customers: [ 'some', 'list' ],
       selectedCustomer: { id: 'some customer' },
       notFound: true,
@@ -61,15 +67,15 @@ describe('Customer Lookup reducer spec', () => {
   })
 
 
-  it('Responds to SET_PHONE_NUMBER', () => {
+  it('Responds to SET_FIRST_NAME', () => {
     const action = {
-      type: lookupActions.SET_PHONE_NUMBER,
-      payload: '8675309',
+      type: lookupActions.SET_FIRST_NAME,
+      payload: 'Jack',
     }
 
     const expected = {
       ...initialState,
-      phone: action.payload,
+      fName: action.payload,
     }
 
     const actual = reducer(initialState, action)
@@ -90,6 +96,53 @@ describe('Customer Lookup reducer spec', () => {
     const actual = reducer(initialState, action)
     expect(actual).toEqual(expected)
   })
+
+
+  it('Responds to SET_PHONE_NUMBER', () => {
+    const action = {
+      type: lookupActions.SET_PHONE_NUMBER,
+      payload: '8675309',
+    }
+
+    const expected = {
+      ...initialState,
+      phone: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_EMAIL', () => {
+    const action = {
+      type: lookupActions.SET_EMAIL,
+      payload: 'fake@email.com',
+    }
+
+    const expected = {
+      ...initialState,
+      email: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_ADDRESS', () => {
+    const action = {
+      type: lookupActions.SET_ADDRESS,
+      payload: '123 Fake Street',
+    }
+
+    const expected = {
+      ...initialState,
+      address: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+  
 
   it('Responds to SET_CUSTOMERS', () => {
     const action = {
