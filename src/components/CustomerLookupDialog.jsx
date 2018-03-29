@@ -15,6 +15,11 @@ const CustomerLookupDialog = ({
   open,
   selectedCustomer,
   mode,
+  fName,
+  lName,
+  phone,
+  email,
+  address,
   setFirstName,
   setLastName,
   setPhoneNumber,
@@ -33,27 +38,37 @@ const CustomerLookupDialog = ({
   }
 
   const calcConfirmButtonProps = () => {
-    const confirmButtonDisabled = () => {
+    const selectButtonDisabled = () => {
       if (mode === '') {
         return Object.keys(selectedCustomer).length === 0
       }
+    }
+
+    const addEditFormValidation = () => {
+      if (fName === '' || lName === '' || phone === '' || email === '') {
+        return true
+      }
+
+      // Email format validation regex
+      return !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        .test(email)
     }
 
     switch (mode) {
       case 'add': return {
         text: 'Create',
         action: null,
-        disabled: confirmButtonDisabled(),
+        disabled: addEditFormValidation(),
       }
       case 'edit': return {
         text: 'Verify',
         action: null,
-        disabled: confirmButtonDisabled(),
+        disabled: addEditFormValidation(),
       }
       default: return {
         text: 'Select',
         action: selectAction,
-        disabled: confirmButtonDisabled(),
+        disabled: selectButtonDisabled(),
       }
     }
   }
@@ -87,9 +102,14 @@ const CustomerLookupDialog = ({
 
 
 CustomerLookupDialog.propTypes = {
+  address: PropTypes.string.isRequired,
   closeCustomerLookup: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  fName: PropTypes.string.isRequired,
+  lName: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
+  phone: PropTypes.string.isRequired,
   selectedCustomer: PropTypes.object.isRequired,
   setAddress: PropTypes.func.isRequired,
   setEmail: PropTypes.func.isRequired,
@@ -103,6 +123,11 @@ const mapStateToProps = state => ({
   open: state.customerLookup.open,
   selectedCustomer: state.customerLookup.selectedCustomer,
   mode: state.customerLookup.mode,
+  phone: state.customerLookup.phone,
+  fName: state.customerLookup.fName,
+  lName: state.customerLookup.lName,
+  email: state.customerLookup.email,
+  address: state.customerLookup.address,
 })
 
 
