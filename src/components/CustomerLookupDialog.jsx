@@ -174,7 +174,6 @@ const CustomerLookupDialog = ({
     addEditCustomerDialog()
 
 
-
   const selectAction = () => {
     setMode('edit')
     setFirstName(selectedCustomer.f_name)
