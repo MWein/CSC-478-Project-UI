@@ -46,6 +46,7 @@ describe('Customer Lookup reducer spec', () => {
       lName: 'Weinberg',
       customers: [ 'some', 'list' ],
       selectedCustomer: 'asdfasdf',
+      notFound: true,
     }
 
     const expected = {
