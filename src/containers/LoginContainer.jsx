@@ -33,9 +33,14 @@ const LoginContainer = ({
 
   const loginHeader = () => (
     <div style={loginError ? { ...style.title, color: 'red' } : style.title}>
-        Login {loginError ? ' - Invalid Credentials' : ''}
+      Login {loginError ? ' - Invalid Credentials' : ''}
     </div>
   )
+
+  const forgotPasswordAction = () => {
+    setForgotPassword(true)
+    setPassword('')
+  }
 
   return (
     <Paper style={style.paper}>
@@ -71,7 +76,7 @@ const LoginContainer = ({
         <Grid item xs={8}>
           <Button
             color='secondary'
-            onClick={() => setForgotPassword(true)}
+            onClick={forgotPasswordAction}
           >
             Forgot Password
           </Button>
