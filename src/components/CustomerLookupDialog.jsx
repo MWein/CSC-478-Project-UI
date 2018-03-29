@@ -14,8 +14,11 @@ import { actions as customerLookupActions } from '../redux/actions/customerLooku
 
 const CustomerLookupDialog = ({
   open,
-  phone,
+  fName,
   lName,
+  phone,
+  email,
+  address,
   selectedCustomer,
   customerList,
   filteredCustomers,
@@ -24,8 +27,11 @@ const CustomerLookupDialog = ({
   setSelectedCustomer,
   setNotFound,
   setFilteredCustomers,
+  setFirstName,
   setLastName,
   setPhoneNumber,
+  setEmail,
+  setAddress,
   setMode,
   closeCustomerLookup,
 }) => {
@@ -122,30 +128,40 @@ const CustomerLookupDialog = ({
             <TextField
               fullWidth
               label='First Name'
+              onChange={event => setFirstName(event.target.value)}
+              value={fName}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label='Last Name'
+              onChange={event => setLastName(event.target.value)}
+              value={lName}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label='Phone Number'
+              onChange={event => setPhoneNumber(event.target.value)}
+              value={phone}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label='Email'
+              onChange={event => setEmail(event.target.value)}
+              value={email}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label='Address'
+              onChange={event => setAddress(event.target.value)}
+              value={address}
             />
           </Grid>
         </Grid>
@@ -214,8 +230,11 @@ const CustomerLookupDialog = ({
 
 
 CustomerLookupDialog.propTypes = {
+  address: PropTypes.string.isRequired,
   closeCustomerLookup: PropTypes.func.isRequired,
   customerList: PropTypes.array.isRequired,
+  email: PropTypes.string.isRequired,
+  fName: PropTypes.string.isRequired,
   filteredCustomers: PropTypes.array.isRequired,
   lName: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
@@ -223,7 +242,10 @@ CustomerLookupDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   phone: PropTypes.string.isRequired,
   selectedCustomer: PropTypes.object.isRequired,
+  setAddress: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
   setFilteredCustomers: PropTypes.func.isRequired,
+  setFirstName: PropTypes.func.isRequired,
   setLastName: PropTypes.func.isRequired,
   setMode: PropTypes.func.isRequired,
   setNotFound: PropTypes.func.isRequired,
@@ -236,7 +258,10 @@ const mapStateToProps = state => ({
   open: state.customerLookup.open,
   selectedCustomer: state.customerLookup.selectedCustomer,
   phone: state.customerLookup.phone,
+  fName: state.customerLookup.fName,
   lName: state.customerLookup.lName,
+  email: state.customerLookup.email,
+  address: state.customerLookup.address,
   filteredCustomers: state.customerLookup.filteredCustomers,
   notFound: state.customerLookup.notFound,
   mode: state.customerLookup.mode,
