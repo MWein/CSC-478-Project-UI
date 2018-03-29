@@ -10,5 +10,6 @@ export const {
   setPhoneNumber: 'SET_PHONE_NUMBER',
   setLastName: 'SET_LAST_NAME',
   setCustomers: 'SET_CUSTOMERS',
+  setFilteredCustomers: 'SET_FILTERED_CUSTOMERS',
   setSelectedCustomers: 'SET_SELECTED_CUSTOMER',
 })

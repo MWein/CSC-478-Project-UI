@@ -7,6 +7,7 @@ const initialState = {
   phone: '',
   lName: '',
   customers: [],
+  filteredCustomers: [],
   selectedCustomer: '',
 }
 
@@ -46,7 +47,10 @@ describe('Customer Lookup reducer spec', () => {
       selectedCustomer: 'asdfasdf',
     }
 
-    const expected = initialState
+    const expected = {
+      ...initialState,
+      customers: mockState.customers,
+    }
 
     const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
@@ -92,6 +96,25 @@ describe('Customer Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       customers: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_FILTERED_CUSTOMERS', () => {
+    const action = {
+      type: lookupActions.SET_FILTERED_CUSTOMERS,
+      payload: [
+        'Some',
+        'Filtered',
+        'Customers',
+      ],
+    }
+
+    const expected = {
+      ...initialState,
+      filteredCustomers: action.payload,
     }
 
     const actual = reducer(initialState, action)

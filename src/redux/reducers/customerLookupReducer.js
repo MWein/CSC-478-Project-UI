@@ -29,6 +29,13 @@ const lName = (state = '', action = {}) => {
 const customers = (state = [], action = {}) => {
   switch (action.type) {
     case lookupConstants.SET_CUSTOMERS: return action.payload
+    default: return state
+  }
+}
+
+const filteredCustomers = (state = [], action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_FILTERED_CUSTOMERS: return action.payload
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return []
     default: return state
   }
@@ -48,6 +55,7 @@ const reducer = combineReducers({
   phone,
   lName,
   customers,
+  filteredCustomers,
   selectedCustomer,
 })
 
