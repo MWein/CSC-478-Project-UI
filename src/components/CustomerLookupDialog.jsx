@@ -48,17 +48,6 @@ const CustomerLookupDialog = ({
       </Button>
     ))
 
-    const notFoundText = () => notFound ?
-      (
-        <div>
-          <div style={{ color: 'red' }}>
-            Customer Not Found
-          </div>
-          <br />
-        </div>
-      ) :
-      null
-
     const addNewCustomerButton = () => (
       <Button onClick={() => setMode('add')} variant='raised'>
         Add New Customer
@@ -74,7 +63,7 @@ const CustomerLookupDialog = ({
     ) :
       (
         <div>
-          {notFoundText()}
+          {notFound ? (<div><div style={{ color: 'red' }}>Customer Not Found</div><br /></div>) : null}
           {addNewCustomerButton()}
         </div>
       )
@@ -105,9 +94,9 @@ const CustomerLookupDialog = ({
           value={phone}
         />
 
-          &nbsp;&nbsp;&nbsp;
-          OR
-          &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        OR
+        &nbsp;&nbsp;&nbsp;&nbsp;
 
         <TextField
           label='Last Name'
@@ -115,12 +104,11 @@ const CustomerLookupDialog = ({
           value={lName}
         />
 
-          &nbsp;&nbsp;
+        &nbsp;&nbsp;
 
         <Button onClick={searchCustomers} variant='raised'>
             Search
         </Button>
-
 
         <br /><br />
         {customerListTable()}
@@ -179,11 +167,6 @@ const CustomerLookupDialog = ({
   )
 
 
-  const router = () => mode === '' ?
-    searchCustomerDialog() :
-    addEditCustomerDialog()
-
-
   const selectAction = () => {
     setMode('edit')
     setFirstName(selectedCustomer.f_name)
@@ -224,7 +207,7 @@ const CustomerLookupDialog = ({
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
-      {router()}
+      {mode === '' ? searchCustomerDialog() : addEditCustomerDialog()}
 
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
