@@ -82,8 +82,8 @@ const CustomerLookupDialog = ({
 CustomerLookupDialog.propTypes = {
   closeCustomerLookup: PropTypes.func.isRequired,
   customerList: PropTypes.array.isRequired,
-  open: PropTypes.bool.isRequied,
-  selectedCustomer: PropTypes.string.isRequred,
+  open: PropTypes.bool.isRequired,
+  selectedCustomer: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
