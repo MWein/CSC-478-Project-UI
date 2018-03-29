@@ -13,19 +13,67 @@ import { actions as customerLookupActions } from '../redux/actions/customerLooku
 
 const CustomerLookupDialog = ({
   open,
+  phone,
+  lName,
   selectedCustomer,
   customerList,
+  filteredCustomers,
+  notFound,
+  setNotFound,
+  setFilteredCustomers,
+  setLastName,
+  setPhoneNumber,
   closeCustomerLookup,
 }) => {
-  const customerListTable = () => customerList.map(customer => (
-    <Button
-      color='primary'
-      key={customer.id}
-      style={{ width: '100%' }}
-    >
-      {customer.f_name} {customer.l_name} - {customer.phone}
-    </Button>
-  ))
+  const customerListTable = () => {
+    const customerTable = filteredCustomers.map(customer => (
+      <Button
+        color='primary'
+        key={customer.id}
+        style={{ width: '100%' }}
+      >
+        {customer.f_name} {customer.l_name} - {customer.phone}
+      </Button>
+    ))
+
+    const notFoundText = () => notFound ?
+      (
+        <div>
+          <div style={{ color: 'red' }}>
+            Customer Not Found
+          </div>
+          <br />
+        </div>
+      ) :
+      null
+
+    return customerTable.length > 0 ? customerTable :
+      (
+        <div>
+          {notFoundText()}
+
+          <Button
+            variant='raised'
+          >
+            Add New Customer
+          </Button>
+        </div>
+      )
+  }
+
+
+  const searchCustomers = () => {
+    const newFilteredCustomers = phone === '' && lName === '' ? [] :
+      customerList.filter(customer => customer.phone.includes(phone) && customer.l_name.includes(lName))
+
+    if (newFilteredCustomers.length === 0) {
+      setNotFound(true)
+    } else {
+      setNotFound(false)
+    }
+
+    setFilteredCustomers(newFilteredCustomers)
+  }
 
 
   return (
@@ -38,6 +86,8 @@ const CustomerLookupDialog = ({
 
         <TextField
           label='Phone Number'
+          onChange={event => setPhoneNumber(event.target.value)}
+          value={phone}
         />
 
         &nbsp;&nbsp;&nbsp;
@@ -46,11 +96,16 @@ const CustomerLookupDialog = ({
 
         <TextField
           label='Last Name'
+          onChange={event => setLastName(event.target.value)}
+          value={lName}
         />
 
-        &nbsp;
+        &nbsp;&nbsp;
 
-        <Button>
+        <Button
+          onClick={searchCustomers}
+          variant='raised'
+        >
           Search
         </Button>
 
@@ -82,14 +137,26 @@ const CustomerLookupDialog = ({
 CustomerLookupDialog.propTypes = {
   closeCustomerLookup: PropTypes.func.isRequired,
   customerList: PropTypes.array.isRequired,
+  filteredCustomers: PropTypes.array.isRequired,
+  lName: PropTypes.string.isRequired,
+  notFound: PropTypes.bool.isRequired,
   open: PropTypes.bool.isRequired,
+  phone: PropTypes.string.isRequired,
   selectedCustomer: PropTypes.string.isRequired,
+  setFilteredCustomers: PropTypes.func.isRequired,
+  setLastName: PropTypes.func.isRequired,
+  setNotFound: PropTypes.func.isRequired,
+  setPhoneNumber: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
   customerList: state.customerLookup.customers,
   open: state.customerLookup.open,
   selectedCustomer: state.customerLookup.selectedCustomer,
+  phone: state.customerLookup.phone,
+  lName: state.customerLookup.lName,
+  filteredCustomers: state.customerLookup.filteredCustomers,
+  notFound: state.customerLookup.notFound,
 })
 
 const actions = {
