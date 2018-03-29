@@ -9,6 +9,7 @@ import React from 'react'
 import SearchCustomerDialog from './CustomerLookupDialogContents/SearchCustomer'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import { validateEmail } from '../redux/selectors'
 
 
 const CustomerLookupDialog = ({
@@ -48,9 +49,7 @@ const CustomerLookupDialog = ({
         return true
       }
 
-      // Email format validation regex
-      return !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        .test(email)
+      return !validateEmail(email)
     }
 
     switch (mode) {
@@ -77,6 +76,7 @@ const CustomerLookupDialog = ({
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
+
       {mode === '' ? (<SearchCustomerDialog />) : (<AddEditCustomerDialog />)}
 
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
@@ -84,7 +84,7 @@ const CustomerLookupDialog = ({
           color='secondary'
           onClick={closeCustomerLookup}
         >
-            Cancel
+          Cancel
         </Button>
         <Button
           color='primary'
