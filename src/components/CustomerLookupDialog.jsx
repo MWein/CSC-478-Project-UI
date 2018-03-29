@@ -79,11 +79,8 @@ const CustomerLookupDialog = ({
   }
 
 
-  return (
-    <Dialog
-      aria-labelledby='form-dialog-title'
-      open={open}
-    >
+  const searchCustomerDialog = () => (
+    <div>
       <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
       <DialogContent>
 
@@ -93,9 +90,9 @@ const CustomerLookupDialog = ({
           value={phone}
         />
 
-        &nbsp;&nbsp;&nbsp;
-        OR
-        &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
+          OR
+          &nbsp;&nbsp;&nbsp;&nbsp;
 
         <TextField
           label='Last Name'
@@ -103,13 +100,13 @@ const CustomerLookupDialog = ({
           value={lName}
         />
 
-        &nbsp;&nbsp;
+          &nbsp;&nbsp;
 
         <Button
           onClick={searchCustomers}
           variant='raised'
         >
-          Search
+            Search
         </Button>
 
 
@@ -122,16 +119,26 @@ const CustomerLookupDialog = ({
           color='secondary'
           onClick={closeCustomerLookup}
         >
-          Cancel
+            Cancel
         </Button>
         <Button
           color='primary'
           disabled={Object.keys(selectedCustomer).length === 0}
           variant='raised'
         >
-          Select
+            Select
         </Button>
       </DialogActions>
+    </div>
+  )
+
+
+  return (
+    <Dialog
+      aria-labelledby='form-dialog-title'
+      open={open}
+    >
+      {searchCustomerDialog()}
     </Dialog>
   )
 }
