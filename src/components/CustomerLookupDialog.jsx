@@ -63,7 +63,6 @@ const CustomerLookupDialog = ({
       (
         <div>
           {notFoundText()}
-
           <Button onClick={() => setMode('add')} variant='raised'>
             Add New Customer
           </Button>
@@ -175,6 +174,16 @@ const CustomerLookupDialog = ({
     addEditCustomerDialog()
 
 
+
+  const selectAction = () => {
+    setMode('edit')
+    setFirstName(selectedCustomer.f_name)
+    setLastName(selectedCustomer.l_name)
+    setPhoneNumber(selectedCustomer.phone)
+    setEmail(selectedCustomer.email)
+    setAddress(selectedCustomer.address)
+  }
+
   const calcConfirmButtonProps = () => {
     const confirmButtonDisabled = () => {
       if (mode === '') {
@@ -195,7 +204,7 @@ const CustomerLookupDialog = ({
       }
       default: return {
         text: 'Select',
-        action: () => setMode('edit'),
+        action: selectAction,
         disabled: confirmButtonDisabled(),
       }
     }
