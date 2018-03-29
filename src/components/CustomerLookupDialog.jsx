@@ -12,6 +12,39 @@ import { connect } from 'react-redux'
 
 
 const CustomerLookupDialog = () => {
+  const testCustomerList = [
+    {
+      id: 'fvlcrwbwej',
+      f_name: 'Sydney',
+      l_name: 'Australia',
+      phone: '123456',
+      address: '123 Fake Street',
+      active: true,
+      email: 'something@yahoo.com',
+    },
+    {
+      id: 'fdjksdksdfkjsfd',
+      f_name: 'Jack',
+      l_name: 'Bower',
+      phone: '466789',
+      address: '123 Fake Street',
+      active: true,
+      email: 'something@yahoo.com',
+    },
+  ]
+
+
+  const customerListTable = () => testCustomerList.map(customer => (
+    <Button
+      color='primary'
+      key={customer.id}
+      style={{ width: '100%' }}
+    >
+      {customer.f_name} {customer.l_name} - {customer.phone}
+    </Button>
+  ))
+
+
   return (
     <Dialog
       aria-labelledby='form-dialog-title'
@@ -23,11 +56,11 @@ const CustomerLookupDialog = () => {
         <TextField
           label='Phone Number'
         />
-        
+
         &nbsp;&nbsp;&nbsp;
         OR
         &nbsp;&nbsp;&nbsp;&nbsp;
-        
+
         <TextField
           label='Last Name'
         />
@@ -40,23 +73,7 @@ const CustomerLookupDialog = () => {
 
 
         <br /><br />
-
-
-        <Button
-          color='primary'
-          style={{ width: '100%' }}
-        >
-          Mike Weinberg - 7088024340
-        </Button>
-
-        <Button
-          color='primary'
-          style={{ width: '100%' }}
-        >
-          Tony Weinberg - 7081234567
-        </Button>
-
-
+        {customerListTable()}
 
       </DialogContent>
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
