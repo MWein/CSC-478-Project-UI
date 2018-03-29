@@ -9,7 +9,7 @@ const initialState = {
   customers: [],
   filteredCustomers: [],
   notFound: false,
-  selectedCustomer: '',
+  selectedCustomer: {},
 }
 
 describe('Customer Lookup reducer spec', () => {
@@ -45,7 +45,7 @@ describe('Customer Lookup reducer spec', () => {
       phone: '123456',
       lName: 'Weinberg',
       customers: [ 'some', 'list' ],
-      selectedCustomer: 'asdfasdf',
+      selectedCustomer: { id: 'some customer' },
       notFound: true,
     }
 
@@ -141,7 +141,7 @@ describe('Customer Lookup reducer spec', () => {
   it('Responds to SET_SELECTED_CUSTOMER', () => {
     const action = {
       type: lookupActions.SET_SELECTED_CUSTOMER,
-      payload: '',
+      payload: { id: 'hi' },
     }
 
     const expected = {

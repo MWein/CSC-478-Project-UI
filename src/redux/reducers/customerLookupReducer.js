@@ -49,10 +49,10 @@ const notFound = (state = false, action = {}) => {
   }
 }
 
-const selectedCustomer = (state = '', action = {}) => {
+const selectedCustomer = (state = {}, action = {}) => {
   switch (action.type) {
     case lookupConstants.SET_SELECTED_CUSTOMER: return action.payload
-    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return {}
     default: return state
   }
 }

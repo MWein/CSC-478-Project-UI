@@ -12,5 +12,5 @@ export const {
   setCustomers: 'SET_CUSTOMERS',
   setFilteredCustomers: 'SET_FILTERED_CUSTOMERS',
   setNotFound: 'SET_NOT_FOUND',
-  setSelectedCustomers: 'SET_SELECTED_CUSTOMER',
+  setSelectedCustomer: 'SET_SELECTED_CUSTOMER',
 })
