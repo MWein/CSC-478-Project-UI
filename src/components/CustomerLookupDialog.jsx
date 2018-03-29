@@ -19,6 +19,7 @@ const CustomerLookupDialog = ({
   customerList,
   filteredCustomers,
   notFound,
+  setSelectedCustomer,
   setNotFound,
   setFilteredCustomers,
   setLastName,
@@ -30,7 +31,9 @@ const CustomerLookupDialog = ({
       <Button
         color='primary'
         key={customer.id}
+        onClick={() => setSelectedCustomer(customer)}
         style={{ width: '100%' }}
+        variant={customer === selectedCustomer ? 'raised' : 'flat'}
       >
         {customer.f_name} {customer.l_name} - {customer.phone}
       </Button>
@@ -123,7 +126,7 @@ const CustomerLookupDialog = ({
         </Button>
         <Button
           color='primary'
-          disabled={selectedCustomer === ''}
+          disabled={Object.keys(selectedCustomer).length === 0}
           variant='raised'
         >
           Select
@@ -142,11 +145,12 @@ CustomerLookupDialog.propTypes = {
   notFound: PropTypes.bool.isRequired,
   open: PropTypes.bool.isRequired,
   phone: PropTypes.string.isRequired,
-  selectedCustomer: PropTypes.string.isRequired,
+  selectedCustomer: PropTypes.object.isRequired,
   setFilteredCustomers: PropTypes.func.isRequired,
   setLastName: PropTypes.func.isRequired,
   setNotFound: PropTypes.func.isRequired,
   setPhoneNumber: PropTypes.func.isRequired,
+  setSelectedCustomer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
