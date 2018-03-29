@@ -57,6 +57,14 @@ const selectedCustomer = (state = {}, action = {}) => {
   }
 }
 
+const mode = (state = '', action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_MODE: return action.payload
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   open,
@@ -66,6 +74,7 @@ const reducer = combineReducers({
   filteredCustomers,
   notFound,
   selectedCustomer,
+  mode,
 })
 
 export default reducer

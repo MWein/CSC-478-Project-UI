@@ -10,6 +10,7 @@ const initialState = {
   filteredCustomers: [],
   notFound: false,
   selectedCustomer: {},
+  mode: '',
 }
 
 describe('Customer Lookup reducer spec', () => {
@@ -47,6 +48,7 @@ describe('Customer Lookup reducer spec', () => {
       customers: [ 'some', 'list' ],
       selectedCustomer: { id: 'some customer' },
       notFound: true,
+      mode: 'asdflkjj',
     }
 
     const expected = {
@@ -147,6 +149,22 @@ describe('Customer Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       selectedCustomer: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+
+  it('Responds to SET_MODE', () => {
+    const action = {
+      type: lookupActions.SET_MODE,
+      payload: 'some mode',
+    }
+
+    const expected = {
+      ...initialState,
+      mode: action.payload,
     }
 
     const actual = reducer(initialState, action)
