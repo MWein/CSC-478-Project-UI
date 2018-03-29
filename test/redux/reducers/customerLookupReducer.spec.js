@@ -8,6 +8,7 @@ const initialState = {
   lName: '',
   customers: [],
   filteredCustomers: [],
+  notFound: false,
   selectedCustomer: '',
 }
 
@@ -115,6 +116,21 @@ describe('Customer Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       filteredCustomers: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_NOT_FOUND', () => {
+    const action = {
+      type: lookupActions.SET_NOT_FOUND,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      notFound: action.payload,
     }
 
     const actual = reducer(initialState, action)

@@ -41,6 +41,14 @@ const filteredCustomers = (state = [], action = {}) => {
   }
 }
 
+const notFound = (state = false, action = {}) => {
+  switch (action.type) {
+    case lookupConstants.SET_NOT_FOUND: return action.payload
+    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return false
+    default: return state
+  }
+}
+
 const selectedCustomer = (state = '', action = {}) => {
   switch (action.type) {
     case lookupConstants.SET_SELECTED_CUSTOMER: return action.payload
@@ -56,6 +64,7 @@ const reducer = combineReducers({
   lName,
   customers,
   filteredCustomers,
+  notFound,
   selectedCustomer,
 })
 
