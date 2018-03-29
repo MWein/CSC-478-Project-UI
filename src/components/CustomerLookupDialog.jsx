@@ -19,11 +19,13 @@ const CustomerLookupDialog = ({
   customerList,
   filteredCustomers,
   notFound,
+  mode,
   setSelectedCustomer,
   setNotFound,
   setFilteredCustomers,
   setLastName,
   setPhoneNumber,
+  setMode,
   closeCustomerLookup,
 }) => {
   const customerListTable = () => {
@@ -81,7 +83,6 @@ const CustomerLookupDialog = ({
 
   const searchCustomerDialog = () => (
     <div>
-      <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
       <DialogContent>
 
         <TextField
@@ -133,12 +134,63 @@ const CustomerLookupDialog = ({
   )
 
 
+
+  const addEditCustomerDialog = () => (
+    <div>
+      <DialogContent>
+
+        <TextField
+          label='First Name'
+        />
+
+        <TextField
+          label='Last Name'
+        />
+
+        <TextField
+          label='Phone Number'
+        />
+
+        <TextField
+          label='Email'
+        />
+
+        <TextField
+          label='Address'
+        />
+
+      </DialogContent>
+      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        <Button
+          color='secondary'
+          onClick={closeCustomerLookup}
+        >
+            Cancel
+        </Button>
+        <Button
+          color='primary'
+          disabled={Object.keys(selectedCustomer).length === 0}
+          variant='raised'
+        >
+            Select
+        </Button>
+      </DialogActions>
+    </div>
+  )
+
+
+  const router = () => mode === 'add' || mode === 'edit' ?
+    addEditCustomerDialog() :
+    searchCustomerDialog()
+
+
   return (
     <Dialog
       aria-labelledby='form-dialog-title'
       open={open}
     >
-      {searchCustomerDialog()}
+      <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
+      {router()}
     </Dialog>
   )
 }
@@ -149,12 +201,14 @@ CustomerLookupDialog.propTypes = {
   customerList: PropTypes.array.isRequired,
   filteredCustomers: PropTypes.array.isRequired,
   lName: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
   notFound: PropTypes.bool.isRequired,
   open: PropTypes.bool.isRequired,
   phone: PropTypes.string.isRequired,
   selectedCustomer: PropTypes.object.isRequired,
   setFilteredCustomers: PropTypes.func.isRequired,
   setLastName: PropTypes.func.isRequired,
+  setMode: PropTypes.func.isRequired,
   setNotFound: PropTypes.func.isRequired,
   setPhoneNumber: PropTypes.func.isRequired,
   setSelectedCustomer: PropTypes.func.isRequired,
@@ -168,6 +222,7 @@ const mapStateToProps = state => ({
   lName: state.customerLookup.lName,
   filteredCustomers: state.customerLookup.filteredCustomers,
   notFound: state.customerLookup.notFound,
+  mode: state.customerLookup.mode,
 })
 
 const actions = {
