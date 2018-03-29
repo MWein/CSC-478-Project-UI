@@ -83,7 +83,7 @@ const CustomerLookupDialog = ({
 
   const searchCustomers = () => {
     const newFilteredCustomers = phone === '' && lName === '' ? [] :
-      customerList.filter(customer => customer.phone.includes(phone) && customer.l_name.includes(lName))
+      customerList.filter(customer => customer.phone.includes(phone) && customer.l_name.toLowerCase().includes(lName.toLowerCase()))
 
     if (newFilteredCustomers.length === 0) {
       setNotFound(true)
