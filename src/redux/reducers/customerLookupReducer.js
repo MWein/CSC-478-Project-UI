@@ -28,7 +28,7 @@ const lName = (state = '', action = {}) => {
 
 const phone = (state = '', action = {}) => {
   switch (action.type) {
-    case lookupConstants.SET_PHONE_NUMBER: return action.payload
+    case lookupConstants.SET_PHONE_NUMBER: return isNaN(action.payload) ? state : action.payload
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
     default: return state
   }

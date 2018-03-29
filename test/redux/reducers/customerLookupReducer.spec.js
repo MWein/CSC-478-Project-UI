@@ -113,6 +113,25 @@ describe('Customer Lookup reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+
+  it('Returns previous state if entered value is not a number', () => {
+    const action = {
+      type: lookupActions.SET_PHONE_NUMBER,
+      payload: '8675309f',
+    }
+
+    const mockState = {
+      ...initialState,
+      phone: '8675309',
+    }
+
+    const expected = mockState
+
+    const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
+
   it('Responds to SET_EMAIL', () => {
     const action = {
       type: lookupActions.SET_EMAIL,
