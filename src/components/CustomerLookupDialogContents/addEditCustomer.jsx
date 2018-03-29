@@ -20,54 +20,40 @@ const AddEditCustomerDialog = ({
   setPhoneNumber,
   setEmail,
   setAddress,
-}) => (
-  <div>
-    <DialogContent>
-      <Grid container>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label='First Name - Required'
-            onChange={event => setFirstName(event.target.value)}
-            value={fName}
-          />
+}) => {
+  const customTextField = (label, onChangeAction, value) => (
+    <TextField
+      fullWidth
+      label={label}
+      onChange={onChangeAction}
+      value={value}
+    />
+  )
+
+  return (
+    <div>
+      <DialogContent>
+        <Grid container>
+          <Grid item xs={12}>
+            {customTextField('First Name - Required', event => setFirstName(event.target.value), fName)}
+          </Grid>
+          <Grid item xs={12}>
+            {customTextField('Last Name - Required', event => setLastName(event.target.value), lName)}
+          </Grid>
+          <Grid item xs={12}>
+            {customTextField('Phone Number - Required', event => setPhoneNumber(event.target.value), phone)}
+          </Grid>
+          <Grid item xs={12}>
+            {customTextField('Email - Required', event => setEmail(event.target.value), email)}
+          </Grid>
+          <Grid item xs={12}>
+            {customTextField('Address', event => setAddress(event.target.value), address)}
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label='Last Name - Required'
-            onChange={event => setLastName(event.target.value)}
-            value={lName}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label='Phone Number - Required'
-            onChange={event => setPhoneNumber(event.target.value)}
-            value={phone}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label='Email - Required'
-            onChange={event => setEmail(event.target.value)}
-            value={email}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            label='Address'
-            onChange={event => setAddress(event.target.value)}
-            value={address}
-          />
-        </Grid>
-      </Grid>
-    </DialogContent>
-  </div>
-)
+      </DialogContent>
+    </div>
+  )
+}
 
 
 AddEditCustomerDialog.propTypes = {
