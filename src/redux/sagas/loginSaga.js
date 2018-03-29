@@ -6,6 +6,7 @@ import {
 } from 'redux-saga/effects'
 import { getPassword, getSecAnswer, getUsername } from '../selectors'
 import { actions as appActions } from '../actions/appActions'
+import { actions as customerLookupActions } from '../actions/customerLookupActions'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
 
@@ -36,6 +37,8 @@ export function* loginSaga() {
   } else {
     yield dispatch(loginActions.setLoginError(false))
     yield dispatch(appActions.setToken(response.payload.token))
+
+    yield dispatch(customerLookupActions.getAllCustomers())
   }
 }
 

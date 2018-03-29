@@ -4,6 +4,7 @@ export const {
   constants,
   actions,
 } = createActions('customerLookup', {
+  getAllCustomers: 'GET_ALL_CUSTOMERS',
   openCustomerLookup: 'OPEN_CUSTOMER_LOOKUP',
   closeCustomerLookup: 'CLOSE_CUSTOMER_LOOKUP',
   setPhoneNumber: 'SET_PHONE_NUMBER',
