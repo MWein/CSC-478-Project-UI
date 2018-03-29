@@ -19,7 +19,6 @@ const CustomerLookupDialog = ({
   lName,
   phone,
   email,
-  address,
   setFirstName,
   setLastName,
   setPhoneNumber,
@@ -102,7 +101,6 @@ const CustomerLookupDialog = ({
 
 
 CustomerLookupDialog.propTypes = {
-  address: PropTypes.string.isRequired,
   closeCustomerLookup: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   fName: PropTypes.string.isRequired,
@@ -127,7 +125,6 @@ const mapStateToProps = state => ({
   fName: state.customerLookup.fName,
   lName: state.customerLookup.lName,
   email: state.customerLookup.email,
-  address: state.customerLookup.address,
 })
 
 
