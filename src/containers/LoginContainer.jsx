@@ -45,9 +45,11 @@ const LoginContainer = ({
   return (
     <Paper style={style.paper}>
       <ForgotPasswordDialog />
-      {loginHeader()}
 
       <Grid container>
+        <Grid item xs={12}>
+          {loginHeader()}
+        </Grid>
 
         <Grid item xs={12}>
           <TextField
