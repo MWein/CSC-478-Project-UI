@@ -87,6 +87,7 @@ const LoginContainer = ({
             color='primary'
             disabled={username === '' || password === ''}
             onClick={login}
+            variant='raised'
           >
             Login
           </Button>

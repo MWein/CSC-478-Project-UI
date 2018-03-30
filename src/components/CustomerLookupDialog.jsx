@@ -20,6 +20,7 @@ const CustomerLookupDialog = ({
   lName,
   phone,
   email,
+  createNewCustomer,
   setFirstName,
   setLastName,
   setPhoneNumber,
@@ -35,6 +36,10 @@ const CustomerLookupDialog = ({
     setPhoneNumber(selectedCustomer.phone)
     setEmail(selectedCustomer.email)
     setAddress(selectedCustomer.address)
+  }
+
+  const addCustomerAction = () => {
+    createNewCustomer()
   }
 
   const calcConfirmButtonProps = () => {
@@ -55,7 +60,7 @@ const CustomerLookupDialog = ({
     switch (mode) {
       case 'add': return {
         text: 'Create',
-        action: null,
+        action: addCustomerAction,
         disabled: addEditFormValidation(),
       }
       case 'edit': return {
@@ -102,6 +107,7 @@ const CustomerLookupDialog = ({
 
 CustomerLookupDialog.propTypes = {
   closeCustomerLookup: PropTypes.func.isRequired,
+  createNewCustomer: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   fName: PropTypes.string.isRequired,
   lName: PropTypes.string.isRequired,

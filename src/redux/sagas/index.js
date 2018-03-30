@@ -1,4 +1,5 @@
 import { call, fork } from 'redux-saga/effects'
+import createCustomerSaga from './createCustomerSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
 import getSecurityQuestionSaga from './getSecurityQuestionSaga'
 import { getStatusSaga } from './getStatusSaga'
@@ -10,4 +11,5 @@ export default function* sagasMain() {
   yield fork(getSecurityQuestionSaga)
   yield fork(loginSaga)
   yield fork(getAllCustomersSaga)
+  yield fork(createCustomerSaga)
 }
