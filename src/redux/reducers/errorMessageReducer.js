@@ -13,7 +13,6 @@ const error = (state = false, action = {}) => {
 const message = (state = '', action = {}) => {
   switch (action.type) {
     case errorConstants.DISPLAY_ERROR: return action.payload
-    case errorConstants.DISMISS_ERROR: return ''
     default: return state
   }
 }

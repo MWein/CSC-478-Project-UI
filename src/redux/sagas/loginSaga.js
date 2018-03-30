@@ -7,8 +7,10 @@ import {
 import { getPassword, getSecAnswer, getUsername } from '../selectors'
 import { actions as appActions } from '../actions/appActions'
 import { actions as customerLookupActions } from '../actions/customerLookupActions'
+import { actions as errorMessageActions } from '../actions/errorMessageActions'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
+
 
 export function* loginSaga() {
   const url = 'http://csc478team301.uisad.uis.edu:8080/login'
@@ -28,11 +30,22 @@ export function* loginSaga() {
     body: JSON.stringify(body),
   })
 
+
+  if (response.error) {
+    yield dispatch(errorMessageActions.displayError(response.statusText))
+
+    return
+  }
+
   if (response.payload.error) {
     if (answer !== '') {
       yield dispatch(loginActions.setAnswerError(true))
+
+      yield dispatch(errorMessageActions.displayError('Invalid Credentials'))
     } else {
       yield dispatch(loginActions.setLoginError(true))
+
+      //yield dispatch(errorMessageActions.displayError('Invalid Credentials'))
     }
   } else {
     yield dispatch(loginActions.setLoginError(false))
