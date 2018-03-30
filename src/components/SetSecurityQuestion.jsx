@@ -28,6 +28,8 @@ const SetSecurityQuestion = ({
     },
   }
 
+  const validate = () => securityQuestion !== '' && securityAnswer !== ''
+
   return (
     <Paper style={style.paper}>
       <Grid container>
@@ -51,6 +53,7 @@ const SetSecurityQuestion = ({
             fullWidth
             label='Security Answer'
             onChange={event => setSecurityAnswer(event.target.value)}
+            type='password'
             value={securityAnswer}
           />
         </Grid>
@@ -59,6 +62,8 @@ const SetSecurityQuestion = ({
           <div style={{ width: '100%', textAlign: 'right' }}>
             <Button
               color='primary'
+              disabled={!validate()}
+              onClick={() => console.log('Run the saga')}
               variant='raised'
             >
                 Submit

@@ -12,6 +12,7 @@ const ResetPassword = ({
   recoveryMode,
   oldPassword,
   newPassword,
+  currentPassword,
   setOldPassword,
   setNewPassword,
 }) => {
@@ -29,6 +30,23 @@ const ResetPassword = ({
     },
   }
 
+
+  const resetPassword = () => {
+    if (recoveryMode || oldPassword === currentPassword) {
+
+      console.log('Run change password saga')
+
+    } else {
+
+      console.log('NOOOOOOO')
+
+    }
+  }
+
+
+  const validate = () => newPassword === '' ? false : recoveryMode || oldPassword !== ''
+
+
   return (
     <Paper style={style.paper}>
       <Grid container>
@@ -40,9 +58,11 @@ const ResetPassword = ({
 
         <Grid item xs={12}>
           <TextField
+            disabled={recoveryMode}
             fullWidth
             label='Old Password'
             onChange={event => setOldPassword(event.target.value)}
+            type='password'
             value={oldPassword}
           />
         </Grid>
@@ -52,6 +72,7 @@ const ResetPassword = ({
             fullWidth
             label='New Password'
             onChange={event => setNewPassword(event.target.value)}
+            type='password'
             value={newPassword}
           />
         </Grid>
@@ -60,9 +81,11 @@ const ResetPassword = ({
           <div style={{ width: '100%', textAlign: 'right' }}>
             <Button
               color='primary'
+              disabled={!validate()}
+              onClick={resetPassword}
               variant='raised'
             >
-                Reset Password
+              Reset Password
             </Button>
           </div>
         </Grid>
@@ -73,6 +96,7 @@ const ResetPassword = ({
 
 
 ResetPassword.propTypes = {
+  currentPassword: PropTypes.string.isRequired,
   newPassword: PropTypes.string.isRequired,
   oldPassword: PropTypes.string.isRequired,
   recoveryMode: PropTypes.bool.isRequired,
@@ -84,6 +108,7 @@ const mapStateToProps = state => ({
   recoveryMode: state.settings.recoveryMode,
   oldPassword: state.settings.oldPassword,
   newPassword: state.settings.newPassword,
+  currentPassword: state.login.password,
 })
 
 const actions = {
