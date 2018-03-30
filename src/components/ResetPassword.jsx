@@ -33,13 +33,9 @@ const ResetPassword = ({
 
   const resetPassword = () => {
     if (recoveryMode || oldPassword === currentPassword) {
-
       console.log('Run change password saga')
-
     } else {
-
       console.log('NOOOOOOO')
-
     }
   }
 

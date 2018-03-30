@@ -1,8 +1,10 @@
 import Button from 'material-ui/Button'
 import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import ErrorMessageDialog from '../components/ErrorMessageDialog'
+import Grid from 'material-ui/Grid'
 import LoadingDialog from '../components/LoadingDialog'
 import LoginContainer from './LoginContainer'
+import NavBar from '../components/NavBar'
 import PropTypes from 'prop-types'
 import React from 'react'
 import UserSettingsContainer from './UserSettingsContainer'
@@ -18,7 +20,9 @@ const AppContainer = ({
   const router = () => {
     if (token === '') {
       return (
-        <LoginContainer />
+        <div>
+          <LoginContainer />
+        </div>
       )
     }
 
@@ -36,12 +40,21 @@ const AppContainer = ({
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div>
       <LoadingDialog />
       <ErrorMessageDialog />
 
+      <Grid container>
+        <Grid item xs={12}>
+          <NavBar />
+        </Grid>
 
-      <UserSettingsContainer />
+        <Grid item xs={12}>
+          <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
+            {router()}
+          </div>
+        </Grid>
+      </Grid>
     </div>
   )
 }
