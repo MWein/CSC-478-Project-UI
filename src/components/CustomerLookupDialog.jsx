@@ -20,6 +20,7 @@ const CustomerLookupDialog = ({
   lName,
   phone,
   email,
+  editCustomer,
   createNewCustomer,
   setFirstName,
   setLastName,
@@ -28,7 +29,27 @@ const CustomerLookupDialog = ({
   setAddress,
   setMode,
   closeCustomerLookup,
+  setSelectedCustomer,
+  getAllCustomers,
 }) => {
+  const addCustomerAction = () => {
+    createNewCustomer()
+    getAllCustomers()
+    closeCustomerLookup()
+  }
+
+  const editCustomerAction = () => {
+    editCustomer()
+    getAllCustomers()
+    closeCustomerLookup()
+  }
+
+  const closeAction = () => {
+    closeCustomerLookup()
+    setSelectedCustomer({})
+  }
+
+
   const selectAction = () => {
     setMode('edit')
     setFirstName(selectedCustomer.f_name)
@@ -36,10 +57,6 @@ const CustomerLookupDialog = ({
     setPhoneNumber(selectedCustomer.phone)
     setEmail(selectedCustomer.email)
     setAddress(selectedCustomer.address)
-  }
-
-  const addCustomerAction = () => {
-    createNewCustomer()
   }
 
   const calcConfirmButtonProps = () => {
@@ -65,7 +82,7 @@ const CustomerLookupDialog = ({
       }
       case 'edit': return {
         text: 'Verify',
-        action: null,
+        action: editCustomerAction,
         disabled: addEditFormValidation(),
       }
       default: return {
@@ -87,7 +104,7 @@ const CustomerLookupDialog = ({
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
           color='secondary'
-          onClick={closeCustomerLookup}
+          onClick={closeAction}
         >
           Cancel
         </Button>
@@ -108,8 +125,10 @@ const CustomerLookupDialog = ({
 CustomerLookupDialog.propTypes = {
   closeCustomerLookup: PropTypes.func.isRequired,
   createNewCustomer: PropTypes.func.isRequired,
+  editCustomer: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   fName: PropTypes.string.isRequired,
+  getAllCustomers: PropTypes.func.isRequired,
   lName: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
@@ -121,6 +140,7 @@ CustomerLookupDialog.propTypes = {
   setLastName: PropTypes.func.isRequired,
   setMode: PropTypes.func.isRequired,
   setPhoneNumber: PropTypes.func.isRequired,
+  setSelectedCustomer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
