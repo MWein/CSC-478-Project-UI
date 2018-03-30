@@ -14,27 +14,25 @@ const ErrorMessageDialog = ({
   error,
   message,
   dismissError,
-}) => {
-  return (
-    <Dialog aria-labelledby='form-dialog-title' open={error}>
-      <DialogTitle id='form-dialog-title'>Error</DialogTitle>
+}) => (
+  <Dialog aria-labelledby='form-dialog-title' open={error}>
+    <DialogTitle id='form-dialog-title'>Error</DialogTitle>
 
-      <DialogContent>
-        {message}
-      </DialogContent>
+    <DialogContent>
+      {message}
+    </DialogContent>
 
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-        <Button
-          color='primary'
-          onClick={dismissError}
-          variant='raised'
-        >
+    <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+      <Button
+        color='primary'
+        onClick={dismissError}
+        variant='raised'
+      >
           OK
-        </Button>
-      </DialogActions>
-    </Dialog>
-  )
-}
+      </Button>
+    </DialogActions>
+  </Dialog>
+)
 
 
 ErrorMessageDialog.propTypes = {
