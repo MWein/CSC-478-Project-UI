@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
+  getAllCustomers,
   getCustomerAddress,
   getCustomerEmail,
   getCustomerFirstName,
@@ -44,10 +45,25 @@ export function* createCustomerSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
+    const id = response.payload.id
+    const selectedCustomer = {
+      active: true,
+      id,
+      f_name,
+      l_name,
+      phone,
+      email,
+      address,
+    }
 
-    console.log(response.payload)
+    const customers = yield select(getAllCustomers)
+    const newCustomers = [
+      ...customers,
+      selectedCustomer,
+    ]
 
-    //yield dispatch(customerLookupActions.setSelectedCustomer(response.payload.rows))
+    yield dispatch(customerLookupActions.setSelectedCustomer(selectedCustomer))
+    yield dispatch(customerLookupActions.setCustomers(newCustomers))
   }
 }
 

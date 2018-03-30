@@ -10,6 +10,7 @@ export const getPassword = state => state.login.password
 export const getSecAnswer = state => state.login.securityAnswer
 
 // LookupCustomerDialog specific
+export const getAllCustomers = state => state.customerLookup.customers
 export const getCustomerFirstName = state => state.customerLookup.fName
 export const getCustomerLastName = state => state.customerLookup.lName
 export const getCustomerPhoneNumber = state => state.customerLookup.phone
