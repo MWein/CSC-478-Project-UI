@@ -10,6 +10,7 @@ export const {
   setEmail: 'SET_EMAIL',
   setAddress: 'SET_ADDRESS',
 
+  editCustomer: 'EDIT_CUSTOMER',
   createNewCustomer: 'CREATE_NEW_CUSTOMER',
 
   getAllCustomers: 'GET_ALL_CUSTOMERS',
