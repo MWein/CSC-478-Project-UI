@@ -84,7 +84,7 @@ const selectedCustomer = (state = {}, action = {}) => {
 const mode = (state = '', action = {}) => {
   switch (action.type) {
     case lookupConstants.SET_MODE: return action.payload
-    case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
+    case lookupConstants.OPEN_CUSTOMER_LOOKUP: return ''
     default: return state
   }
 }
