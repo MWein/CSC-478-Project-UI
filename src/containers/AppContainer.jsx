@@ -23,7 +23,7 @@ const AppContainer = ({
       <div>
         <Button
           color='secondary'
-          onClick={openCustomerLookup}
+          onClick={() => openCustomerLookup(console.log)}
         >
           Customer Lookup
         </Button>
