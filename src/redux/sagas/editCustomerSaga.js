@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
+  getCallbackFunction,
   getCustomerAddress,
   getCustomerEmail,
   getCustomerFirstName,
@@ -47,7 +48,20 @@ export function* editCustomerSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    yield dispatch(customerLookupActions.setSelectedCustomer(response.payload))
+    const id = response.payload.id
+    const selectedCustomer = {
+      active: true,
+      id,
+      f_name,
+      l_name,
+      phone,
+      email,
+      address,
+    }
+
+    const callback = yield select(getCallbackFunction)
+
+    callback(selectedCustomer)
   }
 }
 

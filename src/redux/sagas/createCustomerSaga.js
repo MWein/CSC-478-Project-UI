@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
+  getCallbackFunction,
   getCustomerAddress,
   getCustomerEmail,
   getCustomerFirstName,
@@ -55,7 +56,9 @@ export function* createCustomerSaga() {
       address,
     }
 
-    yield dispatch(customerLookupActions.setSelectedCustomer(selectedCustomer))
+    const callback = yield select(getCallbackFunction)
+
+    callback(selectedCustomer)
   }
 }
 
