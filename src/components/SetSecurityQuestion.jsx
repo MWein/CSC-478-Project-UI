@@ -5,9 +5,15 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as settingsActions } from '../redux/actions/UserSettingsActions'
 
 
-const SetSecurityQuestion = () => {
+const SetSecurityQuestion = ({
+  securityQuestion,
+  securityAnswer,
+  setSecurityQuestion,
+  setSecurityAnswer,
+}) => {
   const paperPadding = '30px'
   const style = {
     paper: {
@@ -27,7 +33,7 @@ const SetSecurityQuestion = () => {
       <Grid container>
         <Grid item xs={12}>
           <div style={style.title}>
-              Password Recovery
+            Security Question
           </div>
         </Grid>
 
@@ -35,6 +41,8 @@ const SetSecurityQuestion = () => {
           <TextField
             fullWidth
             label='Security Question'
+            onChange={event => setSecurityQuestion(event.target.value)}
+            value={securityQuestion}
           />
         </Grid>
 
@@ -42,6 +50,8 @@ const SetSecurityQuestion = () => {
           <TextField
             fullWidth
             label='Security Answer'
+            onChange={event => setSecurityAnswer(event.target.value)}
+            value={securityAnswer}
           />
         </Grid>
 
@@ -62,9 +72,19 @@ const SetSecurityQuestion = () => {
 
 
 SetSecurityQuestion.propTypes = {
+  securityAnswer: PropTypes.string.isRequired,
+  securityQuestion: PropTypes.string.isRequired,
+  setSecurityAnswer: PropTypes.func.isRequired,
+  setSecurityQuestion: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  securityQuestion: state.settings.securityQuestion,
+  securityAnswer: state.settings.securityAnswer,
 })
 
-export default connect(mapStateToProps)(SetSecurityQuestion)
+const actions = {
+  ...settingsActions,
+}
+
+export default connect(mapStateToProps, actions)(SetSecurityQuestion)
