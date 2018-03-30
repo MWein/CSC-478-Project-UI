@@ -5,9 +5,16 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as settingsActions } from '../redux/actions/UserSettingsActions'
 
 
-const ResetPassword = () => {
+const ResetPassword = ({
+  recoveryMode,
+  oldPassword,
+  newPassword,
+  setOldPassword,
+  setNewPassword,
+}) => {
   const paperPadding = '30px'
   const style = {
     paper: {
@@ -27,7 +34,7 @@ const ResetPassword = () => {
       <Grid container>
         <Grid item xs={12}>
           <div style={style.title}>
-              Reset Password
+            Change Password
           </div>
         </Grid>
 
@@ -35,6 +42,8 @@ const ResetPassword = () => {
           <TextField
             fullWidth
             label='Old Password'
+            onChange={event => setOldPassword(event.target.value)}
+            value={oldPassword}
           />
         </Grid>
 
@@ -42,6 +51,8 @@ const ResetPassword = () => {
           <TextField
             fullWidth
             label='New Password'
+            onChange={event => setNewPassword(event.target.value)}
+            value={newPassword}
           />
         </Grid>
 
@@ -62,9 +73,21 @@ const ResetPassword = () => {
 
 
 ResetPassword.propTypes = {
+  newPassword: PropTypes.string.isRequired,
+  oldPassword: PropTypes.string.isRequired,
+  recoveryMode: PropTypes.bool.isRequired,
+  setNewPassword: PropTypes.func.isRequired,
+  setOldPassword: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  recoveryMode: state.settings.recoveryMode,
+  oldPassword: state.settings.oldPassword,
+  newPassword: state.settings.newPassword,
 })
 
-export default connect(mapStateToProps)(ResetPassword)
+const actions = {
+  ...settingsActions,
+}
+
+export default connect(mapStateToProps, actions)(ResetPassword)
