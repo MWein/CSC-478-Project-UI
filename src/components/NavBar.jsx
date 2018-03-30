@@ -1,7 +1,6 @@
+import Menu, { MenuItem } from 'material-ui/Menu'
 import AppBar from 'material-ui/AppBar'
 import Button from 'material-ui/Button'
-import IconButton from 'material-ui/IconButton'
-import MenuIcon from 'material-ui-icons/Menu'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Toolbar from 'material-ui/Toolbar'
@@ -10,20 +9,39 @@ import { connect } from 'react-redux'
 
 
 const NavBar = () => {
+  // const accountMenu = () => (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //     id='menu-appbar'
+  //     onClose={this.handleClose}
+  //     open={open}
+  //     transformOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //   >
+  //     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+  //     <MenuItem onClick={this.handleClose}>My account</MenuItem>
+  //   </Menu>
+  // )
 
 
   return (
-    <AppBar position='static'>
-      <Toolbar>
-        <IconButton color='inherit' aria-label='Menu'>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant='title' color='inherit'>
-          Title
-        </Typography>
-        <Button color='inherit'>Login</Button>
-      </Toolbar>
-    </AppBar>
+    <div>
+      <AppBar position='static'>
+        <Toolbar>
+          <Typography color='inherit' style={{ flex: '1' }} variant='title'>
+            LackLuster Video
+          </Typography>
+          <Button color='inherit'>Account</Button>
+        </Toolbar>
+      </AppBar>
+      <div style={{ width: '100%', height: '10px', backgroundColor: 'red' }} />
+    </div>
   )
 }
 
