@@ -5,6 +5,7 @@ import LoadingDialog from '../components/LoadingDialog'
 import LoginContainer from './LoginContainer'
 import PropTypes from 'prop-types'
 import React from 'react'
+import UserSettingsContainer from './UserSettingsContainer'
 import { connect } from 'react-redux'
 //import TransactionContainer from './TransactionContainer'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
@@ -38,7 +39,9 @@ const AppContainer = ({
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <LoadingDialog />
       <ErrorMessageDialog />
-      {router()}
+
+
+      <UserSettingsContainer />
     </div>
   )
 }
