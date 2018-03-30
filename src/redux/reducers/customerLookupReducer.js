@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { constants as lookupConstants } from '../actions/customerLookupActions.js'
 
 
-const callbackFunction = (state = () => null, action = {}) => {
+const callbackFunction = (state = null, action = {}) => {
   switch (action.type) {
     case lookupConstants.OPEN_CUSTOMER_LOOKUP: return action.payload
     default: return state

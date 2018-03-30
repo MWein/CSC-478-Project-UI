@@ -3,6 +3,7 @@ import reducer from '../../../src/redux/reducers/customerLookupReducer'
 
 
 const initialState = {
+  callbackFunction: null,
   open: false,
   fName: '',
   lName: '',
@@ -31,6 +32,7 @@ describe('Customer Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       open: true,
+      callbackFunction: null,
     }
 
     const actual = reducer(initialState, action)
@@ -60,6 +62,7 @@ describe('Customer Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       customers: mockState.customers,
+      mode: mockState.mode,
     }
 
     const actual = reducer(mockState, action)

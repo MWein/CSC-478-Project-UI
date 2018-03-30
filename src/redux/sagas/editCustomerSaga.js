@@ -1,6 +1,5 @@
 import {
   call,
-  put as dispatch,
   select,
   takeLatest,
 } from 'redux-saga/effects'
