@@ -5,6 +5,7 @@ import reducer from '../../../src/redux/reducers/appReducer'
 const initialState = {
   loading: 0,
   token: '',
+  role: '',
 }
 
 
@@ -58,6 +59,21 @@ describe('App reducer spec', () => {
     const expected = {
       ...initialState,
       token: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_ROLE', () => {
+    const action = {
+      type: appActions.SET_ROLE,
+      payload: 'God',
+    }
+
+    const expected = {
+      ...initialState,
+      role: action.payload,
     }
 
     const actual = reducer(initialState, action)

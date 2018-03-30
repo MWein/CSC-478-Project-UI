@@ -40,7 +40,10 @@ describe('Error message reducer spec', () => {
       message: 'Hello, Joe'
     }
 
-    const expected = initialState
+    const expected = {
+      ...mockState,
+      error: false,
+    }
 
     const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
