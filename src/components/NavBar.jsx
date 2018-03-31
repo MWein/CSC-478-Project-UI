@@ -48,13 +48,8 @@ const NavBar = ({
 
   const accountTypeColor = () => {
     switch (userRole) {
-      // Yellow
       case 'admin': return '#EBE337'
-
-      // Red
       case 'manager': return '#ED4444'
-
-      // Blue
       case 'employee': return '#00AAFF'
       default: return ''
     }
@@ -65,7 +60,7 @@ const NavBar = ({
     userRole === 'admin' || userRole === 'manager' ?
       (
         <div>
-          <Button color='inherit' disabled={!enabled}>Employees</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate('employees')}>Employees</Button>
           <Button color='inherit' disabled={!enabled}>Reports</Button>
         </div>
       ) : null

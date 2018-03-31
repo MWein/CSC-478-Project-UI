@@ -1,5 +1,6 @@
-import Button from 'material-ui/Button'
-import CustomerLookupDialog from '../components/CustomerLookupDialog'
+//import Button from 'material-ui/Button'
+//import CustomerLookupDialog from '../components/CustomerLookupDialog'
+import EmployeesContainer from './EmployeesContainer'
 import ErrorMessageDialog from '../components/ErrorMessageDialog'
 import Grid from 'material-ui/Grid'
 import LoadingDialog from '../components/LoadingDialog'
@@ -16,7 +17,7 @@ import { actions as customerLookupActions } from '../redux/actions/customerLooku
 const AppContainer = ({
   page,
   token,
-  openCustomerLookup,
+  //openCustomerLookup,
 }) => {
   const router = () => {
     if (token === '') {
@@ -27,24 +28,11 @@ const AppContainer = ({
       )
     }
 
-
     switch (page) {
+      case 'employees': return (<EmployeesContainer />)
       case 'settings': return (<UserSettingsContainer />)
       default: return null
     }
-
-
-    // return (
-    //   <div>
-    //     <Button
-    //       color='secondary'
-    //       onClick={() => openCustomerLookup(console.log)}
-    //     >
-    //       Customer Lookup
-    //     </Button>
-    //     <CustomerLookupDialog />
-    //   </div>
-    // )
   }
 
   return (
