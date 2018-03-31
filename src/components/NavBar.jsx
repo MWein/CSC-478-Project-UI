@@ -61,7 +61,7 @@ const NavBar = ({
       (
         <div>
           <Button color='inherit' disabled={!enabled} onClick={() => navigate('employees')}>Employees</Button>
-          <Button color='inherit' disabled={!enabled}>Reports</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate('reports')}>Reports</Button>
         </div>
       ) : null
 

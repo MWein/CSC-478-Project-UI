@@ -8,6 +8,7 @@ import LoginContainer from './LoginContainer'
 import NavBar from '../components/NavBar'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ReportsContainer from './ReportsContainer'
 import UserSettingsContainer from './UserSettingsContainer'
 import { connect } from 'react-redux'
 //import TransactionContainer from './TransactionContainer'
@@ -30,6 +31,7 @@ const AppContainer = ({
 
     switch (page) {
       case 'employees': return (<EmployeesContainer />)
+      case 'reports': return (<ReportsContainer />)
       case 'settings': return (<UserSettingsContainer />)
       default: return null
     }
