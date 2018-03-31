@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { actions as navBarActions } from '../redux/actions/navBarActions'
 
 const NavBar = ({
+  userRole,
   accountMenuOpen,
   setMenuOpen,
 }) => {
@@ -31,6 +32,14 @@ const NavBar = ({
     </Menu>
   )
 
+  const accountTypeColor = () => {
+    switch (userRole) {
+      case 'admin': return '#EBE337' // Yellow
+      case 'manager': return '#ED4444' // Red
+      case 'employee': return '#00AAFF' // Blue
+      default: return ''
+    }
+  }
 
   return (
     <div>
@@ -48,7 +57,7 @@ const NavBar = ({
           {accountMenu()}
         </Toolbar>
       </AppBar>
-      <div style={{ width: '100%', height: '10px', backgroundColor: 'red' }} />
+      <div style={{ width: '100%', height: '10px', backgroundColor: accountTypeColor() }} />
     </div>
   )
 }
@@ -57,10 +66,12 @@ const NavBar = ({
 NavBar.propTypes = {
   accountMenuOpen: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
+  userRole: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   accountMenuOpen: state.navBar.menuOpen,
+  userRole: state.app.role,
 })
 
 const actions = {
