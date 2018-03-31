@@ -4,6 +4,7 @@ export const {
   constants,
   actions,
 } = createActions('app', {
+  setPage: 'SET_PAGE',
   incLoading: 'INC_LOADING',
   decLoading: 'DEC_LOADING',
   setToken: 'SET_TOKEN',

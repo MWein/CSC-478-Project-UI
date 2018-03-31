@@ -3,6 +3,7 @@ import reducer from '../../../src/redux/reducers/appReducer'
 
 
 const initialState = {
+  page: '',
   loading: 0,
   token: '',
   role: '',
@@ -17,6 +18,21 @@ describe('App reducer spec', () => {
   it('Exports the default state', () => {
     const actual = reducer()
     expect(actual).toEqual(initialState)
+  })
+
+  it('Responds to SET_PAGE', () => {
+    const action = {
+      type: appActions.SET_PAGE,
+      payload: 'settings',
+    }
+
+    const expected = {
+      ...initialState,
+      page: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
   })
 
   it('Responds to INC_LOADING', () => {

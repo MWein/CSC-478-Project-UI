@@ -2,6 +2,13 @@ import { constants as appConstants } from '../actions/appActions'
 import { combineReducers } from 'redux'
 
 
+const page = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_PAGE: return action.payload
+    default: return state
+  }
+}
+
 const loading = (state = 0, action = {}) => {
   switch (action.type) {
     case appConstants.INC_LOADING: return state + 1
@@ -54,6 +61,7 @@ const requireSecurityQuestion = (state = false, action = {}) => {
 
 
 const reducer = combineReducers({
+  page,
   loading,
   token,
   role,
