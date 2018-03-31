@@ -24,11 +24,27 @@ const role = (state = '', action = {}) => {
   }
 }
 
+const firstName = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_FIRST_NAME: return action.payload
+    default: return state
+  }
+}
+
+const lastName = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_LAST_NAME: return action.payload
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   loading,
   token,
   role,
+  firstName,
+  lastName,
 })
 
 export default reducer

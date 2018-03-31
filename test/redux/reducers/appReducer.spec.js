@@ -6,6 +6,8 @@ const initialState = {
   loading: 0,
   token: '',
   role: '',
+  firstName: '',
+  lastName: '',
 }
 
 
@@ -74,6 +76,36 @@ describe('App reducer spec', () => {
     const expected = {
       ...initialState,
       role: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_FIRST_NAME', () => {
+    const action = {
+      type: appActions.SET_FIRST_NAME,
+      payload: 'Mike',
+    }
+
+    const expected = {
+      ...initialState,
+      firstName: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_LAST_NAME', () => {
+    const action = {
+      type: appActions.SET_LAST_NAME,
+      payload: 'Weinberg',
+    }
+
+    const expected = {
+      ...initialState,
+      lastName: action.payload,
     }
 
     const actual = reducer(initialState, action)
