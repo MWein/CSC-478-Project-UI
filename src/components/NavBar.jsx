@@ -48,8 +48,14 @@ const NavBar = ({
   }
 
 
-  const reportsButton = () => userRole === 'admin' || userRole === 'manager' ?
-    (<Button color='inherit'>Reports</Button>) : null
+  const adminButtons = () =>
+    userRole === 'admin' || userRole === 'manager' ?
+      (
+        <div>
+          <Button color='inherit'>Employees</Button>
+          <Button color='inherit'>Reports</Button>
+        </div>
+      ) : null
 
 
   const userNameAndRole = () => {
@@ -73,7 +79,7 @@ const NavBar = ({
             {userNameAndRole()}
           </Typography>
 
-          {reportsButton()}
+          {adminButtons()}
 
           <Button
             color='inherit'
