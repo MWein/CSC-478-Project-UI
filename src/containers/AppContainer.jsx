@@ -14,6 +14,7 @@ import { actions as customerLookupActions } from '../redux/actions/customerLooku
 
 
 const AppContainer = ({
+  page,
   token,
   openCustomerLookup,
 }) => {
@@ -26,17 +27,24 @@ const AppContainer = ({
       )
     }
 
-    return (
-      <div>
-        <Button
-          color='secondary'
-          onClick={() => openCustomerLookup(console.log)}
-        >
-          Customer Lookup
-        </Button>
-        <CustomerLookupDialog />
-      </div>
-    )
+
+    switch (page) {
+      case 'settings': return (<UserSettingsContainer />)
+      default: return null
+    }
+
+
+    // return (
+    //   <div>
+    //     <Button
+    //       color='secondary'
+    //       onClick={() => openCustomerLookup(console.log)}
+    //     >
+    //       Customer Lookup
+    //     </Button>
+    //     <CustomerLookupDialog />
+    //   </div>
+    // )
   }
 
   return (
@@ -61,11 +69,13 @@ const AppContainer = ({
 
 AppContainer.propTypes = {
   openCustomerLookup: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   token: state.app.token,
+  page: state.app.page,
 })
 
 const actions = {

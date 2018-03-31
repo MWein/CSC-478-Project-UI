@@ -9,7 +9,9 @@ import { actions as appActions } from '../actions/appActions'
 import { actions as customerLookupActions } from '../actions/customerLookupActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
 import { actions as loginActions } from '../actions/loginActions'
+import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
+import { actions as settingsActions } from '../actions/UserSettingsActions'
 
 
 export function* loginSaga() {
@@ -49,8 +51,24 @@ export function* loginSaga() {
     yield dispatch(appActions.setFirstName(response.payload.f_name))
     yield dispatch(appActions.setLastName(response.payload.l_name))
     yield dispatch(appActions.setRole(response.payload.role))
-
     yield dispatch(customerLookupActions.getAllCustomers())
+
+    const requirePassword = pin === '' && answer !== ''
+
+    yield dispatch(appActions.setRequirePasswordReset(requirePassword))
+    yield dispatch(appActions.setRequireSecurityQuestion(response.payload.needsSecurityQuestion))
+    yield dispatch(navBarActions.setNavEnabled(!(requirePassword || response.payload.needsSecurityQuestion)))
+
+    if (requirePassword) {
+      yield dispatch(appActions.setPage('settings'))
+      yield dispatch(settingsActions.setRecoveryMode(true))
+      yield dispatch(errorMessageActions.displayError('Please Reset Your Password'))
+    } else if (response.payload.needsSecurityQuestion) {
+      yield dispatch(appActions.setPage('settings'))
+      yield dispatch(errorMessageActions.displayError('Please Set a Security Question'))
+    } else {
+      yield dispatch(appActions.setPage(''))
+    }
   }
 }
 
