@@ -20,7 +20,7 @@ const LoginContainer = ({
   const paperPadding = '30px'
   const style = {
     paper: {
-      width: '300px',
+      width: '350px',
       paddingTop: paperPadding,
       paddingBottom: paperPadding,
       paddingLeft: paperPadding,
@@ -45,16 +45,17 @@ const LoginContainer = ({
   return (
     <Paper style={style.paper}>
       <ForgotPasswordDialog />
-      {loginHeader()}
 
       <Grid container>
+        <Grid item xs={12}>
+          {loginHeader()}
+        </Grid>
 
         <Grid item xs={12}>
           <TextField
             fullWidth
             id='name'
             label='Username'
-            margin='normal'
             onChange={event => setUsername(event.target.value)}
             value={username}
           />
@@ -66,7 +67,6 @@ const LoginContainer = ({
             fullWidth
             id='password-input'
             label='Password'
-            margin='normal'
             onChange={event => setPassword(event.target.value)}
             type='password'
             value={password}
@@ -83,14 +83,16 @@ const LoginContainer = ({
         </Grid>
 
         <Grid item xs={4}>
-          <Button
-            color='primary'
-            disabled={username === '' || password === ''}
-            onClick={login}
-            variant='raised'
-          >
-            Login
-          </Button>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='primary'
+              disabled={username === '' || password === ''}
+              onClick={login}
+              variant='raised'
+            >
+              Login
+            </Button>
+          </div>
         </Grid>
 
       </Grid>

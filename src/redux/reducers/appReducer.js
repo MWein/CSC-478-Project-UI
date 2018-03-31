@@ -17,10 +17,18 @@ const token = (state = '', action = {}) => {
   }
 }
 
+const role = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_ROLE: return action.payload
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   loading,
   token,
+  role,
 })
 
 export default reducer
