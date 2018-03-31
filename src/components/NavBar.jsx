@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { actions as navBarActions } from '../redux/actions/navBarActions'
 
 const NavBar = ({
+  enabled,
   userRole,
   accountMenuOpen,
   setMenuOpen,
@@ -76,12 +77,14 @@ const NavBar = ({
 
           <Button
             color='inherit'
+            disabled={!enabled}
           >
             Transaction
           </Button>
 
           <Button
             color='inherit'
+            disabled={!enabled}
             onClick={() => setMenuOpen(!accountMenuOpen)}
           >
             Account
@@ -98,6 +101,7 @@ const NavBar = ({
 
 NavBar.propTypes = {
   accountMenuOpen: PropTypes.bool.isRequired,
+  enabled: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
 }
@@ -105,6 +109,7 @@ NavBar.propTypes = {
 const mapStateToProps = state => ({
   accountMenuOpen: state.navBar.menuOpen,
   userRole: state.app.role,
+  enabled: state.navBar.enabled,
 })
 
 const actions = {
