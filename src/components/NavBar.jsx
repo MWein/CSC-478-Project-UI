@@ -5,10 +5,12 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
+import { actions as appActions } from '../redux/actions/appActions'
 import { connect } from 'react-redux'
 import { actions as navBarActions } from '../redux/actions/navBarActions'
 
 const NavBar = ({
+  setPage,
   enabled,
   userRole,
   firstName,
@@ -16,6 +18,11 @@ const NavBar = ({
   accountMenuOpen,
   setMenuOpen,
 }) => {
+  const navigate = page => {
+    setPage(page)
+    setMenuOpen(false)
+  }
+
   const accountMenu = () => (
     <Menu
       anchorOrigin={{
@@ -30,7 +37,11 @@ const NavBar = ({
         horizontal: 'right',
       }}
     >
-      <MenuItem>Settings</MenuItem>
+      <MenuItem
+        onClick={() => navigate('settings')}
+      >
+        Settings
+      </MenuItem>
       <MenuItem>Logout</MenuItem>
     </Menu>
   )
@@ -115,6 +126,7 @@ NavBar.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
 }
 
@@ -127,6 +139,7 @@ const mapStateToProps = state => ({
 })
 
 const actions = {
+  ...appActions,
   ...navBarActions,
 }
 
