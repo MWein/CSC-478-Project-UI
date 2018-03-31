@@ -21,7 +21,7 @@ export function* getSecurityQuestionsSaga() {
     body: JSON.stringify(body),
   })
 
-  if (response.error) {
+  if (response.error && !response.statusText.includes('Not Found')) {
     yield dispatch(errorMessageActions.displayError(response.statusText))
 
     return
