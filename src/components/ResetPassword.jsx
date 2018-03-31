@@ -19,7 +19,6 @@ const ResetPassword = ({
   const paperPadding = '30px'
   const style = {
     paper: {
-      width: '350px',
       paddingTop: paperPadding,
       paddingBottom: paperPadding,
       paddingLeft: paperPadding,
