@@ -118,6 +118,7 @@ const ForgotPasswordDialog = ({
           color='primary'
           disabled={!primaryButtonEnabled()}
           onClick={primaryButtonClicked}
+          variant='raised'
         >
           {content.button}
         </Button>
