@@ -38,6 +38,20 @@ const lastName = (state = '', action = {}) => {
   }
 }
 
+const requirePasswordReset = (state = false, action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_REQUIRE_PASSWORD_RESET: return action.payload
+    default: return state
+  }
+}
+
+const requireSecurityQuestion = (state = false, action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_REQUIRE_SECURITY_QUESTION: return action.payload
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   loading,
@@ -45,6 +59,8 @@ const reducer = combineReducers({
   role,
   firstName,
   lastName,
+  requirePasswordReset,
+  requireSecurityQuestion,
 })
 
 export default reducer

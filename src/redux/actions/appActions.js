@@ -10,4 +10,6 @@ export const {
   setRole: 'SET_ROLE',
   setFirstName: 'SET_FIRST_NAME',
   setLastName: 'SET_LAST_NAME',
+  setRequirePasswordReset: 'SET_REQUIRE_PASSWORD_RESET',
+  setRequireSecurityQuestion: 'SET_REQUIRE_SECURITY_QUESTION',
 })
