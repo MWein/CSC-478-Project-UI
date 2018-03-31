@@ -60,6 +60,22 @@ const NavBar = ({
       ) : null
 
 
+  const employeeButtons = () =>
+    userRole === 'admin' || userRole === 'manager' || userRole === 'employee' ?
+      (
+        <div>
+          <Button color='inherit' disabled={!enabled}>Transaction</Button>
+          <Button
+            color='inherit'
+            disabled={!enabled}
+            onClick={() => setMenuOpen(!accountMenuOpen)}
+          >
+            Account
+          </Button>
+        </div>
+      ) : null
+
+
   const userNameAndRole = () => {
     const name = `${firstName} ${lastName}`
     const role = userRole === '' ? '' :
@@ -82,23 +98,9 @@ const NavBar = ({
           </Typography>
 
           {adminButtons()}
-
-          <Button
-            color='inherit'
-            disabled={!enabled}
-          >
-            Transaction
-          </Button>
-
-          <Button
-            color='inherit'
-            disabled={!enabled}
-            onClick={() => setMenuOpen(!accountMenuOpen)}
-          >
-            Account
-          </Button>
-
+          {employeeButtons()}
           {accountMenu()}
+
         </Toolbar>
       </AppBar>
       <div style={{ width: '100%', height: '10px', backgroundColor: accountTypeColor() }} />
