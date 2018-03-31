@@ -27,19 +27,29 @@ const NavBar = ({
         horizontal: 'right',
       }}
     >
-      <MenuItem>Profile</MenuItem>
-      <MenuItem>My account</MenuItem>
+      <MenuItem>Settings</MenuItem>
+      <MenuItem>Logout</MenuItem>
     </Menu>
   )
 
   const accountTypeColor = () => {
     switch (userRole) {
-      case 'admin': return '#EBE337' // Yellow
-      case 'manager': return '#ED4444' // Red
-      case 'employee': return '#00AAFF' // Blue
+      // Yellow
+      case 'admin': return '#EBE337'
+
+      // Red
+      case 'manager': return '#ED4444'
+
+      // Blue
+      case 'employee': return '#00AAFF'
       default: return ''
     }
   }
+
+
+  const reportsButton = () => userRole === 'admin' || userRole === 'manager' ?
+    (<Button color='inherit'>Reports</Button>) : null
+
 
   return (
     <div>
@@ -48,12 +58,26 @@ const NavBar = ({
           <Typography color='inherit' style={{ flex: '1' }} variant='title'>
             LackLuster Video
           </Typography>
+
+          <Typography color='inherit' style={{ flex: '1' }} variant='title'>
+            Derrick Zoolander - Employee
+          </Typography>
+
+          {reportsButton()}
+
+          <Button
+            color='inherit'
+          >
+            Transaction
+          </Button>
+
           <Button
             color='inherit'
             onClick={() => setMenuOpen(!accountMenuOpen)}
           >
             Account
           </Button>
+
           {accountMenu()}
         </Toolbar>
       </AppBar>
