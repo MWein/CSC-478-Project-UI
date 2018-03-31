@@ -51,6 +51,15 @@ const NavBar = ({
     (<Button color='inherit'>Reports</Button>) : null
 
 
+  const userNameAndRole = () => {
+    const name = 'Derrick Zoolander'
+    const role = userRole === '' ? '' :
+      ` - ${userRole.charAt(0).toUpperCase()}${userRole.slice(1)}`
+
+    return `${name}${role}`
+  }
+
+
   return (
     <div>
       <AppBar position='static'>
@@ -60,7 +69,7 @@ const NavBar = ({
           </Typography>
 
           <Typography color='inherit' style={{ flex: '1' }} variant='title'>
-            Derrick Zoolander - Employee
+            {userNameAndRole()}
           </Typography>
 
           {reportsButton()}
