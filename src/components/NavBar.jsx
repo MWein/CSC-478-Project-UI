@@ -11,6 +11,8 @@ import { actions as navBarActions } from '../redux/actions/navBarActions'
 const NavBar = ({
   enabled,
   userRole,
+  firstName,
+  lastName,
   accountMenuOpen,
   setMenuOpen,
 }) => {
@@ -52,14 +54,14 @@ const NavBar = ({
     userRole === 'admin' || userRole === 'manager' ?
       (
         <div>
-          <Button color='inherit'>Employees</Button>
-          <Button color='inherit'>Reports</Button>
+          <Button color='inherit' disabled={!enabled}>Employees</Button>
+          <Button color='inherit' disabled={!enabled}>Reports</Button>
         </div>
       ) : null
 
 
   const userNameAndRole = () => {
-    const name = 'Derrick Zoolander'
+    const name = `${firstName} ${lastName}`
     const role = userRole === '' ? '' :
       ` - ${userRole.charAt(0).toUpperCase()}${userRole.slice(1)}`
 
@@ -108,6 +110,8 @@ const NavBar = ({
 NavBar.propTypes = {
   accountMenuOpen: PropTypes.bool.isRequired,
   enabled: PropTypes.bool.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
 }
@@ -116,6 +120,8 @@ const mapStateToProps = state => ({
   accountMenuOpen: state.navBar.menuOpen,
   userRole: state.app.role,
   enabled: state.navBar.enabled,
+  firstName: state.app.firstName,
+  lastName: state.app.lastName,
 })
 
 const actions = {

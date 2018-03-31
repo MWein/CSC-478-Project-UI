@@ -31,7 +31,7 @@ export function* loginSaga() {
   })
 
 
-  if (response.error) {
+  if (response.error && !response.statusText.includes('Unauthorized') && !response.statusText.includes('unknown')) {
     yield dispatch(errorMessageActions.displayError(response.statusText))
 
     return
@@ -40,16 +40,15 @@ export function* loginSaga() {
   if (response.payload.error) {
     if (answer !== '') {
       yield dispatch(loginActions.setAnswerError(true))
-
-      yield dispatch(errorMessageActions.displayError('Invalid Credentials'))
     } else {
       yield dispatch(loginActions.setLoginError(true))
-
-      //yield dispatch(errorMessageActions.displayError('Invalid Credentials'))
     }
   } else {
     yield dispatch(loginActions.setLoginError(false))
     yield dispatch(appActions.setToken(response.payload.token))
+    yield dispatch(appActions.setFirstName(response.payload.f_name))
+    yield dispatch(appActions.setLastName(response.payload.l_name))
+    yield dispatch(appActions.setRole(response.payload.role))
 
     yield dispatch(customerLookupActions.getAllCustomers())
   }
