@@ -17,3 +17,6 @@ export const getCustomerLastName = state => state.customerLookup.lName
 export const getCustomerPhoneNumber = state => state.customerLookup.phone
 export const getCustomerEmail = state => state.customerLookup.email
 export const getCustomerAddress = state => state.customerLookup.address
+
+// Settings specific
+export const getNewPassword = state => state.settings.newPassword
