@@ -9,7 +9,6 @@ const initialState = {
   role: '',
   firstName: '',
   lastName: '',
-  requirePasswordReset: false,
   requireSecurityQuestion: false,
 }
 
@@ -124,21 +123,6 @@ describe('App reducer spec', () => {
     const expected = {
       ...initialState,
       lastName: action.payload,
-    }
-
-    const actual = reducer(initialState, action)
-    expect(actual).toEqual(expected)
-  })
-
-  it('Responds to SET_REQUIRE_PASSWORD_RESET', () => {
-    const action = {
-      type: appActions.SET_REQUIRE_PASSWORD_RESET,
-      payload: true,
-    }
-
-    const expected = {
-      ...initialState,
-      requirePasswordReset: action.payload,
     }
 
     const actual = reducer(initialState, action)

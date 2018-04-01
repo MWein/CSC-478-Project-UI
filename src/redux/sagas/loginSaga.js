@@ -55,7 +55,6 @@ export function* loginSaga() {
 
     const requirePassword = pin === '' && answer !== ''
 
-    yield dispatch(appActions.setRequirePasswordReset(requirePassword))
     yield dispatch(appActions.setRequireSecurityQuestion(response.payload.needsSecurityQuestion))
     yield dispatch(navBarActions.setNavEnabled(!(requirePassword || response.payload.needsSecurityQuestion)))
 
