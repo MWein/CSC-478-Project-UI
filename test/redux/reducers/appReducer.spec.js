@@ -3,9 +3,13 @@ import reducer from '../../../src/redux/reducers/appReducer'
 
 
 const initialState = {
+  page: '',
   loading: 0,
   token: '',
   role: '',
+  firstName: '',
+  lastName: '',
+  requireSecurityQuestion: false,
 }
 
 
@@ -13,6 +17,21 @@ describe('App reducer spec', () => {
   it('Exports the default state', () => {
     const actual = reducer()
     expect(actual).toEqual(initialState)
+  })
+
+  it('Responds to SET_PAGE', () => {
+    const action = {
+      type: appActions.SET_PAGE,
+      payload: 'settings',
+    }
+
+    const expected = {
+      ...initialState,
+      page: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
   })
 
   it('Responds to INC_LOADING', () => {
@@ -74,6 +93,51 @@ describe('App reducer spec', () => {
     const expected = {
       ...initialState,
       role: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_FIRST_NAME', () => {
+    const action = {
+      type: appActions.SET_FIRST_NAME,
+      payload: 'Mike',
+    }
+
+    const expected = {
+      ...initialState,
+      firstName: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_LAST_NAME', () => {
+    const action = {
+      type: appActions.SET_LAST_NAME,
+      payload: 'Weinberg',
+    }
+
+    const expected = {
+      ...initialState,
+      lastName: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_REQUIRE_SECURITY_QUESTION', () => {
+    const action = {
+      type: appActions.SET_REQUIRE_SECURITY_QUESTION,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      requireSecurityQuestion: action.payload,
     }
 
     const actual = reducer(initialState, action)

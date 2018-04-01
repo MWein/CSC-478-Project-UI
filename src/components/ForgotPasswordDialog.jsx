@@ -1,7 +1,6 @@
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
@@ -43,9 +42,9 @@ const ForgotPasswordDialog = ({
 
   const securityQuestionContent = () => (
     <div>
-      <DialogContentText>
+      <DialogContent>
         {securityQuestion}
-      </DialogContentText>
+      </DialogContent>
       <TextField
         autoFocus
         error={answerError}
@@ -104,7 +103,9 @@ const ForgotPasswordDialog = ({
     >
       <DialogTitle id='form-dialog-title'>Forgot Password</DialogTitle>
       <DialogContent>
-        {content.content}
+        <div style={{ fontSize: '20px', width: '300px' }}>
+          {content.content}
+        </div>
       </DialogContent>
       <DialogActions>
         <Button
@@ -117,6 +118,7 @@ const ForgotPasswordDialog = ({
           color='primary'
           disabled={!primaryButtonEnabled()}
           onClick={primaryButtonClicked}
+          variant='raised'
         >
           {content.button}
         </Button>

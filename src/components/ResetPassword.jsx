@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as errorMessageActions } from '../redux/actions/errorMessageActions'
 import { actions as settingsActions } from '../redux/actions/UserSettingsActions'
 
 
@@ -13,13 +14,16 @@ const ResetPassword = ({
   oldPassword,
   newPassword,
   currentPassword,
+  passwordChangeSuccess,
   setOldPassword,
   setNewPassword,
+  changePassword,
+  setPasswordChangeSuccess,
+  displayError,
 }) => {
   const paperPadding = '30px'
   const style = {
     paper: {
-      width: '350px',
       paddingTop: paperPadding,
       paddingBottom: paperPadding,
       paddingLeft: paperPadding,
@@ -31,11 +35,29 @@ const ResetPassword = ({
   }
 
 
+  const header = () => (
+    <div>
+      Change Password {passwordChangeSuccess ? (<span style={{ color: 'green' }}>- Success</span>) : ''}
+    </div>
+  )
+
+
+  const typeOldPassword = value => {
+    setPasswordChangeSuccess(false)
+    setOldPassword(value)
+  }
+
+  const typeNewPassword = value => {
+    setPasswordChangeSuccess(false)
+    setNewPassword(value)
+  }
+
+
   const resetPassword = () => {
     if (recoveryMode || oldPassword === currentPassword) {
-      console.log('Run change password saga')
+      changePassword()
     } else {
-      console.log('NOOOOOOO')
+      displayError('Invalid Password')
     }
   }
 
@@ -48,7 +70,7 @@ const ResetPassword = ({
       <Grid container>
         <Grid item xs={12}>
           <div style={style.title}>
-            Change Password
+            {header()}
           </div>
         </Grid>
 
@@ -57,7 +79,7 @@ const ResetPassword = ({
             disabled={recoveryMode}
             fullWidth
             label='Old Password'
-            onChange={event => setOldPassword(event.target.value)}
+            onChange={event => typeOldPassword(event.target.value)}
             type='password'
             value={oldPassword}
           />
@@ -67,7 +89,7 @@ const ResetPassword = ({
           <TextField
             fullWidth
             label='New Password'
-            onChange={event => setNewPassword(event.target.value)}
+            onChange={event => typeNewPassword(event.target.value)}
             type='password'
             value={newPassword}
           />
@@ -92,12 +114,16 @@ const ResetPassword = ({
 
 
 ResetPassword.propTypes = {
+  changePassword: PropTypes.func.isRequired,
   currentPassword: PropTypes.string.isRequired,
+  displayError: PropTypes.func.isRequired,
   newPassword: PropTypes.string.isRequired,
   oldPassword: PropTypes.string.isRequired,
+  passwordChangeSuccess: PropTypes.bool.isRequired,
   recoveryMode: PropTypes.bool.isRequired,
   setNewPassword: PropTypes.func.isRequired,
   setOldPassword: PropTypes.func.isRequired,
+  setPasswordChangeSuccess: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -105,10 +131,12 @@ const mapStateToProps = state => ({
   oldPassword: state.settings.oldPassword,
   newPassword: state.settings.newPassword,
   currentPassword: state.login.password,
+  passwordChangeSuccess: state.settings.passwordChangeSuccess,
 })
 
 const actions = {
   ...settingsActions,
+  ...errorMessageActions,
 }
 
 export default connect(mapStateToProps, actions)(ResetPassword)

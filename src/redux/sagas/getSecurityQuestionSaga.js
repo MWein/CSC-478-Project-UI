@@ -4,6 +4,7 @@ import {
   select,
   takeLatest,
 } from 'redux-saga/effects'
+import { actions as errorMessageActions } from '../actions/errorMessageActions'
 import { getUsername } from '../selectors'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
@@ -19,6 +20,12 @@ export function* getSecurityQuestionsSaga() {
     url,
     body: JSON.stringify(body),
   })
+
+  if (response.error && !response.statusText.includes('Not Found')) {
+    yield dispatch(errorMessageActions.displayError(response.statusText))
+
+    return
+  }
 
   if (response.payload.error) {
     yield dispatch(loginActions.setUsernameError(response.payload.errorMsg))
