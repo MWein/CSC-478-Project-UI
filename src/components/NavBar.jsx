@@ -7,7 +7,9 @@ import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 import { actions as appActions } from '../redux/actions/appActions'
 import { connect } from 'react-redux'
+import { actions as loginActions } from '../redux/actions/loginActions'
 import { actions as navBarActions } from '../redux/actions/navBarActions'
+
 
 const NavBar = ({
   setPage,
@@ -17,9 +19,15 @@ const NavBar = ({
   lastName,
   accountMenuOpen,
   setMenuOpen,
+  logout,
 }) => {
   const navigate = page => {
     setPage(page)
+    setMenuOpen(false)
+  }
+
+  const logoutAction = () => {
+    logout()
     setMenuOpen(false)
   }
 
@@ -42,7 +50,11 @@ const NavBar = ({
       >
         Settings
       </MenuItem>
-      <MenuItem>Logout</MenuItem>
+      <MenuItem
+        onClick={logoutAction}
+      >
+        Logout
+      </MenuItem>
     </Menu>
   )
 
@@ -120,6 +132,7 @@ NavBar.propTypes = {
   enabled: PropTypes.bool.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
@@ -136,6 +149,7 @@ const mapStateToProps = state => ({
 const actions = {
   ...appActions,
   ...navBarActions,
+  ...loginActions,
 }
 
 export default connect(mapStateToProps, actions)(NavBar)
