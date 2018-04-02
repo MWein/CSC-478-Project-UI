@@ -6,8 +6,6 @@ import {
 } from 'redux-saga/effects'
 import { actions as appActions } from '../actions/appActions'
 import { getToken } from '../selectors'
-import { actions as loginActions } from '../actions/loginActions'
-import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
 
 
@@ -25,19 +23,13 @@ export function* logoutSaga() {
     body: JSON.stringify(body),
   })
 
-  yield dispatch(appActions.setPage(''))
-  yield dispatch(navBarActions.setNavEnabled(false))
-  yield dispatch(appActions.setToken(''))
-  yield dispatch(appActions.setRole(''))
-
-  yield dispatch(loginActions.setUsername(''))
-  yield dispatch(loginActions.setPassword(''))
+  yield dispatch(appActions.purge())
 }
 
 export default function* () {
   yield takeLatest(
     [
-      loginActions.logout().type,
+      appActions.logout().type,
     ],
     logoutSaga
   )

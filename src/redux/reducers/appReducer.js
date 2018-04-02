@@ -5,6 +5,7 @@ import { combineReducers } from 'redux'
 const page = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_PAGE: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -13,6 +14,7 @@ const loading = (state = 0, action = {}) => {
   switch (action.type) {
     case appConstants.INC_LOADING: return state + 1
     case appConstants.DEC_LOADING: return state - 1
+    case appConstants.PURGE: return 0
     default: return state
   }
 }
@@ -20,6 +22,7 @@ const loading = (state = 0, action = {}) => {
 const token = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_TOKEN: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -27,6 +30,7 @@ const token = (state = '', action = {}) => {
 const role = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_ROLE: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -34,6 +38,7 @@ const role = (state = '', action = {}) => {
 const firstName = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_FIRST_NAME: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -41,6 +46,7 @@ const firstName = (state = '', action = {}) => {
 const lastName = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_LAST_NAME: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -48,6 +54,7 @@ const lastName = (state = '', action = {}) => {
 const requireSecurityQuestion = (state = false, action = {}) => {
   switch (action.type) {
     case appConstants.SET_REQUIRE_SECURITY_QUESTION: return action.payload
+    case appConstants.PURGE: return false
     default: return state
   }
 }

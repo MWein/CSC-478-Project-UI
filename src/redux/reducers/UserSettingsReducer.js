@@ -1,3 +1,4 @@
+import { constants as appConstants } from '../actions/appActions'
 import { combineReducers } from 'redux'
 import { constants as settingsConstants } from '../actions/UserSettingsActions'
 
@@ -5,6 +6,7 @@ import { constants as settingsConstants } from '../actions/UserSettingsActions'
 const recoveryMode = (state = false, action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_RECOVERY_MODE: return action.payload
+    case appConstants.PURGE: return false
     default: return state
   }
 }
@@ -12,6 +14,7 @@ const recoveryMode = (state = false, action = {}) => {
 const oldPassword = (state = '', action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_OLD_PASSWORD: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -19,6 +22,7 @@ const oldPassword = (state = '', action = {}) => {
 const newPassword = (state = '', action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_NEW_PASSWORD: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -27,6 +31,7 @@ const newPassword = (state = '', action = {}) => {
 const securityQuestion = (state = '', action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_SECURITY_QUESTION: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -34,6 +39,7 @@ const securityQuestion = (state = '', action = {}) => {
 const securityAnswer = (state = '', action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_SECURITY_ANSWER: return action.payload
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -41,6 +47,7 @@ const securityAnswer = (state = '', action = {}) => {
 const passwordChangeSuccess = (state = false, action = {}) => {
   switch (action.type) {
     case settingsConstants.SET_PASSWORD_CHANGE_SUCCESS: return action.payload
+    case appConstants.PURGE: return false
     default: return state
   }
 }

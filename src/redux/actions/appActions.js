@@ -4,6 +4,9 @@ export const {
   constants,
   actions,
 } = createActions('app', {
+  logout: 'LOGOUT',
+  purge: 'PURGE',
+
   setPage: 'SET_PAGE',
   incLoading: 'INC_LOADING',
   decLoading: 'DEC_LOADING',
