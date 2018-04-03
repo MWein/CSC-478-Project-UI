@@ -9,10 +9,10 @@ import { MenuItem } from 'material-ui/Menu'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Select from 'material-ui/Select'
+import Switch from 'material-ui/Switch'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
-
 
 const EditEmployeeDialog = ({
   open,
@@ -63,13 +63,16 @@ const EditEmployeeDialog = ({
     }
   }
 
-  const deactivateButton = () => mode === 'edit' ? (
-    <Button
-      color='secondary'
-      variant='raised'
-    >
-        Deactivate
-    </Button>
+  const activeSwitch = () => mode === 'edit' ? (
+    <div style={{ textAlign: 'right' }}>
+      <span style={{ fontSize: '15px' }}>
+        Inactive
+      </span>
+      <Switch
+        color='primary'
+        value={false}
+      />
+    </div>
   ) : null
 
 
@@ -105,10 +108,27 @@ const EditEmployeeDialog = ({
     </Grid>
   ) : null
 
+  const titleStyle = () => {
+    switch (mode) {
+      case 'edit': return { transform: 'translate(0px, 11px)' }
+      default: return null
+    }
+  }
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>{dialogTitle()}</DialogTitle>
+      <DialogTitle id='form-dialog-title'>
+        <Grid container>
+          <Grid item xs={7}>
+            <div style={titleStyle()}>
+              {dialogTitle()}
+            </div>
+          </Grid>
+          <Grid item xs={5}>
+            {activeSwitch()}
+          </Grid>
+        </Grid>
+      </DialogTitle>
 
       <DialogContent>
         <div style={{ width: '400px' }}>
@@ -171,7 +191,6 @@ const EditEmployeeDialog = ({
 
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         {resetPasswordButton()}
-        {deactivateButton()}
         <Button
           color='primary'
           disabled={!saveButtonEnabled()}

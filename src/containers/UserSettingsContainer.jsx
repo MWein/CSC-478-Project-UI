@@ -6,7 +6,7 @@ import SetSecurityQuestion from '../components/SetSecurityQuestion'
 import { connect } from 'react-redux'
 
 const UserSettingsContainer = () => (
-  <div style={{ backgroundColor: 'blue', display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
+  <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
 
     <Grid container>
       <Grid item xs={6}>
