@@ -165,6 +165,26 @@ describe('Employee editor reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+  it('Responds to SET_PHONE_NUMBER, ignores non number inputs', () => {
+    const action = {
+      type: employeeActions.SET_PHONE_NUMBER,
+      payload: '123456f',
+    }
+
+    const mockState = {
+      ...initialState,
+      phone: '123456',
+    }
+
+    const expected = {
+      ...initialState,
+      phone: mockState.phone,
+    }
+
+    const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to SET_ADDRESS', () => {
     const action = {
       type: employeeActions.SET_ADDRESS,

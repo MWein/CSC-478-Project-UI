@@ -72,7 +72,7 @@ const lastName = (state = '', action = {}) => {
 const phone = (state = '', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.phone
-    case editEmployeeConstants.SET_PHONE_NUMBER: return action.payload
+    case editEmployeeConstants.SET_PHONE_NUMBER: return isNaN(action.payload) ? state : action.payload
     case appConstants.PURGE: return ''
     default: return state
   }
