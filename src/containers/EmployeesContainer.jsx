@@ -242,7 +242,10 @@ const EmployeesContainer = ({
 
               <Grid item xs={5}>
                 <div style={{ textAlign: 'right' }}>
-                  {employee.role.charAt(0).toUpperCase()}{employee.role.slice(1)}
+                  {
+                    employee.id === 'superuser' ? 'Superuser' :
+                    `${employee.role.charAt(0).toUpperCase()}${employee.role.slice(1)}`
+                  }
                 </div>
               </Grid>
             </Grid>
