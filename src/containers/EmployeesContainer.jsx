@@ -1,8 +1,11 @@
 import Button from 'material-ui/Button'
+import Checkbox from 'material-ui/Checkbox'
+import { FormControlLabel } from 'material-ui/Form'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
+import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 
 
@@ -19,8 +22,8 @@ const testEmployees = [
   },
   {
     id: 'superuser',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
+    f_name: 'Michael',
+    l_name: 'Weinberg',
     role: 'admin',
     active: true,
     phone: null,
@@ -221,7 +224,11 @@ const EmployeesContainer = ({
         <Paper style={{ padding: '20px' }}>
           <Grid container>
             <Grid item xs={7}>
-              {employee.l_name}, {employee.f_name}
+
+              <div style={{ fontSize: '20px' }}>
+                {employee.l_name}, {employee.f_name}
+              </div>
+
             </Grid>
 
             <Grid item xs={5}>
@@ -256,11 +263,30 @@ const EmployeesContainer = ({
 
 
       <Grid container>
-        <Grid item xs={7}>
+        <Grid item xs={4}>
           <div style={{ fontSize: '25px' }}>
             Employees
           </div>
         </Grid>
+
+        <Grid item xs={3}>
+          <Grid container>
+            <Grid item xs={7}>
+              <TextField label='Search' />
+            </Grid>
+            <Grid item xs={5}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked
+                  />
+                }
+                label='Active Only'
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+
         <Grid item xs={5}>
           <div style={{ textAlign: 'right' }}>
             <Button
