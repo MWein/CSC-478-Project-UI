@@ -5,6 +5,7 @@ import reducer from '../../../src/redux/reducers/editEmployeeReducer'
 const initialState = {
   open: false,
   mode: '',
+  employeeActive: false,
   username: '',
   type: 'employee',
   firstName: '',
@@ -48,6 +49,7 @@ describe('Employee editor reducer spec', () => {
         role: 'admin',
         phone: '123456',
         address: '123 Fake Street',
+        active: true,
       },
     }
 
@@ -61,6 +63,7 @@ describe('Employee editor reducer spec', () => {
       type: action.payload.role,
       phone: action.payload.phone,
       address: action.payload.address,
+      employeeActive: action.payload.active,
     }
 
     const actual = reducer(initialState, action)

@@ -7,7 +7,7 @@ const open = (state = false, action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return true
     case editEmployeeConstants.CLOSE_EMPLOYEE_EDITOR: return false
-    case appConstants.PURGE: return ''
+    case appConstants.PURGE: return false
     default: return state
   }
 }
@@ -19,6 +19,17 @@ const mode = (state = '', action = {}) => {
     default: return state
   }
 }
+
+
+const employeeActive = (state = false, action = {}) => {
+  switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? false : action.payload.active
+    case editEmployeeConstants.SET_EMPLOYEE_ACTIVE: return action.payload
+    case appConstants.PURGE: return false
+    default: return state
+  }
+}
+
 
 const username = (state = '', action = {}) => {
   switch (action.type) {
@@ -33,7 +44,7 @@ const type = (state = 'employee', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? 'employee' : action.payload.role
     case editEmployeeConstants.SET_EMPLOYEE_TYPE: return action.payload
-    case appConstants.PURGE: return ''
+    case appConstants.PURGE: return 'employee'
     default: return state
   }
 }
@@ -97,6 +108,7 @@ const confirmPassword = (state = '', action = {}) => {
 const reducer = combineReducers({
   open,
   mode,
+  employeeActive,
   username,
   type,
   firstName,

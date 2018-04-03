@@ -6,6 +6,7 @@ export const {
 } = createActions('error', {
   openEmployeeEditor: 'OPEN_EMPLOYEE_EDITOR',
   closeEmployeeEditor: 'CLOSE_EMPLOYEE_EDITOR',
+  setEmployeeActive: 'SET_EMPLOYEE_ACTIVE',
   setUsername: 'SET_USERNAME',
   setEmployeeType: 'SET_EMPLOYEE_TYPE',
   setFirstName: 'SET_FIRST_NAME',
