@@ -5,8 +5,10 @@ import Dialog, {
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
+import { MenuItem } from 'material-ui/Menu'
 import PropTypes from 'prop-types'
 import React from 'react'
+import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 
@@ -29,10 +31,17 @@ const EditEmployeeDialog = () => (
       <div style={{ width: '400px' }}>
         <Grid container>
           <Grid item xs={6}>
-            <TextField label='Username' />
+            <TextField placeholder='Username' />
           </Grid>
           <Grid item xs={6}>
-          Active Switch
+            <Select
+              style={{ width: '100%' }}
+              value={10}
+            >
+              <MenuItem value={10}>Employee</MenuItem>
+              <MenuItem value={20}>Manager</MenuItem>
+              <MenuItem value={30}>Admin</MenuItem>
+            </Select>
           </Grid>
 
           <Grid item xs={6}>
@@ -40,10 +49,6 @@ const EditEmployeeDialog = () => (
           </Grid>
           <Grid item xs={6}>
             <TextField label='Last Name' />
-          </Grid>
-
-          <Grid item xs={12}>
-          Role Dropdown
           </Grid>
           <Grid item xs={6}>
             <TextField label='Phone Number' />
