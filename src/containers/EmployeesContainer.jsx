@@ -255,7 +255,7 @@ const EmployeesContainer = ({
 
 
   return (
-    <div>
+    <div style={{ width: '1300px' }}>
 
       Employees<br /><br /><br />
 

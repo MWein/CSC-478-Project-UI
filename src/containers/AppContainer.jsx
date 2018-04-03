@@ -48,11 +48,7 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
-            
-            <EmployeesContainer />
-
-          </div>
+          <UserSettingsContainer />
         </Grid>
       </Grid>
     </div>
