@@ -45,6 +45,13 @@ const EditEmployeeDialog = () => (
           </Grid>
 
           <Grid item xs={6}>
+            <TextField label='Password' />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField label='Confirm Password' />
+          </Grid>
+
+          <Grid item xs={6}>
             <TextField label='First Name' />
           </Grid>
           <Grid item xs={6}>
