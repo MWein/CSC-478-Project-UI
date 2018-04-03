@@ -17,6 +17,7 @@ import { actions as employeeActions } from '../redux/actions/editEmployeeActions
 const EditEmployeeDialog = ({
   open,
   mode,
+  employeeActive,
   username,
   employeeType,
   password,
@@ -26,6 +27,7 @@ const EditEmployeeDialog = ({
   phone,
   address,
   thisUserRole,
+  setEmployeeActive,
   setUsername,
   setEmployeeType,
   setFirstName,
@@ -66,11 +68,12 @@ const EditEmployeeDialog = ({
   const activeSwitch = () => mode === 'edit' ? (
     <div style={{ textAlign: 'right' }}>
       <span style={{ fontSize: '15px' }}>
-        Inactive
+        {employeeActive ? 'Active' : 'Inactive'}
       </span>
       <Switch
+        checked={employeeActive}
         color='primary'
-        value={false}
+        onChange={event => setEmployeeActive(event.target.checked)}
       />
     </div>
   ) : null
@@ -208,6 +211,7 @@ const EditEmployeeDialog = ({
 EditEmployeeDialog.propTypes = {
   address: PropTypes.string.isRequired,
   confirmPassword: PropTypes.string.isRequired,
+  employeeActive: PropTypes.bool.isRequired,
   employeeType: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
@@ -217,6 +221,7 @@ EditEmployeeDialog.propTypes = {
   phone: PropTypes.string.isRequired,
   setAddress: PropTypes.func.isRequired,
   setConfirmPassword: PropTypes.func.isRequired,
+  setEmployeeActive: PropTypes.func.isRequired,
   setEmployeeType: PropTypes.func.isRequired,
   setFirstName: PropTypes.func.isRequired,
   setLastName: PropTypes.func.isRequired,
@@ -239,6 +244,7 @@ const mapStateToProps = state => ({
   lastName: state.employeeEditor.lastName,
   phone: state.employeeEditor.phone,
   address: state.employeeEditor.address,
+  employeeActive: state.employeeEditor.employeeActive,
 })
 
 
