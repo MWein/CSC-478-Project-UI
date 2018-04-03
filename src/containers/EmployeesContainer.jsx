@@ -250,10 +250,8 @@ const EmployeesContainer = ({
               </Grid>
             </Grid>
 
-
-            <div>{employee.active ? 'Active' : 'Inactive'}</div>
+            <br />
             <div>Phone: {employee.phone}</div>
-
 
             <div style={{ textAlign: 'right' }}>
               <Button
