@@ -37,7 +37,7 @@ const testEmployees = [
     f_name: 'Jack',
     l_name: 'Bower',
     role: 'employee',
-    active: true,
+    active: false,
     phone: '8675309',
     address: '',
     timestamp: '',
@@ -219,6 +219,15 @@ const EmployeesContainer = ({
   thisAccountId,
   openEmployeeEditor,
 }) => {
+  const employeeRoleText = employee => {
+    if (employee.active) {
+      return employee.id === 'superuser' ? 'Superuser' :
+        `${employee.role.charAt(0).toUpperCase()}${employee.role.slice(1)}`
+    }
+
+    return (<div style={{ color: 'red' }}>Inactive</div>)
+  }
+
   const employeeGrid = () =>
     testEmployees.filter(employee => employee.id !== thisAccountId)
       .sort((a, b) => {
@@ -242,10 +251,7 @@ const EmployeesContainer = ({
 
               <Grid item xs={5}>
                 <div style={{ textAlign: 'right' }}>
-                  {
-                    employee.id === 'superuser' ? 'Superuser' :
-                    `${employee.role.charAt(0).toUpperCase()}${employee.role.slice(1)}`
-                  }
+                  {employeeRoleText(employee)}
                 </div>
               </Grid>
             </Grid>
