@@ -263,13 +263,13 @@ const EmployeesContainer = ({
 
 
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={7}>
           <div style={{ fontSize: '25px' }}>
             Employees
           </div>
         </Grid>
 
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <Grid container>
             <Grid item xs={7}>
               <TextField label='Search' />
@@ -285,7 +285,7 @@ const EmployeesContainer = ({
               />
             </Grid>
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={5}>
           <div style={{ textAlign: 'right' }}>
