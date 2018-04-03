@@ -14,7 +14,7 @@ const open = (state = false, action = {}) => {
 
 const mode = (state = '', action = {}) => {
   switch (action.type) {
-    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload === '' ? 'add' : 'edit'
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? 'add' : 'edit'
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -22,7 +22,7 @@ const mode = (state = '', action = {}) => {
 
 const username = (state = '', action = {}) => {
   switch (action.type) {
-    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.id
     case editEmployeeConstants.SET_USERNAME: return action.payload
     case appConstants.PURGE: return ''
     default: return state
@@ -31,6 +31,7 @@ const username = (state = '', action = {}) => {
 
 const type = (state = 'employee', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? 'employee' : action.payload.role
     case editEmployeeConstants.SET_EMPLOYEE_TYPE: return action.payload
     case appConstants.PURGE: return ''
     default: return state
@@ -39,6 +40,7 @@ const type = (state = 'employee', action = {}) => {
 
 const firstName = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.f_name
     case editEmployeeConstants.SET_FIRST_NAME: return action.payload
     case appConstants.PURGE: return ''
     default: return state
@@ -48,6 +50,7 @@ const firstName = (state = '', action = {}) => {
 
 const lastName = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.l_name
     case editEmployeeConstants.SET_LAST_NAME: return action.payload
     case appConstants.PURGE: return ''
     default: return state
@@ -57,6 +60,7 @@ const lastName = (state = '', action = {}) => {
 
 const phone = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.phone
     case editEmployeeConstants.SET_PHONE_NUMBER: return action.payload
     case appConstants.PURGE: return ''
     default: return state
@@ -66,6 +70,7 @@ const phone = (state = '', action = {}) => {
 
 const address = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.address
     case editEmployeeConstants.SET_ADDRESS: return action.payload
     case appConstants.PURGE: return ''
     default: return state

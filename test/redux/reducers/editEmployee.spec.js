@@ -22,34 +22,45 @@ describe('Employee editor reducer spec', () => {
     expect(actual).toEqual(initialState)
   })
 
-  it('Responds to OPEN_EMPLOYEE_EDITOR', () => {
+  it('Responds to OPEN_EMPLOYEE_EDITOR with empty object', () => {
     const action = {
       type: employeeActions.OPEN_EMPLOYEE_EDITOR,
-      payload: 'some user',
-    }
-
-    const expected = {
-      ...initialState,
-      open: true,
-      mode: 'edit',
-      username: action.payload,
-    }
-
-    const actual = reducer(initialState, action)
-    expect(actual).toEqual(expected)
-  })
-
-  it('Responds to empty OPEN_EMPLOYEE_EDITOR, should set mode to add', () => {
-    const action = {
-      type: employeeActions.OPEN_EMPLOYEE_EDITOR,
-      payload: '',
+      payload: null,
     }
 
     const expected = {
       ...initialState,
       open: true,
       mode: 'add',
-      username: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to empty OPEN_EMPLOYEE_EDITOR with filled object', () => {
+    const action = {
+      type: employeeActions.OPEN_EMPLOYEE_EDITOR,
+      payload: {
+        id: 'bondJ',
+        f_name: 'James',
+        l_name: 'Bond',
+        role: 'admin',
+        phone: '123456',
+        address: '123 Fake Street',
+      },
+    }
+
+    const expected = {
+      ...initialState,
+      open: true,
+      mode: 'edit',
+      username: action.payload.id,
+      firstName: action.payload.f_name,
+      lastName: action.payload.l_name,
+      type: action.payload.role,
+      phone: action.payload.phone,
+      address: action.payload.address,
     }
 
     const actual = reducer(initialState, action)
