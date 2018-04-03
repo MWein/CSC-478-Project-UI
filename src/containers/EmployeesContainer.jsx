@@ -216,46 +216,51 @@ const testEmployees = [
 const EmployeesContainer = ({
   thisAccountId,
 }) => {
-  const employeeGrid = () => {
-    const employeesMinusSelf = testEmployees.filter(employee => employee.id !== thisAccountId)
+  const employeeGrid = () =>
+    testEmployees.filter(employee => employee.id !== thisAccountId)
+      .sort((a, b) => {
+        if (a.l_name === b.l_name) {
+          return 0
+        }
 
-    return employeesMinusSelf.map(employee => (
-      <Grid item key={employee.id} xs={3}>
-        <Paper style={{ padding: '20px' }}>
-          <Grid container>
-            <Grid item xs={7}>
+        return a.l_name > b.l_name ? 1 : -1
+      })
+      .map(employee => (
+        <Grid item key={employee.id} xs={3}>
+          <Paper style={{ padding: '20px' }}>
+            <Grid container>
+              <Grid item xs={7}>
 
-              <div style={{ fontSize: '20px' }}>
-                {employee.l_name}, {employee.f_name}
-              </div>
+                <div style={{ fontSize: '20px' }}>
+                  {employee.l_name}, {employee.f_name}
+                </div>
 
+              </Grid>
+
+              <Grid item xs={5}>
+                <div style={{ textAlign: 'right' }}>
+                  {employee.role.charAt(0).toUpperCase()}{employee.role.slice(1)}
+                </div>
+              </Grid>
             </Grid>
 
-            <Grid item xs={5}>
-              <div style={{ textAlign: 'right' }}>
-                {employee.role.charAt(0).toUpperCase()}{employee.role.slice(1)}
-              </div>
-            </Grid>
-          </Grid>
 
+            <div>{employee.active ? 'Active' : 'Inactive'}</div>
+            <div>Phone: {employee.phone}</div>
 
-          <div>{employee.active ? 'Active' : 'Inactive'}</div>
-          <div>Phone: {employee.phone}</div>
+            <div style={{ textAlign: 'right' }}>
 
-          <div style={{ textAlign: 'right' }}>
-
-            <Button
-              color='primary'
-              variant='raised'
-            >
+              <Button
+                color='primary'
+                variant='raised'
+              >
                 Edit
-            </Button>
+              </Button>
 
-          </div>
-        </Paper>
-      </Grid>
-    ))
-  }
+            </div>
+          </Paper>
+        </Grid>
+      ))
 
 
   return (
