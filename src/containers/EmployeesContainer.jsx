@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 //import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as editEmployeeActions } from '../redux/actions/editEmployeeActions'
 
 
 const testEmployees = [
@@ -216,6 +217,7 @@ const testEmployees = [
 
 const EmployeesContainer = ({
   thisAccountId,
+  openEmployeeEditor,
 }) => {
   const employeeGrid = () =>
     testEmployees.filter(employee => employee.id !== thisAccountId)
@@ -253,6 +255,7 @@ const EmployeesContainer = ({
 
               <Button
                 color='primary'
+                onClick={() => openEmployeeEditor('edit')}
                 variant='raised'
               >
                 Edit
@@ -298,6 +301,7 @@ const EmployeesContainer = ({
           <div style={{ textAlign: 'right' }}>
             <Button
               color='primary'
+              onClick={() => openEmployeeEditor('add')}
               variant='raised'
             >
               Add New Employee
@@ -314,6 +318,7 @@ const EmployeesContainer = ({
 
 
 EmployeesContainer.propTypes = {
+  openEmployeeEditor: PropTypes.func.isRequired,
   thisAccountId: PropTypes.string.isRequired,
 }
 
@@ -322,6 +327,7 @@ const mapStateToProps = state => ({
 })
 
 const actions = {
+  ...editEmployeeActions,
 }
 
 export default connect(mapStateToProps, actions)(EmployeesContainer)

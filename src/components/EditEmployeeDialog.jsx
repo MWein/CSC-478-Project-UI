@@ -63,7 +63,7 @@ const EditEmployeeDialog = ({
 
 
   return (
-    <Dialog aria-labelledby='form-dialog-title' open>
+    <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>{dialogTitle()}</DialogTitle>
 
       <DialogContent>
