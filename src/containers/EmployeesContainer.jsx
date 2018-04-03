@@ -19,7 +19,7 @@ const testEmployees = [
   },
   {
     id: 'superuser',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -39,7 +39,7 @@ const testEmployees = [
   },
   {
     id: 'jas',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -49,7 +49,7 @@ const testEmployees = [
   },
   {
     id: 'bgrimshaw',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -59,7 +59,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -69,7 +69,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -79,7 +79,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -89,7 +89,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -99,7 +99,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -109,7 +109,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -119,7 +119,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -129,7 +129,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -139,7 +139,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -149,7 +149,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -159,7 +159,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -169,7 +169,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -179,7 +179,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -189,7 +189,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -199,7 +199,7 @@ const testEmployees = [
   },
   {
     id: 'rayk',
-    f_name: 'Tommy',
+    f_name: 'L. Ron',
     l_name: 'Hubbard',
     role: 'admin',
     active: true,
@@ -213,7 +213,7 @@ const testEmployees = [
 const EmployeesContainer = ({
   thisAccountId,
 }) => {
-  const employeeTable = () => {
+  const employeeGrid = () => {
     const employeesMinusSelf = testEmployees.filter(employee => employee.id !== thisAccountId)
 
     return employeesMinusSelf.map(employee => (
@@ -254,10 +254,25 @@ const EmployeesContainer = ({
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
 
-      Employees<br /><br /><br />
 
       <Grid container>
-        {employeeTable()}
+        <Grid item xs={7}>
+          <div style={{ fontSize: '25px' }}>
+            Employees
+          </div>
+        </Grid>
+        <Grid item xs={5}>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='primary'
+              variant='raised'
+            >
+              Add New Employee
+            </Button>
+          </div>
+        </Grid>
+
+        {employeeGrid()}
       </Grid>
 
     </div>
