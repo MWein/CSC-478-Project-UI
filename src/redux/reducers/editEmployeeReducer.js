@@ -5,7 +5,8 @@ import { constants as editEmployeeConstants } from '../actions/editEmployeeActio
 
 const open = (state = false, action = {}) => {
   switch (action.type) {
-    case editEmployeeConstants.SET_OPEN: return action.payload
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return true
+    case editEmployeeConstants.CLOSE_EMPLOYEE_EDITOR: return false
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -13,7 +14,7 @@ const open = (state = false, action = {}) => {
 
 const mode = (state = '', action = {}) => {
   switch (action.type) {
-    case editEmployeeConstants.SET_MODE: return action.payload
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload
     case appConstants.PURGE: return ''
     default: return state
   }

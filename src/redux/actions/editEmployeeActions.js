@@ -4,8 +4,8 @@ export const {
   constants,
   actions,
 } = createActions('error', {
-  setOpen: 'SET_OPEN',
-  setMode: 'SET_MODE',
+  openEmployeeEditor: 'OPEN_EMPLOYEE_EDITOR',
+  closeEmployeeEditor: 'CLOSE_EMPLOYEE_EDITOR',
   setUsername: 'SET_USERNAME',
   setEmployeeType: 'SET_EMPLOYEE_TYPE',
   setFirstName: 'SET_FIRST_NAME',

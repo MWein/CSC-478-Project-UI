@@ -6,7 +6,7 @@ const initialState = {
   open: false,
   mode: '',
   username: '',
-  type: '',
+  type: 'employee',
   firstName: '',
   lastName: '',
   phone: '',
@@ -22,33 +22,39 @@ describe('Employee editor reducer spec', () => {
     expect(actual).toEqual(initialState)
   })
 
-  it('Responds to SET_OPEN', () => {
+  it('Responds to OPEN_EMPLOYEE_EDITOR', () => {
     const action = {
-      type: employeeActions.SET_OPEN,
-      payload: true,
+      type: employeeActions.OPEN_EMPLOYEE_EDITOR,
+      payload: 'some mode',
     }
 
     const expected = {
       ...initialState,
-      open: action.payload,
+      open: true,
+      mode: action.payload,
     }
 
     const actual = reducer(initialState, action)
     expect(actual).toEqual(expected)
   })
 
-  it('Responds to SET_MODE', () => {
+  it('Responds to CLOSE_EMPLOYEE_EDITOR', () => {
     const action = {
-      type: employeeActions.SET_MODE,
-      payload: 'destroy',
+      type: employeeActions.CLOSE_EMPLOYEE_EDITOR,
+      payload: null,
+    }
+
+    const mockState = {
+      ...initialState,
+      open: true,
     }
 
     const expected = {
       ...initialState,
-      mode: action.payload,
+      open: false,
     }
 
-    const actual = reducer(initialState, action)
+    const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
   })
 
