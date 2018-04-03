@@ -213,49 +213,46 @@ const testEmployees = [
 const EmployeesContainer = ({
   thisAccountId,
 }) => {
-  
   const employeeTable = () => {
     const employeesMinusSelf = testEmployees.filter(employee => employee.id !== thisAccountId)
 
-    return employeesMinusSelf.map(employee => {
-
-      return (
-        <Grid item key={employee.id} xs={3}>
-          <Paper>
-            <Grid container>
-              <Grid item xs={7}>
-                {employee.l_name}, {employee.f_name}
-              </Grid>
-
-              <Grid item xs={5}>
-                <div style={{ textAlign: 'right' }}>{employee.active ? 'Active' : 'Inactive'}</div>
-              </Grid>
+    return employeesMinusSelf.map(employee => (
+      <Grid item key={employee.id} xs={3}>
+        <Paper style={{ padding: '20px' }}>
+          <Grid container>
+            <Grid item xs={7}>
+              {employee.l_name}, {employee.f_name}
             </Grid>
 
+            <Grid item xs={5}>
+              <div style={{ textAlign: 'right' }}>
+                {employee.role.charAt(0).toUpperCase()}{employee.role.slice(1)}
+              </div>
+            </Grid>
+          </Grid>
 
-            <div>{employee.role}</div>
-            <div>Phone: {employee.phone}</div>
 
-            <div style={{ textAlign: 'right' }}>
-            
-              <Button
-                color='primary'
-              >
+          <div>{employee.active ? 'Active' : 'Inactive'}</div>
+          <div>Phone: {employee.phone}</div>
+
+          <div style={{ textAlign: 'right' }}>
+
+            <Button
+              color='primary'
+              variant='raised'
+            >
                 Edit
-              </Button>
+            </Button>
 
-            </div>
-          </Paper>
-        </Grid>
-      )
-
-    })
-
+          </div>
+        </Paper>
+      </Grid>
+    ))
   }
 
 
   return (
-    <div style={{ width: '1300px' }}>
+    <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
 
       Employees<br /><br /><br />
 

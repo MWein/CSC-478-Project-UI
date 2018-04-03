@@ -48,7 +48,7 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          <UserSettingsContainer />
+          <EmployeesContainer />
         </Grid>
       </Grid>
     </div>
