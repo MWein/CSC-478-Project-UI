@@ -1,11 +1,12 @@
 import Button from 'material-ui/Button'
-import Checkbox from 'material-ui/Checkbox'
-import { FormControlLabel } from 'material-ui/Form'
+//import Checkbox from 'material-ui/Checkbox'
+//import { FormControlLabel } from 'material-ui/Form'
+import EditEmployeeDialog from '../components/EditEmployeeDialog'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
-import TextField from 'material-ui/TextField'
+//import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 
 
@@ -266,6 +267,7 @@ const EmployeesContainer = ({
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
 
+      <EditEmployeeDialog />
 
       <Grid container>
         <Grid item xs={7}>
