@@ -27,7 +27,7 @@ const username = (state = '', action = {}) => {
   }
 }
 
-const type = (state = '', action = {}) => {
+const type = (state = 'employee', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.SET_EMPLOYEE_TYPE: return action.payload
     case appConstants.PURGE: return ''

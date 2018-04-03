@@ -11,6 +11,7 @@ import React from 'react'
 import Select from 'material-ui/Select'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
 
 // {
 //   id: 'mawein',
@@ -23,7 +24,26 @@ import { connect } from 'react-redux'
 //   timestamp: '2018-04-02T18:30:45.669-05:00',
 // },
 
-const EditEmployeeDialog = () => (
+const EditEmployeeDialog = ({
+  open,
+  mode,
+  username,
+  employeeType,
+  password,
+  confirmPassword,
+  firstName,
+  lastName,
+  phone,
+  address,
+  setUsername,
+  setEmployeeType,
+  setFirstName,
+  setLastName,
+  setPhoneNumber,
+  setAddress,
+  setPassword,
+  setConfirmPassword,
+}) => (
   <Dialog aria-labelledby='form-dialog-title' open>
     <DialogTitle id='form-dialog-title'>New Employee</DialogTitle>
 
@@ -31,37 +51,66 @@ const EditEmployeeDialog = () => (
       <div style={{ width: '400px' }}>
         <Grid container>
           <Grid item xs={6}>
-            <TextField placeholder='Username' />
+            <TextField
+              onChange={event => setUsername(event.target.value)}
+              placeholder='Username'
+              value={username}
+            />
           </Grid>
           <Grid item xs={6}>
             <Select
+              onChange={event => setEmployeeType(event.target.value)}
               style={{ width: '100%' }}
-              value={10}
+              value={employeeType}
             >
-              <MenuItem value={10}>Employee</MenuItem>
-              <MenuItem value={20}>Manager</MenuItem>
-              <MenuItem value={30}>Admin</MenuItem>
+              <MenuItem value={'employee'}>Employee</MenuItem>
+              <MenuItem value={'manager'}>Manager</MenuItem>
+              <MenuItem value={'admin'}>Admin</MenuItem>
             </Select>
           </Grid>
 
           <Grid item xs={6}>
-            <TextField label='Password' />
+            <TextField
+              label='Password'
+              onChange={event => setPassword(event.target.value)}
+              value={password}
+            />
           </Grid>
           <Grid item xs={6}>
-            <TextField label='Confirm Password' />
+            <TextField
+              label='Confirm Password'
+              onChange={event => setConfirmPassword(event.target.value)}
+              value={confirmPassword}
+            />
           </Grid>
 
           <Grid item xs={6}>
-            <TextField label='First Name' />
+            <TextField
+              label='First Name'
+              onChange={event => setFirstName(event.target.value)}
+              value={firstName}
+            />
           </Grid>
           <Grid item xs={6}>
-            <TextField label='Last Name' />
+            <TextField
+              label='Last Name'
+              onChange={event => setLastName(event.target.value)}
+              value={lastName}
+            />
           </Grid>
           <Grid item xs={6}>
-            <TextField label='Phone Number' />
+            <TextField
+              label='Phone Number'
+              onChange={event => setPhoneNumber(event.target.value)}
+              value={phone}
+            />
           </Grid>
           <Grid item xs={6}>
-            <TextField label='Address' />
+            <TextField
+              label='Address'
+              onChange={event => setAddress(event.target.value)}
+              value={address}
+            />
           </Grid>
         </Grid>
       </div>
@@ -86,13 +135,42 @@ const EditEmployeeDialog = () => (
 
 
 EditEmployeeDialog.propTypes = {
+  address: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  employeeType: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  password: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  setAddress: PropTypes.func.isRequired,
+  setConfirmPassword: PropTypes.func.isRequired,
+  setEmployeeType: PropTypes.func.isRequired,
+  setFirstName: PropTypes.func.isRequired,
+  setLastName: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  setPhoneNumber: PropTypes.func.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+  open: state.employeeEditor.open,
+  mode: state.employeeEditor.mode,
+  username: state.employeeEditor.username,
+  employeeType: state.employeeEditor.type,
+  password: state.employeeEditor.password,
+  confirmPassword: state.employeeEditor.confirmPassword,
+  firstName: state.employeeEditor.firstName,
+  lastName: state.employeeEditor.lastName,
+  phone: state.employeeEditor.phone,
+  address: state.employeeEditor.address,
 })
 
 
 const actions = {
+  ...employeeActions,
 }
 
 export default connect(mapStateToProps, actions)(EditEmployeeDialog)
