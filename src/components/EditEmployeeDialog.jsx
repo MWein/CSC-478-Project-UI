@@ -52,7 +52,8 @@ const EditEmployeeDialog = ({
     </Button>
   ) : null
 
-  const resetPasswordButton = () => thisUserRole === 'admin' ? (
+
+  const resetPasswordButton = () => thisUserRole === 'admin' && mode === 'edit' ? (
     <Button
       color='secondary'
       variant='raised'
@@ -60,6 +61,7 @@ const EditEmployeeDialog = ({
         Reset Password
     </Button>
   ) : null
+
 
   const passwordField = () => mode === 'add' ? (
     <Grid item xs={6}>
