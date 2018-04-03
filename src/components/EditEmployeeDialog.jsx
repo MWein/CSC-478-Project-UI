@@ -13,16 +13,6 @@ import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
 
-// {
-//   id: 'mawein',
-//   f_name: 'Mike',
-//   l_name: 'Weinberg',
-//   role: 'admin',
-//   active: true,
-//   phone: '8675309',
-//   address: '',
-//   timestamp: '2018-04-02T18:30:45.669-05:00',
-// },
 
 const EditEmployeeDialog = ({
   open,
@@ -35,6 +25,7 @@ const EditEmployeeDialog = ({
   lastName,
   phone,
   address,
+  thisUserRole,
   setUsername,
   setEmployeeType,
   setFirstName,
@@ -61,6 +52,37 @@ const EditEmployeeDialog = ({
     </Button>
   ) : null
 
+  const resetPasswordButton = () => thisUserRole === 'admin' ? (
+    <Button
+      color='secondary'
+      variant='raised'
+    >
+        Reset Password
+    </Button>
+  ) : null
+
+  const passwordField = () => mode === 'add' ? (
+    <Grid item xs={6}>
+      <TextField
+        label='Password'
+        onChange={event => setPassword(event.target.value)}
+        type='password'
+        value={password}
+      />
+    </Grid>
+  ) : null
+
+  const confirmPasswordField = () => mode === 'add' ? (
+    <Grid item xs={6}>
+      <TextField
+        label='Confirm Password'
+        onChange={event => setConfirmPassword(event.target.value)}
+        type='password'
+        value={confirmPassword}
+      />
+    </Grid>
+  ) : null
+
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
@@ -71,6 +93,7 @@ const EditEmployeeDialog = ({
           <Grid container>
             <Grid item xs={6}>
               <TextField
+                disabled={mode === 'edit'}
                 onChange={event => setUsername(event.target.value)}
                 placeholder='Username'
                 value={username}
@@ -86,23 +109,6 @@ const EditEmployeeDialog = ({
                 <MenuItem value={'manager'}>Manager</MenuItem>
                 <MenuItem value={'admin'}>Admin</MenuItem>
               </Select>
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                label='Password'
-                onChange={event => setPassword(event.target.value)}
-                type='password'
-                value={password}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label='Confirm Password'
-                onChange={event => setConfirmPassword(event.target.value)}
-                type='password'
-                value={confirmPassword}
-              />
             </Grid>
 
             <Grid item xs={6}>
@@ -133,11 +139,16 @@ const EditEmployeeDialog = ({
                 value={address}
               />
             </Grid>
+
+            {passwordField()}
+            {confirmPasswordField()}
+
           </Grid>
         </div>
       </DialogContent>
 
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        {resetPasswordButton()}
         {deactivateButton()}
         <Button
           color='primary'
@@ -169,10 +180,12 @@ EditEmployeeDialog.propTypes = {
   setPassword: PropTypes.func.isRequired,
   setPhoneNumber: PropTypes.func.isRequired,
   setUsername: PropTypes.func.isRequired,
+  thisUserRole: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+  thisUserRole: 'admin',
   open: state.employeeEditor.open,
   mode: state.employeeEditor.mode,
   username: state.employeeEditor.username,

@@ -254,11 +254,11 @@ const EmployeesContainer = ({
             <div>{employee.active ? 'Active' : 'Inactive'}</div>
             <div>Phone: {employee.phone}</div>
 
-            <div style={{ textAlign: 'right' }}>
 
+            <div style={{ textAlign: 'right' }}>
               <Button
                 color='primary'
-                onClick={() => openEmployeeEditor('edit')}
+                onClick={() => openEmployeeEditor(employee.id)}
                 variant='raised'
               >
                 Edit
@@ -304,7 +304,7 @@ const EmployeesContainer = ({
           <div style={{ textAlign: 'right' }}>
             <Button
               color='primary'
-              onClick={() => openEmployeeEditor('add')}
+              onClick={() => openEmployeeEditor('')}
               variant='raised'
             >
               Add New Employee
