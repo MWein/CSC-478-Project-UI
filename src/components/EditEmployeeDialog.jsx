@@ -35,6 +35,26 @@ const EditEmployeeDialog = ({
   setPassword,
   setConfirmPassword,
 }) => {
+  const saveButton = () => {
+    if (mode === 'add') {
+      console.log('Add Employee!!!')
+    } else if (mode === 'edit') {
+      console.log('Edit Employee!!!')
+    }
+  }
+
+  const saveButtonEnabled = () => {
+    if (username === '' || firstName === '' || lastName === '' || phone === '') {
+      return false
+    }
+    if (mode === 'add' && (password === '' || confirmPassword === '' || password !== confirmPassword)) {
+      return false
+    }
+
+    return true
+  }
+
+
   const dialogTitle = () => {
     switch (mode) {
       case 'edit': return 'Edit Employee'
@@ -154,6 +174,8 @@ const EditEmployeeDialog = ({
         {deactivateButton()}
         <Button
           color='primary'
+          disabled={!saveButtonEnabled()}
+          onClick={saveButton}
           variant='raised'
         >
         Save
