@@ -49,7 +49,9 @@ const AppContainer = ({
 
         <Grid item xs={12}>
           <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
-            {router()}
+            
+            <EmployeesContainer />
+
           </div>
         </Grid>
       </Grid>
