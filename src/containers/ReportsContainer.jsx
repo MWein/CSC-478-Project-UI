@@ -7,7 +7,7 @@ const ReportsContainer = () => {
   console.log('TODO: Employees Page')
 
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
       Reports Page
     </div>
   )
