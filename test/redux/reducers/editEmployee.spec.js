@@ -25,13 +25,31 @@ describe('Employee editor reducer spec', () => {
   it('Responds to OPEN_EMPLOYEE_EDITOR', () => {
     const action = {
       type: employeeActions.OPEN_EMPLOYEE_EDITOR,
-      payload: 'some mode',
+      payload: 'some user',
     }
 
     const expected = {
       ...initialState,
       open: true,
-      mode: action.payload,
+      mode: 'edit',
+      username: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to empty OPEN_EMPLOYEE_EDITOR, should set mode to add', () => {
+    const action = {
+      type: employeeActions.OPEN_EMPLOYEE_EDITOR,
+      payload: '',
+    }
+
+    const expected = {
+      ...initialState,
+      open: true,
+      mode: 'add',
+      username: action.payload,
     }
 
     const actual = reducer(initialState, action)

@@ -14,7 +14,7 @@ const open = (state = false, action = {}) => {
 
 const mode = (state = '', action = {}) => {
   switch (action.type) {
-    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload === '' ? 'add' : 'edit'
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -22,6 +22,7 @@ const mode = (state = '', action = {}) => {
 
 const username = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return action.payload
     case editEmployeeConstants.SET_USERNAME: return action.payload
     case appConstants.PURGE: return ''
     default: return state
