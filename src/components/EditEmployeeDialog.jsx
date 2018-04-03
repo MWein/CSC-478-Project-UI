@@ -43,95 +43,112 @@ const EditEmployeeDialog = ({
   setAddress,
   setPassword,
   setConfirmPassword,
-}) => (
-  <Dialog aria-labelledby='form-dialog-title' open>
-    <DialogTitle id='form-dialog-title'>New Employee</DialogTitle>
+}) => {
+  const dialogTitle = () => {
+    switch (mode) {
+      case 'edit': return 'Edit Employee'
+      case 'add': return 'New Employee'
+      default: return ''
+    }
+  }
 
-    <DialogContent>
-      <div style={{ width: '400px' }}>
-        <Grid container>
-          <Grid item xs={6}>
-            <TextField
-              onChange={event => setUsername(event.target.value)}
-              placeholder='Username'
-              value={username}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Select
-              onChange={event => setEmployeeType(event.target.value)}
-              style={{ width: '100%' }}
-              value={employeeType}
-            >
-              <MenuItem value={'employee'}>Employee</MenuItem>
-              <MenuItem value={'manager'}>Manager</MenuItem>
-              <MenuItem value={'admin'}>Admin</MenuItem>
-            </Select>
-          </Grid>
-
-          <Grid item xs={6}>
-            <TextField
-              label='Password'
-              onChange={event => setPassword(event.target.value)}
-              value={password}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label='Confirm Password'
-              onChange={event => setConfirmPassword(event.target.value)}
-              value={confirmPassword}
-            />
-          </Grid>
-
-          <Grid item xs={6}>
-            <TextField
-              label='First Name'
-              onChange={event => setFirstName(event.target.value)}
-              value={firstName}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label='Last Name'
-              onChange={event => setLastName(event.target.value)}
-              value={lastName}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label='Phone Number'
-              onChange={event => setPhoneNumber(event.target.value)}
-              value={phone}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label='Address'
-              onChange={event => setAddress(event.target.value)}
-              value={address}
-            />
-          </Grid>
-        </Grid>
-      </div>
-    </DialogContent>
-
-    <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-      <Button
-        color='secondary'
-        variant='raised'
-      >
+  const deactivateButton = () => mode === 'edit' ? (
+    <Button
+      color='secondary'
+      variant='raised'
+    >
         Deactivate
-      </Button>
-      <Button
-        color='primary'
-        variant='raised'
-      >
-        Submit
-      </Button>
-    </DialogActions>
-  </Dialog>
-)
+    </Button>
+  ) : null
+
+
+  return (
+    <Dialog aria-labelledby='form-dialog-title' open>
+      <DialogTitle id='form-dialog-title'>{dialogTitle()}</DialogTitle>
+
+      <DialogContent>
+        <div style={{ width: '400px' }}>
+          <Grid container>
+            <Grid item xs={6}>
+              <TextField
+                onChange={event => setUsername(event.target.value)}
+                placeholder='Username'
+                value={username}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Select
+                onChange={event => setEmployeeType(event.target.value)}
+                style={{ width: '100%' }}
+                value={employeeType}
+              >
+                <MenuItem value={'employee'}>Employee</MenuItem>
+                <MenuItem value={'manager'}>Manager</MenuItem>
+                <MenuItem value={'admin'}>Admin</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                label='Password'
+                onChange={event => setPassword(event.target.value)}
+                type='password'
+                value={password}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label='Confirm Password'
+                onChange={event => setConfirmPassword(event.target.value)}
+                type='password'
+                value={confirmPassword}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                label='First Name'
+                onChange={event => setFirstName(event.target.value)}
+                value={firstName}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label='Last Name'
+                onChange={event => setLastName(event.target.value)}
+                value={lastName}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label='Phone Number'
+                onChange={event => setPhoneNumber(event.target.value)}
+                value={phone}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label='Address'
+                onChange={event => setAddress(event.target.value)}
+                value={address}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      </DialogContent>
+
+      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        {deactivateButton()}
+        <Button
+          color='primary'
+          variant='raised'
+        >
+        Save
+        </Button>
+      </DialogActions>
+    </Dialog>
+  )
+}
 
 
 EditEmployeeDialog.propTypes = {
