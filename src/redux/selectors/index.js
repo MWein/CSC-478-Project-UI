@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+
 // Universal 
 export const getToken = state => state.app.token
 export const validateEmail = email =>

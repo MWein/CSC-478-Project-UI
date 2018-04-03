@@ -56,7 +56,7 @@ const AppContainer = ({
 }
 
 AppContainer.propTypes = {
-  openCustomerLookup: PropTypes.func.isRequired,
+  //openCustomerLookup: PropTypes.func.isRequired,
   page: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
 }
