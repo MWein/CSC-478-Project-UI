@@ -54,6 +54,7 @@ const EmployeesContainer = ({
             </Grid>
 
             <br />
+            <div>Address: {employee.address === '' ? 'No Address Entered' : employee.address}</div>
             <div>Phone: {employee.phone}</div>
 
             <div style={{ textAlign: 'right' }}>
