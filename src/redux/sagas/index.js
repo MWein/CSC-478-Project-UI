@@ -10,6 +10,7 @@ import getSecurityQuestionSaga from './getSecurityQuestionSaga'
 import { getStatusSaga } from './getStatusSaga'
 import loginSaga from './loginSaga'
 import logoutSaga from './logoutSaga'
+import resetPasswordSaga from './resetPasswordSaga'
 
 export default function* sagasMain() {
   yield call(getStatusSaga)
@@ -24,4 +25,5 @@ export default function* sagasMain() {
   yield fork(editCustomerSaga)
   yield fork(changePasswordSaga)
   yield fork(logoutSaga)
+  yield fork(resetPasswordSaga)
 }
