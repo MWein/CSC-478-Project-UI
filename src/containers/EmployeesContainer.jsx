@@ -26,7 +26,7 @@ const EmployeesContainer = ({
   }
 
   const employeeGrid = () =>
-    employeeList.filter(employee => employee.id !== thisAccountId)
+    employeeList.filter(employee => employee.id !== thisAccountId && employee.id !== 'superuser')
       .sort((a, b) => {
         if (a.l_name === b.l_name) {
           return 0
