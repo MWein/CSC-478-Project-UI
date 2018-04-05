@@ -3,6 +3,7 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog'
+import AdminResetPasswordDialog from './AdminResetPasswordDialog'
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 import { MenuItem } from 'material-ui/Menu'
@@ -13,8 +14,11 @@ import Switch from 'material-ui/Switch'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
+import { actions as resetPasswordActions } from '../redux/actions/adminResetPasswordActions'
+
 
 const EditEmployeeDialog = ({
+  openResetPassword,
   createNewEmployee,
   editEmployee,
   open,
@@ -84,6 +88,7 @@ const EditEmployeeDialog = ({
   const resetPasswordButton = () => thisUserRole === 'admin' && mode === 'edit' ? (
     <Button
       color='secondary'
+      onClick={openResetPassword}
       variant='raised'
     >
         Reset Password
@@ -121,91 +126,94 @@ const EditEmployeeDialog = ({
   }
 
   return (
-    <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>
-        <Grid container>
-          <Grid item xs={7}>
-            <div style={titleStyle()}>
-              {dialogTitle()}
-            </div>
-          </Grid>
-          <Grid item xs={5}>
-            {activeSwitch()}
-          </Grid>
-        </Grid>
-      </DialogTitle>
-
-      <DialogContent>
-        <div style={{ width: '400px' }}>
+    <div>
+      <AdminResetPasswordDialog />
+      <Dialog aria-labelledby='form-dialog-title' open={open}>
+        <DialogTitle id='form-dialog-title'>
           <Grid container>
-            <Grid item xs={6}>
-              <TextField
-                disabled={mode === 'edit'}
-                onChange={event => setUsername(event.target.value)}
-                placeholder='Username'
-                value={username}
-              />
+            <Grid item xs={7}>
+              <div style={titleStyle()}>
+                {dialogTitle()}
+              </div>
             </Grid>
-            <Grid item xs={6}>
-              <Select
-                onChange={event => setEmployeeType(event.target.value)}
-                style={{ width: '100%' }}
-                value={employeeType}
-              >
-                <MenuItem value={'employee'}>Employee</MenuItem>
-                <MenuItem value={'manager'}>Manager</MenuItem>
-                <MenuItem value={'admin'}>Admin</MenuItem>
-              </Select>
+            <Grid item xs={5}>
+              {activeSwitch()}
             </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                label='First Name'
-                onChange={event => setFirstName(event.target.value)}
-                value={firstName}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label='Last Name'
-                onChange={event => setLastName(event.target.value)}
-                value={lastName}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label='Phone Number'
-                onChange={event => setPhoneNumber(event.target.value)}
-                value={phone}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label='Address'
-                onChange={event => setAddress(event.target.value)}
-                value={address}
-              />
-            </Grid>
-
-            {passwordField()}
-            {confirmPasswordField()}
-
           </Grid>
-        </div>
-      </DialogContent>
+        </DialogTitle>
 
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-        {resetPasswordButton()}
-        <Button
-          color='primary'
-          disabled={!saveButtonEnabled()}
-          onClick={saveButton}
-          variant='raised'
-        >
-        Save
-        </Button>
-      </DialogActions>
-    </Dialog>
+        <DialogContent>
+          <div style={{ width: '400px' }}>
+            <Grid container>
+              <Grid item xs={6}>
+                <TextField
+                  disabled={mode === 'edit'}
+                  onChange={event => setUsername(event.target.value)}
+                  placeholder='Username'
+                  value={username}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Select
+                  onChange={event => setEmployeeType(event.target.value)}
+                  style={{ width: '100%' }}
+                  value={employeeType}
+                >
+                  <MenuItem value={'employee'}>Employee</MenuItem>
+                  <MenuItem value={'manager'}>Manager</MenuItem>
+                  <MenuItem value={'admin'}>Admin</MenuItem>
+                </Select>
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  label='First Name'
+                  onChange={event => setFirstName(event.target.value)}
+                  value={firstName}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label='Last Name'
+                  onChange={event => setLastName(event.target.value)}
+                  value={lastName}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label='Phone Number'
+                  onChange={event => setPhoneNumber(event.target.value)}
+                  value={phone}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label='Address'
+                  onChange={event => setAddress(event.target.value)}
+                  value={address}
+                />
+              </Grid>
+
+              {passwordField()}
+              {confirmPasswordField()}
+
+            </Grid>
+          </div>
+        </DialogContent>
+
+        <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+          {resetPasswordButton()}
+          <Button
+            color='primary'
+            disabled={!saveButtonEnabled()}
+            onClick={saveButton}
+            variant='raised'
+          >
+          Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   )
 }
 
@@ -221,6 +229,7 @@ EditEmployeeDialog.propTypes = {
   lastName: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
+  openResetPassword: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   setAddress: PropTypes.func.isRequired,
@@ -254,6 +263,7 @@ const mapStateToProps = state => ({
 
 const actions = {
   ...employeeActions,
+  ...resetPasswordActions,
 }
 
 export default connect(mapStateToProps, actions)(EditEmployeeDialog)

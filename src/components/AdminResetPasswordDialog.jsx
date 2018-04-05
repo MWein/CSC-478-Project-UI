@@ -19,53 +19,51 @@ const AdminResetPasswordDialog = ({
   setNewPassword,
   setConfirmPassword,
   closeResetPassword,
-}) => {
-  return (
-    <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>Reset Password</DialogTitle>
+}) => (
+  <Dialog aria-labelledby='form-dialog-title' open={open}>
+    <DialogTitle id='form-dialog-title'>Reset Password</DialogTitle>
 
-      <DialogContent>
-        <Grid container>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label='New Password'
-              onChange={event => setNewPassword(event.target.value)}
-              type='password'
-              value={password}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label='Confirm Password'
-              onChange={event => setConfirmPassword(event.target.value)}
-              type='password'
-              value={confirmPassword}
-            />
-          </Grid>
+    <DialogContent>
+      <Grid container>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label='New Password'
+            onChange={event => setNewPassword(event.target.value)}
+            type='password'
+            value={password}
+          />
         </Grid>
-      </DialogContent>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label='Confirm Password'
+            onChange={event => setConfirmPassword(event.target.value)}
+            type='password'
+            value={confirmPassword}
+          />
+        </Grid>
+      </Grid>
+    </DialogContent>
 
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
-        <Button
-          color='secondary'
-          onClick={closeResetPassword}
-          variant='raised'
-        >
+    <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+      <Button
+        color='secondary'
+        onClick={closeResetPassword}
+        variant='raised'
+      >
             Cancel
-        </Button>
-        <Button
-          color='primary'
-          disabled={password === '' || confirmPassword === '' || password !== confirmPassword}
-          variant='raised'
-        >
+      </Button>
+      <Button
+        color='primary'
+        disabled={password === '' || confirmPassword === '' || password !== confirmPassword}
+        variant='raised'
+      >
             Reset
-        </Button>
-      </DialogActions>
-    </Dialog>
-  )
-}
+      </Button>
+    </DialogActions>
+  </Dialog>
+)
 
 
 AdminResetPasswordDialog.propTypes = {

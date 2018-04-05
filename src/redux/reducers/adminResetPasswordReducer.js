@@ -15,6 +15,7 @@ const open = (state = false, action = {}) => {
 const password = (state = '', action = {}) => {
   switch (action.type) {
     case resetPasswordConstants.SET_NEW_PASSWORD: return action.payload
+    case resetPasswordConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -23,6 +24,7 @@ const password = (state = '', action = {}) => {
 const confirmPassword = (state = '', action = {}) => {
   switch (action.type) {
     case resetPasswordConstants.SET_CONFIRM_PASSWORD: return action.payload
+    case resetPasswordConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
     default: return state
   }

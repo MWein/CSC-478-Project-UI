@@ -21,12 +21,20 @@ describe('Admin Reset Password reducer spec', () => {
       payload: null,
     }
 
+    const mockState = {
+      ...initialState,
+      password: 'some password',
+      confirmPassword: 'some other password',
+    }
+
     const expected = {
       ...initialState,
       open: true,
+      password: '',
+      confirmPassword: '',
     }
 
-    const actual = reducer(initialState, action)
+    const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
   })
 
@@ -46,7 +54,7 @@ describe('Admin Reset Password reducer spec', () => {
       open: false,
     }
 
-    const actual = reducer(initialState, action)
+    const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
   })
 
