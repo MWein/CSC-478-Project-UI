@@ -12,6 +12,15 @@ const open = (state = false, action = {}) => {
   }
 }
 
+const resetPasswordOpen = (state = false, action = {}) => {
+  switch (action.type) {
+    case editEmployeeConstants.OPEN_RESET_PASSWORD: return true
+    case editEmployeeConstants.CLOSE_RESET_PASSWORD: return false
+    case appConstants.PURGE: return false
+    default: return state
+  }
+}
+
 const mode = (state = '', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? 'add' : 'edit'
@@ -91,6 +100,7 @@ const address = (state = '', action = {}) => {
 const password = (state = '', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.SET_PASSWORD: return action.payload
+    case editEmployeeConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -99,6 +109,7 @@ const password = (state = '', action = {}) => {
 const confirmPassword = (state = '', action = {}) => {
   switch (action.type) {
     case editEmployeeConstants.SET_CONFIRM_PASSWORD: return action.payload
+    case editEmployeeConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
     default: return state
   }
@@ -107,6 +118,7 @@ const confirmPassword = (state = '', action = {}) => {
 
 const reducer = combineReducers({
   open,
+  resetPasswordOpen,
   mode,
   employeeActive,
   username,

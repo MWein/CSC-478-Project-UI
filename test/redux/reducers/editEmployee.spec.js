@@ -4,6 +4,7 @@ import reducer from '../../../src/redux/reducers/editEmployeeReducer'
 
 const initialState = {
   open: false,
+  resetPasswordOpen: false,
   mode: '',
   employeeActive: false,
   username: '',
@@ -89,6 +90,51 @@ describe('Employee editor reducer spec', () => {
     const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
   })
+
+
+  it('Responds to OPEN_RESET_PASSWORD', () => {
+    const action = {
+      type: employeeActions.OPEN_RESET_PASSWORD,
+      payload: null,
+    }
+
+    const mockState = {
+      ...initialState,
+      password: 'some password',
+      confirmPassword: 'some other password',
+    }
+
+    const expected = {
+      ...initialState,
+      resetPasswordOpen: true,
+      password: '',
+      confirmPassword: '',
+    }
+
+    const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to CLOSE_RESET_PASSWORD', () => {
+    const action = {
+      type: employeeActions.CLOSE_RESET_PASSWORD,
+      payload: null,
+    }
+
+    const mockState = {
+      ...initialState,
+      resetPasswordOpen: true
+    }
+
+    const expected = {
+      ...initialState,
+      resetPasswordOpen: false,
+    }
+
+    const actual = reducer(mockState, action)
+    expect(actual).toEqual(expected)
+  })
+
 
   it('Responds to SET_USERNAME', () => {
     const action = {

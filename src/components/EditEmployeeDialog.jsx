@@ -14,7 +14,6 @@ import Switch from 'material-ui/Switch'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
-import { actions as resetPasswordActions } from '../redux/actions/adminResetPasswordActions'
 
 
 const EditEmployeeDialog = ({
@@ -263,7 +262,6 @@ const mapStateToProps = state => ({
 
 const actions = {
   ...employeeActions,
-  ...resetPasswordActions,
 }
 
 export default connect(mapStateToProps, actions)(EditEmployeeDialog)

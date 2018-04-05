@@ -6,7 +6,6 @@ import employees from './employeeReducer'
 import error from './errorMessageReducer'
 import login from './loginReducer'
 import navBar from './navBarReducer'
-import resetPassword from './adminResetPasswordReducer'
 import settings from './UserSettingsReducer'
 
 export default combineReducers({
@@ -18,5 +17,4 @@ export default combineReducers({
   settings,
   employees,
   employeeEditor,
-  resetPassword,
 })

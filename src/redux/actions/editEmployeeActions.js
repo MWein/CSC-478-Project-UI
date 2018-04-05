@@ -6,6 +6,7 @@ export const {
 } = createActions('error', {
   createNewEmployee: 'CREATE_NEW_EMPLOYEE',
   editEmployee: 'EDIT_EMPLOYEE',
+  resetPassword: 'RESET_PASSWORD',
 
   openEmployeeEditor: 'OPEN_EMPLOYEE_EDITOR',
   closeEmployeeEditor: 'CLOSE_EMPLOYEE_EDITOR',
@@ -18,4 +19,7 @@ export const {
   setAddress: 'SET_ADDRESS',
   setPassword: 'SET_PASSWORD',
   setConfirmPassword: 'SET_CONFIRM_PASSWORD',
+
+  openResetPassword: 'OPEN_RESET_PASSWORD',
+  closeResetPassword: 'CLOSE_RESET_PASSWORD',
 })

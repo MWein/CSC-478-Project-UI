@@ -9,16 +9,17 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
-import { actions as resetPasswordActions } from '../redux/actions/adminResetPasswordActions'
+import { actions as editEmployeeActions } from '../redux/actions/editEmployeeActions'
 
 
 const AdminResetPasswordDialog = ({
   open,
   password,
   confirmPassword,
-  setNewPassword,
+  setPassword,
   setConfirmPassword,
   closeResetPassword,
+  resetPassword,
 }) => (
   <Dialog aria-labelledby='form-dialog-title' open={open}>
     <DialogTitle id='form-dialog-title'>Reset Password</DialogTitle>
@@ -29,7 +30,7 @@ const AdminResetPasswordDialog = ({
           <TextField
             fullWidth
             label='New Password'
-            onChange={event => setNewPassword(event.target.value)}
+            onChange={event => setPassword(event.target.value)}
             type='password'
             value={password}
           />
@@ -52,14 +53,15 @@ const AdminResetPasswordDialog = ({
         onClick={closeResetPassword}
         variant='raised'
       >
-            Cancel
+        Cancel
       </Button>
       <Button
         color='primary'
         disabled={password === '' || confirmPassword === '' || password !== confirmPassword}
+        onClick={resetPassword}
         variant='raised'
       >
-            Reset
+        Reset
       </Button>
     </DialogActions>
   </Dialog>
@@ -71,19 +73,20 @@ AdminResetPasswordDialog.propTypes = {
   confirmPassword: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   password: PropTypes.string.isRequired,
+  resetPassword: PropTypes.func.isRequired,
   setConfirmPassword: PropTypes.func.isRequired,
-  setNewPassword: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  open: state.resetPassword.open,
-  password: state.resetPassword.password,
-  confirmPassword: state.resetPassword.confirmPassword,
+  open: state.employeeEditor.resetPasswordOpen,
+  password: state.employeeEditor.password,
+  confirmPassword: state.employeeEditor.confirmPassword,
 })
 
 
 const actions = {
-  ...resetPasswordActions,
+  ...editEmployeeActions,
 }
 
 export default connect(mapStateToProps, actions)(AdminResetPasswordDialog)
