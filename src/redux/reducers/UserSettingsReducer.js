@@ -52,6 +52,14 @@ const passwordChangeSuccess = (state = false, action = {}) => {
   }
 }
 
+const securityQuestionChangeSuccess = (state = false, action = {}) => {
+  switch (action.type) {
+    case settingsConstants.SET_SECURITY_QUESTION_CHANGE_SUCCESS: return action.payload
+    case appConstants.PURGE: return false
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   recoveryMode,
@@ -60,6 +68,7 @@ const reducer = combineReducers({
   securityQuestion,
   securityAnswer,
   passwordChangeSuccess,
+  securityQuestionChangeSuccess,
 })
 
 export default reducer

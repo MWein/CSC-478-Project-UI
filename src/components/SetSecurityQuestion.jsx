@@ -13,6 +13,9 @@ const SetSecurityQuestion = ({
   securityAnswer,
   setSecurityQuestion,
   setSecurityAnswer,
+  changeSecurityQuestion,
+  securityQuestionChangeSuccess,
+  setSecurityQuestionChangeSuccess,
 }) => {
   const paperPadding = '30px'
   const style = {
@@ -27,6 +30,22 @@ const SetSecurityQuestion = ({
     },
   }
 
+  const header = () => (
+    <div>
+      Security Question {securityQuestionChangeSuccess ? (<span style={{ color: 'green' }}>- Success</span>) : ''}
+    </div>
+  )
+
+  const typeQuestion = value => {
+    setSecurityQuestionChangeSuccess(false)
+    setSecurityQuestion(value)
+  }
+
+  const typeAnswer = value => {
+    setSecurityQuestionChangeSuccess(false)
+    setSecurityAnswer(value)
+  }
+
   const validate = () => securityQuestion !== '' && securityAnswer !== ''
 
   return (
@@ -34,7 +53,7 @@ const SetSecurityQuestion = ({
       <Grid container>
         <Grid item xs={12}>
           <div style={style.title}>
-            Security Question
+            {header()}
           </div>
         </Grid>
 
@@ -42,7 +61,7 @@ const SetSecurityQuestion = ({
           <TextField
             fullWidth
             label='Security Question'
-            onChange={event => setSecurityQuestion(event.target.value)}
+            onChange={event => typeQuestion(event.target.value)}
             value={securityQuestion}
           />
         </Grid>
@@ -51,8 +70,7 @@ const SetSecurityQuestion = ({
           <TextField
             fullWidth
             label='Security Answer'
-            onChange={event => setSecurityAnswer(event.target.value)}
-            type='password'
+            onChange={event => typeAnswer(event.target.value)}
             value={securityAnswer}
           />
         </Grid>
@@ -62,7 +80,7 @@ const SetSecurityQuestion = ({
             <Button
               color='primary'
               disabled={!validate()}
-              onClick={() => console.log('Run the saga')}
+              onClick={changeSecurityQuestion}
               variant='raised'
             >
                 Submit
@@ -76,15 +94,19 @@ const SetSecurityQuestion = ({
 
 
 SetSecurityQuestion.propTypes = {
+  changeSecurityQuestion: PropTypes.func.isRequired,
   securityAnswer: PropTypes.string.isRequired,
   securityQuestion: PropTypes.string.isRequired,
+  securityQuestionChangeSuccess: PropTypes.bool.isRequired,
   setSecurityAnswer: PropTypes.func.isRequired,
   setSecurityQuestion: PropTypes.func.isRequired,
+  setSecurityQuestionChangeSuccess: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
   securityQuestion: state.settings.securityQuestion,
   securityAnswer: state.settings.securityAnswer,
+  securityQuestionChangeSuccess: state.settings.securityQuestionChangeSuccess,
 })
 
 const actions = {
