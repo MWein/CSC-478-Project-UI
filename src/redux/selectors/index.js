@@ -28,6 +28,7 @@ export const getEmployeeList = state => state.employees.employeeList
 
 // Employee Editor Specific
 export const getEmployeeId = state => state.employeeEditor.username
+export const getEmployeeActive = state => state.employeeEditor.employeeActive
 export const getEmployeePin = state => state.employeeEditor.password
 export const getEmployeeRole = state => state.employeeEditor.type
 export const getEmployeeFName = state => state.employeeEditor.firstName

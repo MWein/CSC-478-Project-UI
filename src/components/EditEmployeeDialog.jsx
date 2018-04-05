@@ -16,6 +16,7 @@ import { actions as employeeActions } from '../redux/actions/editEmployeeActions
 
 const EditEmployeeDialog = ({
   createNewEmployee,
+  editEmployee,
   open,
   mode,
   employeeActive,
@@ -42,7 +43,7 @@ const EditEmployeeDialog = ({
     if (mode === 'add') {
       createNewEmployee()
     } else if (mode === 'edit') {
-      console.log('Edit Employee!!!')
+      editEmployee()
     }
   }
 
@@ -213,6 +214,7 @@ EditEmployeeDialog.propTypes = {
   address: PropTypes.string.isRequired,
   confirmPassword: PropTypes.string.isRequired,
   createNewEmployee: PropTypes.func.isRequired,
+  editEmployee: PropTypes.func.isRequired,
   employeeActive: PropTypes.bool.isRequired,
   employeeType: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
