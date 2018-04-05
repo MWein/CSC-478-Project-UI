@@ -37,7 +37,6 @@ const EditEmployeeDialog = ({
   setAddress,
   setPassword,
   setConfirmPassword,
-  closeEmployeeEditor,
 }) => {
   const saveButton = () => {
     if (mode === 'add') {
@@ -45,7 +44,6 @@ const EditEmployeeDialog = ({
     } else if (mode === 'edit') {
       console.log('Edit Employee!!!')
     }
-    closeEmployeeEditor()
   }
 
   const saveButtonEnabled = () => {
@@ -213,7 +211,6 @@ const EditEmployeeDialog = ({
 
 EditEmployeeDialog.propTypes = {
   address: PropTypes.string.isRequired,
-  closeEmployeeEditor: PropTypes.func.isRequired,
   confirmPassword: PropTypes.string.isRequired,
   createNewEmployee: PropTypes.func.isRequired,
   employeeActive: PropTypes.bool.isRequired,

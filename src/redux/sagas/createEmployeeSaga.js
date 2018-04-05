@@ -17,6 +17,7 @@ import {
 } from '../selectors'
 import { actions as editEmployeeActions } from '../actions/editEmployeeActions'
 import { actions as employeeActions } from '../actions/employeeActions'
+import { actions as errorMessageActions } from '../actions/errorMessageActions'
 import { post } from './helpers/makeFetchCall'
 
 
@@ -50,7 +51,7 @@ export function* createEmployeeSaga() {
   })
 
   if (response.payload.error) {
-    console.log('Error ', response.payload.errorMsg)
+    yield dispatch(errorMessageActions.displayError(response.payload.errorMsg))
   } else {
     const employeeList = yield select(getEmployeeList)
 
@@ -69,6 +70,7 @@ export function* createEmployeeSaga() {
     ]
 
     yield dispatch(employeeActions.setEmployeeList(newEmployeeList))
+    yield dispatch(editEmployeeActions.closeEmployeeEditor())
   }
 }
 
