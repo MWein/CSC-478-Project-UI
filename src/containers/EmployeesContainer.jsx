@@ -11,213 +11,10 @@ import { connect } from 'react-redux'
 import { actions as editEmployeeActions } from '../redux/actions/editEmployeeActions'
 
 
-const testEmployees = [
-  {
-    id: 'mawein',
-    f_name: 'Mike',
-    l_name: 'Weinberg',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '2018-04-02T18:30:45.669-05:00',
-  },
-  {
-    id: 'superuser',
-    f_name: 'Michael',
-    l_name: 'Weinberg',
-    role: 'admin',
-    active: true,
-    phone: null,
-    address: null,
-    timestamp: '2018-03-25T23:49:17.912-05:00',
-  },
-  {
-    id: 'someGuy',
-    f_name: 'Jack',
-    l_name: 'Bower',
-    role: 'employee',
-    active: false,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'jas',
-    f_name: 'Jason',
-    l_name: 'Boren',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '123 Fake Street',
-    timestamp: '',
-  },
-  {
-    id: 'bgrimshaw',
-    f_name: 'Brad',
-    l_name: 'Grimshaw',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '321 Ekaf Street',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'Ray',
-    l_name: 'Kraus',
-    role: 'admin',
-    active: true,
-    phone: '8675307',
-    address: '147 Another Fake Street',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-  {
-    id: 'rayk',
-    f_name: 'L. Ron',
-    l_name: 'Hubbard',
-    role: 'admin',
-    active: true,
-    phone: '8675309',
-    address: '',
-    timestamp: '',
-  },
-]
-
-
 const EmployeesContainer = ({
   thisAccountId,
   openEmployeeEditor,
+  employeeList,
 }) => {
   const employeeRoleText = employee => {
     if (employee.active) {
@@ -229,7 +26,7 @@ const EmployeesContainer = ({
   }
 
   const employeeGrid = () =>
-    testEmployees.filter(employee => employee.id !== thisAccountId)
+    employeeList.filter(employee => employee.id !== thisAccountId)
       .sort((a, b) => {
         if (a.l_name === b.l_name) {
           return 0
@@ -325,12 +122,14 @@ const EmployeesContainer = ({
 
 
 EmployeesContainer.propTypes = {
+  employeeList: PropTypes.array.isRequired,
   openEmployeeEditor: PropTypes.func.isRequired,
   thisAccountId: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   thisAccountId: 'mawein',
+  employeeList: state.employees.employeeList,
 })
 
 const actions = {
