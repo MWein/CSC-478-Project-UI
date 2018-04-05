@@ -4,6 +4,9 @@ export const {
   constants,
   actions,
 } = createActions('error', {
+  createNewEmployee: 'CREATE_NEW_EMPLOYEE',
+  editEmployee: 'EDIT_EMPLOYEE',
+
   openEmployeeEditor: 'OPEN_EMPLOYEE_EDITOR',
   closeEmployeeEditor: 'CLOSE_EMPLOYEE_EDITOR',
   setEmployeeActive: 'SET_EMPLOYEE_ACTIVE',
