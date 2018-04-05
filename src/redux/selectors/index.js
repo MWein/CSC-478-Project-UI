@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+
 // Universal 
 export const getToken = state => state.app.token
 export const validateEmail = email =>
@@ -20,3 +22,16 @@ export const getCustomerAddress = state => state.customerLookup.address
 
 // Settings specific
 export const getNewPassword = state => state.settings.newPassword
+
+// Employee Page
+export const getEmployeeList = state => state.employees.employeeList
+
+// Employee Editor Specific
+export const getEmployeeId = state => state.employeeEditor.username
+export const getEmployeeActive = state => state.employeeEditor.employeeActive
+export const getEmployeePin = state => state.employeeEditor.password
+export const getEmployeeRole = state => state.employeeEditor.type
+export const getEmployeeFName = state => state.employeeEditor.firstName
+export const getEmployeeLName = state => state.employeeEditor.lastName
+export const getEmployeePhone = state => state.employeeEditor.phone
+export const getEmployeeAddress = state => state.employeeEditor.address

@@ -12,7 +12,9 @@ import { actions as navBarActions } from '../redux/actions/navBarActions'
 
 
 const NavBar = ({
-  setPage,
+  openReportsPage,
+  openEmployeePage,
+  openSettingsPage,
   enabled,
   userRole,
   firstName,
@@ -21,8 +23,8 @@ const NavBar = ({
   setMenuOpen,
   logout,
 }) => {
-  const navigate = page => {
-    setPage(page)
+  const navigate = pageFunc => {
+    pageFunc()
     setMenuOpen(false)
   }
 
@@ -46,7 +48,7 @@ const NavBar = ({
       }}
     >
       <MenuItem
-        onClick={() => navigate('settings')}
+        onClick={() => navigate(openSettingsPage)}
       >
         Settings
       </MenuItem>
@@ -72,8 +74,8 @@ const NavBar = ({
     userRole === 'admin' || userRole === 'manager' ?
       (
         <div>
-          <Button color='inherit' disabled={!enabled} onClick={() => navigate('employees')}>Employees</Button>
-          <Button color='inherit' disabled={!enabled} onClick={() => navigate('reports')}>Reports</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate(openEmployeePage)}>Employees</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate(openReportsPage)}>Reports</Button>
         </div>
       ) : null
 
@@ -133,8 +135,10 @@ NavBar.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   logout: PropTypes.func.isRequired,
+  openEmployeePage: PropTypes.func.isRequired,
+  openReportsPage: PropTypes.func.isRequired,
+  openSettingsPage: PropTypes.func.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
-  setPage: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
 }
 
