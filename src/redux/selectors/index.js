@@ -6,6 +6,12 @@ export const validateEmail = email =>
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     .test(email)
 
+// Password and Security Question Specific
+export const requireSecurityQuestion = state => state.app.requireSecurityQuestion
+export const recoveryMode = state => state.settings.recoveryMode
+export const getSecurityQuestion = state => state.settings.securityQuestion
+export const getSecurityAnswer = state => state.settings.securityAnswer
+
 // Login controller specific
 export const getUsername = state => state.login.username
 export const getPassword = state => state.login.password

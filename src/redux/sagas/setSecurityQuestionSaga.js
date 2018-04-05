@@ -5,26 +5,28 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
-  getNewPassword,
+  getSecurityAnswer,
+  getSecurityQuestion,
   getToken,
-  requireSecurityQuestion,
+  recoveryMode,
 } from '../selectors'
+import { actions as appActions } from '../actions/appActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
-import { actions as loginActions } from '../actions/loginActions'
 import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
 import { actions as settingActions } from '../actions/UserSettingsActions'
 
-export function* changePasswordSaga() {
-  console.log('FUUUUUUCK')
-  const url = 'http://csc478team301.uisad.uis.edu:8080/setPassword'
+export function* setSecurityQuestionSaga() {
+  const url = 'http://csc478team301.uisad.uis.edu:8080/setSecurityQuestion'
 
   const token = yield select(getToken)
-  const pin = yield select(getNewPassword)
+  const question = yield select(getSecurityQuestion)
+  const answer = yield select(getSecurityAnswer)
 
   const body = {
     token,
-    pin,
+    question,
+    answer,
   }
 
   const response = yield call(post, {
@@ -41,24 +43,23 @@ export function* changePasswordSaga() {
   if (response.payload.error) {
     console.log(response.payload.errorMsg)
   } else {
-    yield dispatch(settingActions.setPasswordChangeSuccess(true))
-    yield dispatch(settingActions.setRecoveryMode(false))
+    yield dispatch(settingActions.setSecurityQuestionChangeSuccess(true))
+    yield dispatch(appActions.setRequireSecurityQuestion(false))
 
-    const securityQuestionRequired = yield select(requireSecurityQuestion)
+    const isRecoveryMode = yield select(recoveryMode)
 
-    yield dispatch(navBarActions.setNavEnabled(!securityQuestionRequired))
+    yield dispatch(navBarActions.setNavEnabled(!isRecoveryMode))
 
-    yield dispatch(settingActions.setOldPassword(''))
-    yield dispatch(settingActions.setNewPassword(''))
-    yield dispatch(loginActions.setPassword(pin))
+    yield dispatch(settingActions.setSecurityQuestion(''))
+    yield dispatch(settingActions.setSecurityAnswer(''))
   }
 }
 
 export default function* () {
   yield takeLatest(
     [
-      settingActions.changePassword().type,
+      settingActions.changeSecurityQuestion().type,
     ],
-    changePasswordSaga
+    setSecurityQuestionSaga
   )
 }

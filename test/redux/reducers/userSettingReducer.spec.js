@@ -9,6 +9,7 @@ const initialState = {
   securityQuestion: '',
   securityAnswer: '',
   passwordChangeSuccess: false,
+  securityQuestionChangeSuccess: false,
 }
 
 
@@ -105,6 +106,21 @@ describe('User setting reducer spec', () => {
     const expected = {
       ...initialState,
       passwordChangeSuccess: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_SECURITY_QUESTION_CHANGE_SUCCESS', () => {
+    const action = {
+      type: appActions.SET_SECURITY_QUESTION_CHANGE_SUCCESS,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      securityQuestionChangeSuccess: action.payload,
     }
 
     const actual = reducer(initialState, action)

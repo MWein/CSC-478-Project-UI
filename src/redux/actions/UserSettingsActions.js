@@ -14,4 +14,5 @@ export const {
   setSecurityQuestionChangeSuccess: 'SET_SECURITY_QUESTION_CHANGE_SUCCESS',
 
   changePassword: 'CHANGE_PASSWORD',
+  changeSecurityQuestion: 'CHANGE_SECURITY_QUESTION',
 })
