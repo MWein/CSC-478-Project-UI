@@ -7,7 +7,11 @@ export const {
   logout: 'LOGOUT',
   purge: 'PURGE',
 
+  openReportsPage: 'OPEN_REPORTS_PAGE',
+  openSettingsPage: 'OPEN_SETTINGS_PAGE',
+  openEmployeePage: 'OPEN_EMPLOYEE_PAGE',
   setPage: 'SET_PAGE',
+
   incLoading: 'INC_LOADING',
   decLoading: 'DEC_LOADING',
   setToken: 'SET_TOKEN',

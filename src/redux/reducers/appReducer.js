@@ -5,6 +5,11 @@ import { combineReducers } from 'redux'
 const page = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_PAGE: return action.payload
+
+    case appConstants.OPEN_EMPLOYEE_PAGE: return 'employees'
+    case appConstants.OPEN_SETTINGS_PAGE: return 'settings'
+    case appConstants.OPEN_REPORTS_PAGE: return 'reports'
+
     case appConstants.PURGE: return ''
     default: return state
   }

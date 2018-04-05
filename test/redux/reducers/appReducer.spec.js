@@ -34,6 +34,52 @@ describe('App reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+
+  it('Responds to OPEN_EMPLOYEE_PAGE', () => {
+    const action = {
+      type: appActions.OPEN_EMPLOYEE_PAGE,
+      payload: null,
+    }
+
+    const expected = {
+      ...initialState,
+      page: 'employees',
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to OPEN_REPORTS_PAGE', () => {
+    const action = {
+      type: appActions.OPEN_REPORTS_PAGE,
+      payload: null,
+    }
+
+    const expected = {
+      ...initialState,
+      page: 'reports',
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to OPEN_SETTINGS_PAGE', () => {
+    const action = {
+      type: appActions.OPEN_SETTINGS_PAGE,
+      payload: null,
+    }
+
+    const expected = {
+      ...initialState,
+      page: 'settings',
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to INC_LOADING', () => {
     const action = {
       type: appActions.INC_LOADING,
