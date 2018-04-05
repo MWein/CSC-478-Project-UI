@@ -15,6 +15,7 @@ export const {
   incLoading: 'INC_LOADING',
   decLoading: 'DEC_LOADING',
   setToken: 'SET_TOKEN',
+  setUsername: 'SET_USERNAME',
   setRole: 'SET_ROLE',
   setFirstName: 'SET_FIRST_NAME',
   setLastName: 'SET_LAST_NAME',

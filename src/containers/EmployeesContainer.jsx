@@ -128,7 +128,7 @@ EmployeesContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  thisAccountId: 'mawein',
+  thisAccountId: state.app.username,
   employeeList: state.employees.employeeList,
 })
 

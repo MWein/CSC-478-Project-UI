@@ -6,6 +6,7 @@ const initialState = {
   page: '',
   loading: 0,
   token: '',
+  username: '',
   role: '',
   firstName: '',
   lastName: '',
@@ -124,6 +125,21 @@ describe('App reducer spec', () => {
     const expected = {
       ...initialState,
       token: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_USERNAME', () => {
+    const action = {
+      type: appActions.SET_USERNAME,
+      payload: 'God',
+    }
+
+    const expected = {
+      ...initialState,
+      username: action.payload,
     }
 
     const actual = reducer(initialState, action)

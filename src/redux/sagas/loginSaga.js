@@ -48,6 +48,7 @@ export function* loginSaga() {
   } else {
     yield dispatch(loginActions.setLoginError(false))
     yield dispatch(appActions.setToken(response.payload.token))
+    yield dispatch(appActions.setUsername(response.payload.id))
     yield dispatch(appActions.setFirstName(response.payload.f_name))
     yield dispatch(appActions.setLastName(response.payload.l_name))
     yield dispatch(appActions.setRole(response.payload.role))

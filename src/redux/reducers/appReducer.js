@@ -32,6 +32,14 @@ const token = (state = '', action = {}) => {
   }
 }
 
+const username = (state = '', action = {}) => {
+  switch (action.type) {
+    case appConstants.SET_USERNAME: return action.payload
+    case appConstants.PURGE: return ''
+    default: return state
+  }
+}
+
 const role = (state = '', action = {}) => {
   switch (action.type) {
     case appConstants.SET_ROLE: return action.payload
@@ -69,6 +77,7 @@ const reducer = combineReducers({
   page,
   loading,
   token,
+  username,
   role,
   firstName,
   lastName,
