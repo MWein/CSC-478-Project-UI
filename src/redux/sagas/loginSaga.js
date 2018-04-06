@@ -8,14 +8,14 @@ import { getPassword, getSecAnswer, getUsername } from '../selectors'
 import { actions as appActions } from '../actions/appActions'
 import { actions as customerLookupActions } from '../actions/customerLookupActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { actions as loginActions } from '../actions/loginActions'
 import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
 import { actions as settingsActions } from '../actions/UserSettingsActions'
 
-
 export function* loginSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/login'
+  const url = `${getServerURL()}/login`
 
   const id = yield select(getUsername)
   const pin = yield select(getPassword)

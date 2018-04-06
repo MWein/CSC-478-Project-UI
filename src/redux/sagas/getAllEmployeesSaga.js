@@ -6,12 +6,12 @@ import {
 } from 'redux-saga/effects'
 import { actions as appActions } from '../actions/appActions'
 import { actions as employeeActions } from '../actions/employeeActions'
+import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
 
-
 export function* getAllEmployeesSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/allUsers'
+  const url = `${getServerURL()}/allUsers`
   const token = yield select(getToken)
   const body = {
     token,

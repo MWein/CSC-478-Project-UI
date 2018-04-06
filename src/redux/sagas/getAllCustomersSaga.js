@@ -5,11 +5,12 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { actions as customerLookupActions } from '../actions/customerLookupActions'
+import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
 
 export function* getAllCustomersSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/allCustomers'
+  const url = `${getServerURL()}/allCustomers`
   const token = yield select(getToken)
   const body = {
     token,

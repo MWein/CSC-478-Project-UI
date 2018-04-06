@@ -12,12 +12,13 @@ import {
 } from '../selectors'
 import { actions as appActions } from '../actions/appActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
 import { actions as settingActions } from '../actions/UserSettingsActions'
 
 export function* setSecurityQuestionSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/setSecurityQuestion'
+  const url = `${getServerURL()}/setSecurityQuestion`
 
   const token = yield select(getToken)
   const question = yield select(getSecurityQuestion)

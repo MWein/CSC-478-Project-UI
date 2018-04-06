@@ -10,13 +10,14 @@ import {
   requireSecurityQuestion,
 } from '../selectors'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { actions as loginActions } from '../actions/loginActions'
 import { actions as navBarActions } from '../actions/navBarActions'
 import { post } from './helpers/makeFetchCall'
 import { actions as settingActions } from '../actions/UserSettingsActions'
 
 export function* changePasswordSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/setPassword'
+  const url = `${getServerURL()}/setPassword`
 
   const token = yield select(getToken)
   const pin = yield select(getNewPassword)

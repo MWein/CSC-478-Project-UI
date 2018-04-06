@@ -5,12 +5,12 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { actions as appActions } from '../actions/appActions'
+import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
 
-
 export function* logoutSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/logout'
+  const url = `${getServerURL()}/logout`
 
   const token = yield select(getToken)
 

@@ -11,11 +11,11 @@ import {
 } from '../selectors'
 import { actions as editEmployeeActions } from '../actions/editEmployeeActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { post } from './helpers/makeFetchCall'
 
-
 export function* resetPasswordSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/adminSetPassword'
+  const url = `${getServerURL()}/adminSetPassword`
 
   const token = yield select(getToken)
 

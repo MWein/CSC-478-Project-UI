@@ -5,12 +5,13 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { getUsername } from '../selectors'
 import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
 
 export function* getSecurityQuestionsSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/getSecurityQuestion'
+  const url = `${getServerURL()}/getSecurityQuestion`
   const id = yield select(getUsername)
   const body = {
     id,

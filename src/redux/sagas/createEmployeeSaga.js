@@ -18,11 +18,11 @@ import {
 import { actions as editEmployeeActions } from '../actions/editEmployeeActions'
 import { actions as employeeActions } from '../actions/employeeActions'
 import { actions as errorMessageActions } from '../actions/errorMessageActions'
+import getServerURL from './helpers/getServerURL'
 import { post } from './helpers/makeFetchCall'
 
-
 export function* createEmployeeSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/createUser'
+  const url = `${getServerURL()}/createUser`
 
   const token = yield select(getToken)
 

@@ -13,11 +13,11 @@ import {
   getToken,
 } from '../selectors'
 import { actions as customerLookupActions } from '../actions/customerLookupActions'
+import getServerURL from './helpers/getServerURL'
 import { post } from './helpers/makeFetchCall'
 
-
 export function* createCustomerSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/createCustomer'
+  const url = `${getServerURL()}/createCustomer`
 
   const token = yield select(getToken)
 
