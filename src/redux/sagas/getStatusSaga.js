@@ -4,7 +4,7 @@ import {
 import { get } from './helpers/makeFetchCall'
 
 export function* getStatusSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/status'
+  const url = 'http://localhost/status'
 
   const response = yield call(get, { url })
 

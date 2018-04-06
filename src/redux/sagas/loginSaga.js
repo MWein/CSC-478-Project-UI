@@ -15,7 +15,7 @@ import { actions as settingsActions } from '../actions/UserSettingsActions'
 
 
 export function* loginSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/login'
+  const url = 'http://localhost/login'
 
   const id = yield select(getUsername)
   const pin = yield select(getPassword)

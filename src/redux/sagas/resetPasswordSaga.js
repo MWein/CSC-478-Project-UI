@@ -15,7 +15,7 @@ import { post } from './helpers/makeFetchCall'
 
 
 export function* resetPasswordSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/adminSetPassword'
+  const url = 'http://localhost/adminSetPassword'
 
   const token = yield select(getToken)
 

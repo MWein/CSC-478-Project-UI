@@ -10,7 +10,7 @@ import { post } from './helpers/makeFetchCall'
 
 
 export function* logoutSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/logout'
+  const url = 'http://localhost/logout'
 
   const token = yield select(getToken)
 

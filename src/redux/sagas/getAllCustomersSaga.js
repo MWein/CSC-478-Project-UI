@@ -9,7 +9,7 @@ import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
 
 export function* getAllCustomersSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/allCustomers'
+  const url = 'http://localhost/allCustomers'
   const token = yield select(getToken)
   const body = {
     token,

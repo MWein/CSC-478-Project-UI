@@ -17,7 +17,7 @@ import { actions as settingActions } from '../actions/UserSettingsActions'
 
 export function* changePasswordSaga() {
   console.log('FUUUUUUCK')
-  const url = 'http://csc478team301.uisad.uis.edu:8080/setPassword'
+  const url = 'http://localhost/setPassword'
 
   const token = yield select(getToken)
   const pin = yield select(getNewPassword)
