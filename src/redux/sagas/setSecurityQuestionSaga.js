@@ -17,7 +17,7 @@ import { post } from './helpers/makeFetchCall'
 import { actions as settingActions } from '../actions/UserSettingsActions'
 
 export function* setSecurityQuestionSaga() {
-  const url = 'http://localhost/setSecurityQuestion'
+  const url = 'http://csc478team301.uisad.uis.edu:8080/setSecurityQuestion'
 
   const token = yield select(getToken)
   const question = yield select(getSecurityQuestion)

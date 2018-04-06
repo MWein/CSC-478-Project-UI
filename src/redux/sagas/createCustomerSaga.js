@@ -17,7 +17,7 @@ import { post } from './helpers/makeFetchCall'
 
 
 export function* createCustomerSaga() {
-  const url = 'http://localhost/createCustomer'
+  const url = 'http://csc478team301.uisad.uis.edu:8080/createCustomer'
 
   const token = yield select(getToken)
 

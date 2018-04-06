@@ -22,7 +22,7 @@ import { post } from './helpers/makeFetchCall'
 
 
 export function* createEmployeeSaga() {
-  const url = 'http://localhost/createUser'
+  const url = 'http://csc478team301.uisad.uis.edu:8080/createUser'
 
   const token = yield select(getToken)
 

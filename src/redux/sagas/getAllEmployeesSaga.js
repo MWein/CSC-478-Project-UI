@@ -11,7 +11,7 @@ import { post } from './helpers/makeFetchCall'
 
 
 export function* getAllEmployeesSaga() {
-  const url = 'http://localhost/allUsers'
+  const url = 'http://csc478team301.uisad.uis.edu:8080/allUsers'
   const token = yield select(getToken)
   const body = {
     token,

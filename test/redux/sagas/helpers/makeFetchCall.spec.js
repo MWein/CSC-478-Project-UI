@@ -43,7 +43,7 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
         get: () => 'application/json',
       },
     })
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 
   it('returns a payload and no errors on success for application/json; charset=utf-8', async () => {
@@ -60,7 +60,7 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
         get: () => 'application/json; charset=utf-8',
       },
     })
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 
   it('returns a payload and no errors on success for text/plain', async () => {
@@ -77,7 +77,7 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
         get: () => 'text/plain',
       },
     })
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 
   it('returns a payload and no errors on success for text/plain; charset=utf-8', async () => {
@@ -94,7 +94,7 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
         get: () => 'pats/special/type',
       },
     })
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 
   it('returns a payload, code, text, with error on failure', async () => {
@@ -111,7 +111,7 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
         get: () => 'application/json',
       },
     })
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 
   it('returns null payload, code, with error and text on network failure', async () => {
@@ -123,6 +123,6 @@ describe('Convenience Functions: get(), post(), put(), del()', () => {
     }
 
     fetch.mockReturnValue(new Error())
-    expect(await get({ url: 'localhost' })).toEqual(expectedPayload)
+    expect(await get({ url: 'csc478team301.uisad.uis.edu:8080' })).toEqual(expectedPayload)
   })
 })

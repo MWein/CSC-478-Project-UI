@@ -10,7 +10,7 @@ import { actions as loginActions } from '../actions/loginActions'
 import { post } from './helpers/makeFetchCall'
 
 export function* getSecurityQuestionsSaga() {
-  const url = 'http://localhost/getSecurityQuestion'
+  const url = 'http://csc478team301.uisad.uis.edu:8080/getSecurityQuestion'
   const id = yield select(getUsername)
   const body = {
     id,
