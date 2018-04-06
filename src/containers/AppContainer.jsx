@@ -14,6 +14,8 @@ import { connect } from 'react-redux'
 //import TransactionContainer from './TransactionContainer'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
 
+import getServerURL from '../redux/sagas/helpers/getServerURL'
+
 
 const AppContainer = ({
   page,
@@ -39,6 +41,9 @@ const AppContainer = ({
 
   return (
     <div>
+
+      {getServerURL()}
+
       <LoadingDialog />
       <ErrorMessageDialog />
 
