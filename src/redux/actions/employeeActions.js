@@ -7,4 +7,6 @@ export const {
   retrieveEmployeeList: 'RETRIEVE_EMPLOYEE_LIST',
 
   setEmployeeList: 'SET_EMPLOYEE_LIST',
+  setSearchText: 'SET_SEARCH_TEXT',
+  setShowInactive: 'SET_SHOW_INACTIVE',
 })
