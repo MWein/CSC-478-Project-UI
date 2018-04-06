@@ -2,9 +2,10 @@ import {
   call,
 } from 'redux-saga/effects'
 import { get } from './helpers/makeFetchCall'
+import getServerURL from './helpers/getServerURL'
 
 export function* getStatusSaga() {
-  const url = 'http://csc478team301.uisad.uis.edu:8080/status'
+  const url = `${getServerURL()}/status`
 
   const response = yield call(get, { url })
 
