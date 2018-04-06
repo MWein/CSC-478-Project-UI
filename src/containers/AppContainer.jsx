@@ -42,7 +42,7 @@ const AppContainer = ({
   return (
     <div>
 
-      {getServerURL()}
+      {console.log('Testing deploy script', getServerURL())}
 
       <LoadingDialog />
       <ErrorMessageDialog />
