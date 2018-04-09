@@ -7,6 +7,7 @@ import error from './errorMessageReducer'
 import login from './loginReducer'
 import navBar from './navBarReducer'
 import settings from './UserSettingsReducer'
+import transaction from './transactionReducer'
 
 export default combineReducers({
   app,
@@ -17,4 +18,5 @@ export default combineReducers({
   settings,
   employees,
   employeeEditor,
+  transaction,
 })
