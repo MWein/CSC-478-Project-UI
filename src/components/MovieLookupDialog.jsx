@@ -1,13 +1,11 @@
 import Dialog, {
   DialogActions,
-  //DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SearchMovie from '../components/MovieLookupDialogContents/SearchMovie'
-//import TextField from 'material-ui/TextField'
 import SelectMovieCopy from '../components/MovieLookupDialogContents/SelectMovieCopy'
 import { connect } from 'react-redux'
 import { actions as movieLookupActions } from '../redux/actions/movieLookupActions'
@@ -16,23 +14,37 @@ import { actions as movieLookupActions } from '../redux/actions/movieLookupActio
 const MovieLookupDialog = ({
   open,
   mode,
+  selectedMovie,
+  selectedCopy,
+  setMode,
   closeMovieLookup,
 }) => {
+  const validateButton = () => {
+    if (mode === '') {
+      return Object.keys(selectedMovie).length !== 0
+    } else if (mode === 'copy') {
+      return selectedCopy !== ''
+    }
+
+    return true
+  }
+
   const contentByMode = () => {
     switch (mode) {
-      case 'movie': return {
-        content: (<SearchMovie />),
-        button: 'Next',
-      }
       case 'copy': return {
         content: (<SelectMovieCopy />),
         button: 'Confirm',
+        buttonAction: null,
       }
-      default: return null
+      default: return {
+        content: (<SearchMovie />),
+        button: 'Next',
+        buttonAction: () => setMode('copy'),
+      }
     }
   }
-
   const content = contentByMode()
+
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
@@ -49,6 +61,8 @@ const MovieLookupDialog = ({
         </Button>
         <Button
           color='primary'
+          disabled={!validateButton()}
+          onClick={content.buttonAction}
           variant='raised'
         >
           {content.button}
@@ -63,11 +77,16 @@ MovieLookupDialog.propTypes = {
   closeMovieLookup: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
+  selectedCopy: PropTypes.string.isRequired,
+  selectedMovie: PropTypes.object.isRequired,
+  setMode: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  mode: 'copy',
+  mode: state.movieLookup.mode,
   open: true,
+  selectedMovie: state.movieLookup.selectedMovie,
+  selectedCopy: state.movieLookup.selectedCopy,
 })
 
 
