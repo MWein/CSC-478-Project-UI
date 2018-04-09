@@ -13,6 +13,9 @@ import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
 
 
+import MovieLookupDialog from '../components/MovieLookupDialog'
+
+
 const AppContainer = ({
   page,
   token,
@@ -46,7 +49,9 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          {router()}
+          {/*router()*/}
+
+          <MovieLookupDialog />
         </Grid>
       </Grid>
     </div>
