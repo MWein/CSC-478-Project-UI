@@ -20,10 +20,18 @@ const SelectMovieCopy = ({
   newMovieCopy,
   setNewMovieCopy,
   selectedCopy,
+  copiesList,
   setSelectedCopy,
+  setCopiesList,
 }) => {
+  const addMovieCopyAction = () => {
+    setCopiesList([ ...copiesList, newMovieCopy ])
+  }
+
+  const validateCreateButton = () => newMovieCopy === '' ? false : !copiesList.includes(newMovieCopy)
+
   const copyListTable = () => {
-    const copyTable = copyList.map(copy => (
+    const copyTable = copiesList.map(copy => (
       <Button
         color='primary'
         key={copy}
@@ -42,7 +50,7 @@ const SelectMovieCopy = ({
     ) :
       (
         <div>
-          {notFound ? (<div><div style={{ color: 'red' }}>Movie Not Found</div><br /></div>) : null}
+          <div><div style={{ textAlign: 'center', color: 'red' }}>No Copies Exist</div><br /></div>
         </div>
       )
   }
@@ -61,7 +69,11 @@ const SelectMovieCopy = ({
 
           &nbsp;&nbsp;
 
-          <Button variant='raised'>
+          <Button
+            disabled={!validateCreateButton()}
+            onClick={addMovieCopyAction}
+            variant='raised'
+          >
             Create
           </Button>
 
@@ -77,8 +89,10 @@ const SelectMovieCopy = ({
 
 
 SelectMovieCopy.propTypes = {
+  copiesList: PropTypes.array.isRequired,
   newMovieCopy: PropTypes.string.isRequired,
   selectedCopy: PropTypes.string.isRequired,
+  setCopiesList: PropTypes.func.isRequired,
   setNewMovieCopy: PropTypes.func.isRequired,
   setSelectedCopy: PropTypes.func.isRequired,
 }
@@ -86,6 +100,7 @@ SelectMovieCopy.propTypes = {
 const mapStateToProps = state => ({
   newMovieCopy: state.movieLookup.newMovieCopy,
   selectedCopy: state.movieLookup.selectedCopy,
+  copiesList: state.movieLookup.copiesList,
 })
 
 
