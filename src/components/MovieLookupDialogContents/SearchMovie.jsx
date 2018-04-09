@@ -21,8 +21,8 @@ const moviesList = [
 
 
 const SearchMovieDialog = () => {
-  const customerListTable = () => {
-    const customerTable = moviesList.map(movie => (
+  const movieListTable = () => {
+    const movieTable = moviesList.map(movie => (
       <Button
         color='primary'
         key={movie.upc}
@@ -32,23 +32,23 @@ const SearchMovieDialog = () => {
       </Button>
     ))
 
-    const addNewCustomerButton = () => (
+    const addNewMovieButton = () => (
       <Button variant='raised'>
         Add New Movie
       </Button>
     )
 
-    return customerTable.length > 0 ? (
+    return movieTable.length > 0 ? (
       <div>
-        {customerTable}
+        {movieTable}
         <br /><br />
-        {addNewCustomerButton()}
+        {addNewMovieButton()}
       </div>
     ) :
       (
         <div>
           {notFound ? (<div><div style={{ color: 'red' }}>Movie Not Found</div><br /></div>) : null}
-          {addNewCustomerButton()}
+          {addNewMovieButton()}
         </div>
       )
   }
@@ -62,9 +62,9 @@ const SearchMovieDialog = () => {
           label='UPC'
         />
 
-      &nbsp;&nbsp;&nbsp;
-      OR
-      &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
+          OR
+          &nbsp;&nbsp;&nbsp;&nbsp;
 
         <TextField
           label='Copy ID'
@@ -77,7 +77,7 @@ const SearchMovieDialog = () => {
         </Button>
 
         <br /><br />
-        {customerListTable()}
+        {movieListTable()}
 
       </DialogContent>
     </div>
