@@ -9,13 +9,6 @@ import { connect } from 'react-redux'
 import { actions as movieLookupActions } from '../../redux/actions/movieLookupActions'
 
 
-const copyList = [
-  '456789',
-  '987654',
-  '111111',
-]
-
-
 const SelectMovieCopy = ({
   newMovieCopy,
   setNewMovieCopy,
@@ -27,8 +20,6 @@ const SelectMovieCopy = ({
   const addMovieCopyAction = () => {
     setCopiesList([ ...copiesList, newMovieCopy ])
   }
-
-  const validateCreateButton = () => newMovieCopy === '' ? false : !copiesList.includes(newMovieCopy)
 
   const copyListTable = () => {
     const copyTable = copiesList.map(copy => (
@@ -70,7 +61,7 @@ const SelectMovieCopy = ({
           &nbsp;&nbsp;
 
           <Button
-            disabled={!validateCreateButton()}
+            disabled={newMovieCopy === '' ? true : copiesList.includes(newMovieCopy)}
             onClick={addMovieCopyAction}
             variant='raised'
           >
