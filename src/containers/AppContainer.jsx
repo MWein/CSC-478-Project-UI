@@ -1,5 +1,3 @@
-//import Button from 'material-ui/Button'
-//import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import EmployeesContainer from './EmployeesContainer'
 import ErrorMessageDialog from '../components/ErrorMessageDialog'
 import Grid from 'material-ui/Grid'
@@ -9,18 +7,15 @@ import NavBar from '../components/NavBar'
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReportsContainer from './ReportsContainer'
+import TransactionContainer from './TransactionContainer'
 import UserSettingsContainer from './UserSettingsContainer'
 import { connect } from 'react-redux'
-//import TransactionContainer from './TransactionContainer'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
-
-import getServerURL from '../redux/sagas/helpers/getServerURL'
 
 
 const AppContainer = ({
   page,
   token,
-  //openCustomerLookup,
 }) => {
   const router = () => {
     if (token === '') {
@@ -35,6 +30,7 @@ const AppContainer = ({
       case 'employees': return (<EmployeesContainer />)
       case 'reports': return (<ReportsContainer />)
       case 'settings': return (<UserSettingsContainer />)
+      case 'transaction': return (<TransactionContainer />)
       default: return null
     }
   }
@@ -50,7 +46,9 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          {router()}
+          {/*router()*/}
+
+          <TransactionContainer />
         </Grid>
       </Grid>
     </div>
@@ -58,7 +56,6 @@ const AppContainer = ({
 }
 
 AppContainer.propTypes = {
-  //openCustomerLookup: PropTypes.func.isRequired,
   page: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
 }
