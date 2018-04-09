@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as movieLookupActions } from '../../redux/actions/movieLookupActions'
 
 
 const moviesList = [
@@ -20,7 +21,12 @@ const moviesList = [
 ]
 
 
-const SearchMovieDialog = () => {
+const SearchMovieDialog = ({
+  upc,
+  copyID,
+  setUPC,
+  setCopyID,
+}) => {
   const movieListTable = () => {
     const movieTable = moviesList.map(movie => (
       <Button
@@ -60,6 +66,8 @@ const SearchMovieDialog = () => {
 
         <TextField
           label='UPC'
+          onChange={event => setUPC(event.target.value)}
+          value={upc}
         />
 
           &nbsp;&nbsp;&nbsp;
@@ -68,6 +76,8 @@ const SearchMovieDialog = () => {
 
         <TextField
           label='Copy ID'
+          onChange={event => setCopyID(event.target.value)}
+          value={copyID}
         />
 
       &nbsp;&nbsp;
@@ -86,13 +96,20 @@ const SearchMovieDialog = () => {
 
 
 SearchMovieDialog.propTypes = {
+  copyID: PropTypes.string.isRequired,
+  setCopyID: PropTypes.func.isRequired,
+  setUPC: PropTypes.func.isRequired,
+  upc: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+  upc: state.movieLookup.upc,
+  copyID: state.movieLookup.copyID,
 })
 
 
 const actions = {
+  ...movieLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(SearchMovieDialog)

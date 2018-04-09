@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as movieLookupActions } from '../../redux/actions/movieLookupActions'
 
 
 const copyList = [
@@ -20,7 +21,10 @@ const copyList = [
 ]
 
 
-const SelectMovieCopy = () => {
+const SelectMovieCopy = ({
+  newMovieCopy,
+  setNewMovieCopy,
+}) => {
   const copyListTable = () => {
     const copyTable = copyList.map(movie => (
       <Button
@@ -52,6 +56,8 @@ const SelectMovieCopy = () => {
         <div style={{ flex: '1', textAlign: 'center' }}>
           <TextField
             label='New Movie Copy'
+            onChange={event => setNewMovieCopy(event.target.value)}
+            value={newMovieCopy}
           />
 
           &nbsp;&nbsp;
@@ -72,13 +78,17 @@ const SelectMovieCopy = () => {
 
 
 SelectMovieCopy.propTypes = {
+  newMovieCopy: PropTypes.string.isRequired,
+  setNewMovieCopy: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  newMovieCopy: state.movieLookup.newMovieCopy,
 })
 
 
 const actions = {
+  ...movieLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(SelectMovieCopy)
