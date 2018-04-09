@@ -10,29 +10,28 @@ import { actions as movieLookupActions } from '../../redux/actions/movieLookupAc
 
 
 const copyList = [
-  {
-    title: 'Battle of Whatever',
-    upc: '123456',
-  },
-  {
-    title: 'Star Wars',
-    upc: '987654321',
-  },
+  '456789',
+  '987654',
+  '111111',
 ]
 
 
 const SelectMovieCopy = ({
   newMovieCopy,
   setNewMovieCopy,
+  selectedCopy,
+  setSelectedCopy,
 }) => {
   const copyListTable = () => {
-    const copyTable = copyList.map(movie => (
+    const copyTable = copyList.map(copy => (
       <Button
         color='primary'
-        key={movie.upc}
+        key={copy}
+        onClick={() => setSelectedCopy(copy)}
         style={{ width: '100%' }}
+        variant={copy === selectedCopy ? 'raised' : 'flat'}
       >
-        {movie.title} - {movie.upc}
+        {copy}
       </Button>
     ))
 
@@ -79,11 +78,14 @@ const SelectMovieCopy = ({
 
 SelectMovieCopy.propTypes = {
   newMovieCopy: PropTypes.string.isRequired,
+  selectedCopy: PropTypes.string.isRequired,
   setNewMovieCopy: PropTypes.func.isRequired,
+  setSelectedCopy: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
   newMovieCopy: state.movieLookup.newMovieCopy,
+  selectedCopy: state.movieLookup.selectedCopy,
 })
 
 

@@ -24,15 +24,19 @@ const moviesList = [
 const SearchMovieDialog = ({
   upc,
   copyID,
+  selectedMovie,
   setUPC,
   setCopyID,
+  setSelectedMovie,
 }) => {
   const movieListTable = () => {
     const movieTable = moviesList.map(movie => (
       <Button
         color='primary'
         key={movie.upc}
+        onClick={() => setSelectedMovie(movie)}
         style={{ width: '100%' }}
+        variant={selectedMovie === movie ? 'raised' : 'flat'}
       >
         {movie.title}
       </Button>
@@ -97,7 +101,9 @@ const SearchMovieDialog = ({
 
 SearchMovieDialog.propTypes = {
   copyID: PropTypes.string.isRequired,
+  selectedMovie: PropTypes.object.isRequired,
   setCopyID: PropTypes.func.isRequired,
+  setSelectedMovie: PropTypes.func.isRequired,
   setUPC: PropTypes.func.isRequired,
   upc: PropTypes.string.isRequired,
 }
@@ -105,6 +111,7 @@ SearchMovieDialog.propTypes = {
 const mapStateToProps = state => ({
   upc: state.movieLookup.upc,
   copyID: state.movieLookup.copyID,
+  selectedMovie: state.movieLookup.selectedMovie,
 })
 
 
