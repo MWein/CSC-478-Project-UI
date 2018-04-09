@@ -67,7 +67,7 @@ export function* loginSaga() {
       yield dispatch(appActions.setPage('settings'))
       yield dispatch(errorMessageActions.displayError('Please Set a Security Question'))
     } else {
-      yield dispatch(appActions.setPage(''))
+      yield dispatch(appActions.openTransactionPage())
     }
   }
 }
