@@ -52,13 +52,13 @@ const SearchMovieDialog = ({
       <div>
         {movieTable}
         <br /><br />
-        {addNewMovieButton()}
+        {/*addNewMovieButton()*/}
       </div>
     ) :
       (
         <div>
           {notFound ? (<div><div style={{ color: 'red' }}>Movie Not Found</div><br /></div>) : null}
-          {addNewMovieButton()}
+          {/*addNewMovieButton()*/}
         </div>
       )
   }
@@ -84,10 +84,10 @@ const SearchMovieDialog = ({
           value={copyID}
         />
 
-      &nbsp;&nbsp;
+        &nbsp;&nbsp;
 
         <Button variant='raised'>
-        Search
+          Search
         </Button>
 
         <br /><br />
