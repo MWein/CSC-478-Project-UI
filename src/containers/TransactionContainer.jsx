@@ -1,27 +1,27 @@
 import Button from 'material-ui/Button'
-import ForgotPasswordDialog from '../components/ForgotPasswordDialog'
+import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
-import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import { actions as transactionActions } from '../redux/actions/transactionActions'
 
-const TransactionContainer = () => {
-  const paperPadding = '30px'
+
+const TransactionContainer = ({
+  customer,
+  openCustomerLookup,
+  setSelectedCustomer,
+}) => {
   const style = {
     paper: {
-      width: '300px',
-      paddingTop: paperPadding,
-      paddingBottom: paperPadding,
-      paddingLeft: paperPadding,
-      paddingRight: paperPadding,
+      padding: '20px',
+      fontSize: '20px',
     },
-    textField: {
+    button: {
       width: '100%',
-    },
-    title: {
-      fontSize: 20,
+      height: '50px',
     },
   }
 
@@ -53,7 +53,7 @@ const TransactionContainer = () => {
   const displayMovieList = () => {
     const rows = movieList.map(movie => (
       <Grid item key={`${movie.title}${movie.copyID}`} xs={3}>
-        <Paper style={{ padding: '20px', fontSize: '20px' }}>
+        <Paper style={style.paper}>
           <Grid container>
             <Grid item xs={12}>
               {movie.title}
@@ -88,6 +88,8 @@ const TransactionContainer = () => {
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
 
+      <CustomerLookupDialog />
+
       <Grid container>
         <Grid item xs={6}>
           <div style={{ flex: '1', fontSize: '25px' }}>
@@ -113,13 +115,22 @@ const TransactionContainer = () => {
 
 
         <Grid item xs={6}>
-          <Button variant='raised' color='secondary' style={{ width: '100%', height: '50px' }}>
-            Select Customer
+          <Button
+            color={Object.keys(customer).length > 0 ? 'primary' : 'secondary'}
+            onClick={() => openCustomerLookup(setSelectedCustomer)}
+            style={style.button}
+            variant='raised'
+          >
+            {Object.keys(customer).length > 0 ? `${customer.f_name} ${customer.l_name}` : 'Select Customer'}
           </Button>
         </Grid>
 
         <Grid item xs={6}>
-          <Button variant='raised' color='secondary' style={{ width: '100%', height: '50px' }}>
+          <Button
+            color='secondary'
+            style={style.button}
+            variant='raised'
+          >
             Add Movie
           </Button>
         </Grid>
@@ -139,12 +150,17 @@ const TransactionContainer = () => {
 
 
 TransactionContainer.propTypes = {
+  openCustomerLookup: PropTypes.func.isRequired,
+  setSelectedCustomer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  customer: state.transaction.customer,
 })
 
 const actions = {
+  ...customerLookupActions,
+  ...transactionActions,
 }
 
 export default connect(mapStateToProps, actions)(TransactionContainer)
