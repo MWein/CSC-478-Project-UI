@@ -28,7 +28,7 @@ const SearchMovieDialog = () => {
         key={movie.upc}
         style={{ width: '100%' }}
       >
-        {movie.title} - {movie.upc}
+        {movie.title}
       </Button>
     ))
 
