@@ -81,6 +81,21 @@ describe('App reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
+  it('Responds to OPEN_TRANSACTION_PAGE', () => {
+    const action = {
+      type: appActions.OPEN_TRANSACTION_PAGE,
+      payload: null,
+    }
+
+    const expected = {
+      ...initialState,
+      page: 'transaction',
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to INC_LOADING', () => {
     const action = {
       type: appActions.INC_LOADING,
