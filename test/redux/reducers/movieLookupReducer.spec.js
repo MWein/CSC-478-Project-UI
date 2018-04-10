@@ -42,13 +42,25 @@ describe('Movie Lookup reducer spec', () => {
       payload: null,
     }
 
+    const mockState = {
+      ...initialState,
+      selectedMovie: { title: 'some movie title' },
+      movieList: [ '', '' ],
+      copiesList: [ '', '' ],
+      mode: 'copy',
+    }
+
     const expected = {
       ...initialState,
       open: true,
       callbackFunction: null,
+      selectedMovie: {},
+      movieList: [],
+      copiesList: [],
+      mode: '',
     }
 
-    const actual = reducer(initialState, action)
+    const actual = reducer(mockState, action)
     expect(actual).toEqual(expected)
   })
 
@@ -85,6 +97,7 @@ describe('Movie Lookup reducer spec', () => {
       movieList: mockState.movieList,
       copiesList: mockState.copiesList,
       mode: mockState.mode,
+      selectedMovie: mockState.selectedMovie,
     }
 
     const actual = reducer(mockState, action)

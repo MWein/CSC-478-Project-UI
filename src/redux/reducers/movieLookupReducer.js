@@ -14,7 +14,8 @@ const callbackFunction = (state = null, action = {}) => {
 const mode = (state = '', action = {}) => {
   switch (action.type) {
     case movieConstants.SET_MODE: return action.payload
-    case appConstants.PURGE: return false
+    case movieConstants.OPEN_MOVIE_LOOKUP: return ''
+    case appConstants.PURGE: return ''
     default: return state
   }
 }
@@ -49,7 +50,7 @@ const copyID = (state = '', action = {}) => {
 const selectedMovie = (state = {}, action = {}) => {
   switch (action.type) {
     case movieConstants.SET_SELECTED_MOVIE: return action.payload
-    case movieConstants.CLOSE_MOVIE_LOOKUP: return {}
+    case movieConstants.OPEN_MOVIE_LOOKUP: return {}
     case appConstants.PURGE: return {}
     default: return state
   }
@@ -58,6 +59,7 @@ const selectedMovie = (state = {}, action = {}) => {
 const movieList = (state = [], action = {}) => {
   switch (action.type) {
     case movieConstants.SET_MOVIE_LIST: return action.payload
+    case movieConstants.OPEN_MOVIE_LOOKUP: return []
     case appConstants.PURGE: return []
     default: return state
   }
@@ -84,6 +86,7 @@ const selectedCopy = (state = '', action = {}) => {
 const copiesList = (state = [], action = {}) => {
   switch (action.type) {
     case movieConstants.SET_COPIES_LIST: return action.payload
+    case movieConstants.OPEN_MOVIE_LOOKUP: return []
     case appConstants.PURGE: return []
     default: return state
   }
