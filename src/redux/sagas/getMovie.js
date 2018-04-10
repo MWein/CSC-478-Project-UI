@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
+  getMovieCopyID,
   getMovieUPC,
   getToken,
 } from '../selectors'
@@ -17,10 +18,12 @@ import { post } from './helpers/makeFetchCall'
 export function* getMovieSaga() {
   const url = `${getServerURL()}/getMovie`
   const upc = yield select(getMovieUPC)
+  const copyID = yield select(getMovieCopyID)
   const token = yield select(getToken)
   const body = {
     token,
     upc,
+    copyID,
   }
 
   const response = yield call(post, {
