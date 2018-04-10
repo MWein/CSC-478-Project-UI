@@ -5,8 +5,10 @@ import employeeEditor from './editEmployeeReducer'
 import employees from './employeeReducer'
 import error from './errorMessageReducer'
 import login from './loginReducer'
+import movieLookup from './movieLookupReducer'
 import navBar from './navBarReducer'
 import settings from './UserSettingsReducer'
+import transaction from './transactionReducer'
 
 export default combineReducers({
   app,
@@ -17,4 +19,6 @@ export default combineReducers({
   settings,
   employees,
   employeeEditor,
+  transaction,
+  movieLookup,
 })

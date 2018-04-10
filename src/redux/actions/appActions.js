@@ -10,6 +10,7 @@ export const {
   openReportsPage: 'OPEN_REPORTS_PAGE',
   openSettingsPage: 'OPEN_SETTINGS_PAGE',
   openEmployeePage: 'OPEN_EMPLOYEE_PAGE',
+  openTransactionPage: 'OPEN_TRANSACTION_PAGE',
   setPage: 'SET_PAGE',
 
   incLoading: 'INC_LOADING',

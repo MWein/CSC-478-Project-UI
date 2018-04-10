@@ -41,3 +41,13 @@ export const getEmployeeFName = state => state.employeeEditor.firstName
 export const getEmployeeLName = state => state.employeeEditor.lastName
 export const getEmployeePhone = state => state.employeeEditor.phone
 export const getEmployeeAddress = state => state.employeeEditor.address
+
+// Movie Lookup Specific
+export const getMovieUPC = state => state.movieLookup.upc
+export const getMovieCopyID = state => state.movieLookup.copyID
+export const getNewCopy = state => state.movieLookup.newMovieCopy
+export const getMovieCopiesList = state => state.movieLookup.copiesList
+
+// Transaction Lookup Specific
+export const getMovieList = state => state.transaction.movieList
+export const getCustomer = state => state.transaction.customer

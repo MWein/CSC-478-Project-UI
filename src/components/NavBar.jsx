@@ -15,6 +15,7 @@ const NavBar = ({
   openReportsPage,
   openEmployeePage,
   openSettingsPage,
+  openTransactionPage,
   enabled,
   userRole,
   firstName,
@@ -84,7 +85,7 @@ const NavBar = ({
     userRole === 'admin' || userRole === 'manager' || userRole === 'employee' ?
       (
         <div>
-          <Button color='inherit' disabled={!enabled}>Transaction</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate(openTransactionPage)}>Transaction</Button>
           <Button
             color='inherit'
             disabled={!enabled}
@@ -138,6 +139,7 @@ NavBar.propTypes = {
   openEmployeePage: PropTypes.func.isRequired,
   openReportsPage: PropTypes.func.isRequired,
   openSettingsPage: PropTypes.func.isRequired,
+  openTransactionPage: PropTypes.func.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   userRole: PropTypes.string.isRequired,
 }

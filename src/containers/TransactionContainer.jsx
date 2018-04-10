@@ -1,82 +1,194 @@
 import Button from 'material-ui/Button'
-import ForgotPasswordDialog from '../components/ForgotPasswordDialog'
+import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import Grid from 'material-ui/Grid'
+import MovieLookupDialog from '../components/MovieLookupDialog'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
-import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
+import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import { actions as movieLookupActions } from '../redux/actions/movieLookupActions'
+import { actions as transactionActions } from '../redux/actions/transactionActions'
 
-const TransactionContainer = () => {
 
-  // This is JSS, Javascript Style Sheets
-  // Its just CSS, really, but in JSON format
-  // font-size in CSS, fontSize in JSS
-
-  const paperPadding = '30px'
+const TransactionContainer = ({
+  customer,
+  openCustomerLookup,
+  setSelectedCustomer,
+  openMovieLookup,
+  movieList,
+  setMovieList,
+  createTransaction,
+}) => {
   const style = {
     paper: {
-      width: '300px',
-      paddingTop: paperPadding,
-      paddingBottom: paperPadding,
-      paddingLeft: paperPadding,
-      paddingRight: paperPadding,
+      padding: '20px',
+      fontSize: '20px',
     },
-    textField: {
+    button: {
       width: '100%',
-    },
-    title: {
-      fontSize: 20,
+      height: '50px',
     },
   }
 
+  const finishTransactionButtonEnabled = () => {
+    if (movieList.length === 0) {
+      return false
+    }
+    if (Object.keys(customer).length === 0) {
+      return false
+    }
 
-  const exampleFunction = () => {
-    return 'Transaction Container Under Construction'
+    return true
   }
-  
-  
-  // React code goes below. As you can see, it is exactly like HTML except for material-ui components
-  // Documentation can be found here https://material-ui-next.com/demos/buttons/
 
-  // I am trying to use material-ui almost exclusively, because it works natively with Redux
-  // material-ui comes with buttons, text fields, dropdown menus, etc
 
-  // The picture I posted is what I had in mind for this page
-  // This is where the employee will do a customer lookup, punch in the movie IDs, and checkout
+  const addMovieToList = movie => {
+    setMovieList([
+      ...movieList,
+      movie,
+    ])
+  }
 
-  // The customer button will show a modal, CustomerLookupDialog, which will show a list of customers against a phone number or last name. Don't worry about that now
+  const removeMovie = doomedMovie => {
+    setMovieList(movieList.filter(movie => movie !== doomedMovie))
+  }
 
-  // The movie copy text field is where the movie copy is entered. There should be a button next to it that say "Lookup" or something.
-  // That button will display another dialog showing the movie information, this will be confirmed as the correct movie by the employee
+  const displayMovieList = () => {
+    if (movieList.length === 0) {
+      return (
+        <div style={{ flex: '1', textAlign: 'center', color: 'red' }}>
+          No Movies Selected
+        </div>
+      )
+    }
 
-  // After the employee confirms the movie, the list on the bottom of the picture will show the movie title and the price. DOn't worry about this now, this is a list object and I'm
-  // Saving that for later. Its a little more complicated in React so I'm going to write something up to show you a little later
+    const rows = movieList.map(movie => (
+      <Grid item key={`${movie.title}${movie.copyID}`} xs={3}>
+        <Paper style={style.paper}>
+          <Grid container>
+            <Grid item xs={12}>
+              {movie.title}
+            </Grid>
 
-  // Finally, there should be a summary section at the bottom. It should show the total price, the due date, and a button "Submit" that sends the transaction to the API
+            <Grid item xs={12}>
+              {movie.copyID}
+            </Grid>
+          </Grid>
 
-  // Unless youre so inclined do not worry about making anything functional. Just put the buttons and the text fields down where they look good. Everything should be inside the <Paper>
-  // Elements (React return only allows for a single object)
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='secondary'
+              onClick={() => removeMovie(movie)}
+              variant='raised'
+            >
+              Remove
+            </Button>
 
-  // P.S. Outside functions can be called inside of the React code by using brackets, as shown by {exampleFunction()}
+          </div>
+        </Paper>
+      </Grid>
+    ))
+
+    return (
+      <Grid container>
+        {rows}
+      </Grid>
+    )
+  }
+
 
   return (
-    <Paper style={style.paper}>
-      {exampleFunction()}
-    </Paper>
+    <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
+      <CustomerLookupDialog />
+      <MovieLookupDialog />
+
+      <Grid container>
+        <Grid item xs={8}>
+          <div style={{ flex: '1', fontSize: '25px' }}>
+            Total: NOT DONE
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='secondary'
+              variant='raised'
+            >
+              Discard
+            </Button>
+            &nbsp;&nbsp;&nbsp;
+            <Button
+              color='primary'
+              disabled={!finishTransactionButtonEnabled()}
+              onClick={createTransaction}
+              variant='raised'
+            >
+              Finish Transaction
+            </Button>
+          </div>
+        </Grid>
+
+
+        <Grid item xs={12}>
+          <br />
+        </Grid>
+
+
+        <Grid item xs={6}>
+          <Button
+            color={Object.keys(customer).length > 0 ? 'primary' : 'secondary'}
+            onClick={() => openCustomerLookup(setSelectedCustomer)}
+            style={style.button}
+            variant='raised'
+          >
+            {Object.keys(customer).length > 0 ? `${customer.f_name} ${customer.l_name}` : 'Select Customer'}
+          </Button>
+        </Grid>
+
+        <Grid item xs={6}>
+          <Button
+            color={movieList.length === 0 ? 'secondary' : 'primary'}
+            onClick={() => openMovieLookup(addMovieToList)}
+            style={style.button}
+            variant='raised'
+          >
+            Add Movie
+          </Button>
+        </Grid>
+
+        <Grid item xs={12}>
+          <br />
+        </Grid>
+
+        {displayMovieList()}
+      </Grid>
+
+    </div>
   )
 }
 
-// Don't worry about the things below this line, for now
-
 
 TransactionContainer.propTypes = {
+  createTransaction: PropTypes.func.isRequired,
+  customer: PropTypes.object.isRequired,
+  movieList: PropTypes.array.isRequired,
+  openCustomerLookup: PropTypes.func.isRequired,
+  openMovieLookup: PropTypes.func.isRequired,
+  setMovieList: PropTypes.func.isRequired,
+  setSelectedCustomer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  customer: state.transaction.customer,
+  movieList: state.transaction.movieList,
 })
 
 const actions = {
+  ...customerLookupActions,
+  ...transactionActions,
+  ...movieLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(TransactionContainer)

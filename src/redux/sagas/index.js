@@ -1,11 +1,14 @@
 import { call, fork } from 'redux-saga/effects'
+import addMovieCopySaga from './addMovieCopySaga'
 import changePasswordSaga from './changePasswordSaga'
 import createCustomerSaga from './createCustomerSaga'
 import createEmployeeSaga from './createEmployeeSaga'
+import createTransactionSaga from './createTransactionSaga'
 import editCustomerSaga from './editCustomerSaga'
 import editEmployeeSaga from './editEmployeeSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
 import getAllEmployeesSaga from './getAllEmployeesSaga'
+import getMovieSaga from './getMovie'
 import getSecurityQuestionSaga from './getSecurityQuestionSaga'
 import { getStatusSaga } from './getStatusSaga'
 import loginSaga from './loginSaga'
@@ -28,4 +31,7 @@ export default function* sagasMain() {
   yield fork(logoutSaga)
   yield fork(resetPasswordSaga)
   yield fork(setSecurityQuestionSaga)
+  yield fork(getMovieSaga)
+  yield fork(addMovieCopySaga)
+  yield fork(createTransactionSaga)
 }

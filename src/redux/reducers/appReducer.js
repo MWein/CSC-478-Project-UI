@@ -9,6 +9,7 @@ const page = (state = '', action = {}) => {
     case appConstants.OPEN_EMPLOYEE_PAGE: return 'employees'
     case appConstants.OPEN_SETTINGS_PAGE: return 'settings'
     case appConstants.OPEN_REPORTS_PAGE: return 'reports'
+    case appConstants.OPEN_TRANSACTION_PAGE: return 'transaction'
 
     case appConstants.PURGE: return ''
     default: return state
