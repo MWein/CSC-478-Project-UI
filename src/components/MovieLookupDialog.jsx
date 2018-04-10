@@ -16,6 +16,7 @@ const MovieLookupDialog = ({
   mode,
   selectedMovie,
   selectedCopy,
+  copyID,
   setMode,
   closeMovieLookup,
   callbackFunction,
@@ -38,6 +39,18 @@ const MovieLookupDialog = ({
     closeMovieLookup()
   }
 
+  const nextButtonAction = () => {
+    if (copyID !== '' && selectedMovie.copies.includes(copyID)) {
+      callbackFunction({
+        title: selectedMovie.title,
+        copyID,
+      })
+      closeMovieLookup()
+    } else {
+      setMode('copy')
+    }
+  }
+
   const contentByMode = () => {
     switch (mode) {
       case 'copy': return {
@@ -49,7 +62,7 @@ const MovieLookupDialog = ({
       default: return {
         content: (<SearchMovie />),
         button: 'Next',
-        buttonAction: () => setMode('copy'),
+        buttonAction: nextButtonAction,
         title: 'Movie Lookup',
       }
     }
@@ -87,6 +100,7 @@ const MovieLookupDialog = ({
 MovieLookupDialog.propTypes = {
   callbackFunction: PropTypes.func,
   closeMovieLookup: PropTypes.func.isRequired,
+  copyID: PropTypes.string.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   selectedCopy: PropTypes.string.isRequired,
@@ -100,6 +114,7 @@ const mapStateToProps = state => ({
   selectedMovie: state.movieLookup.selectedMovie,
   selectedCopy: state.movieLookup.selectedCopy,
   callbackFunction: state.movieLookup.callbackFunction,
+  copyID: state.movieLookup.copyID,
 })
 
 

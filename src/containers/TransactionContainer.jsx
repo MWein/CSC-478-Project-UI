@@ -105,7 +105,7 @@ const TransactionContainer = ({
       <Grid container>
         <Grid item xs={8}>
           <div style={{ flex: '1', fontSize: '25px' }}>
-            Total: $27.62
+            Total: NOT DONE
           </div>
         </Grid>
 
