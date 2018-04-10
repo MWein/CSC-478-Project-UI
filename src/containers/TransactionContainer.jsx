@@ -47,7 +47,7 @@ const TransactionContainer = ({
             </Grid>
 
             <Grid item xs={12}>
-              {movie.copyID}
+              Copy: {movie.copyID}
             </Grid>
           </Grid>
 
@@ -115,7 +115,7 @@ const TransactionContainer = ({
         <Grid item xs={6}>
           <Button
             color={movieList.length === 0 ? 'secondary' : 'primary'}
-            onClick={() => openMovieLookup(() => console.log('OPEN MOVIE LOOKUP TEST'))}
+            onClick={() => openMovieLookup(hello => console.log('OPEN MOVIE LOOKUP TEST ', hello))}
             style={style.button}
             variant='raised'
           >

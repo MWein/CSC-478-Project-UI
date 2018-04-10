@@ -18,6 +18,7 @@ const MovieLookupDialog = ({
   selectedCopy,
   setMode,
   closeMovieLookup,
+  callbackFunction,
 }) => {
   const validateButton = () => {
     if (mode === '') {
@@ -29,12 +30,20 @@ const MovieLookupDialog = ({
     return true
   }
 
+  const confirmButtonAction = () => {
+    callbackFunction({
+      title: selectedMovie.title,
+      copyID: selectedCopy,
+    })
+    closeMovieLookup()
+  }
+
   const contentByMode = () => {
     switch (mode) {
       case 'copy': return {
         content: (<SelectMovieCopy />),
         button: 'Confirm',
-        buttonAction: null,
+        buttonAction: confirmButtonAction,
         title: selectedMovie.title,
       }
       default: return {
@@ -76,6 +85,7 @@ const MovieLookupDialog = ({
 
 
 MovieLookupDialog.propTypes = {
+  callbackFunction: PropTypes.func,
   closeMovieLookup: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
@@ -89,6 +99,7 @@ const mapStateToProps = state => ({
   open: state.movieLookup.open,
   selectedMovie: state.movieLookup.selectedMovie,
   selectedCopy: state.movieLookup.selectedCopy,
+  callbackFunction: state.movieLookup.callbackFunction,
 })
 
 
