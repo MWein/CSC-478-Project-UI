@@ -49,7 +49,7 @@ const SelectMovieCopy = ({
 
 
   return (
-    <div>
+    <div style={{ width: '500px' }}>
       <DialogContent>
 
         <div style={{ flex: '1', textAlign: 'center' }}>
