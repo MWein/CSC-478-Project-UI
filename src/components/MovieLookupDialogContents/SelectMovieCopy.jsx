@@ -19,6 +19,7 @@ const SelectMovieCopy = ({
 }) => {
   const addMovieCopyAction = () => {
     setCopiesList([ ...copiesList, newMovieCopy ])
+    setNewMovieCopy('')
   }
 
   const copyListTable = () => {
