@@ -3,6 +3,7 @@ import addMovieCopySaga from './addMovieCopySaga'
 import changePasswordSaga from './changePasswordSaga'
 import createCustomerSaga from './createCustomerSaga'
 import createEmployeeSaga from './createEmployeeSaga'
+import createTransactionSaga from './createTransactionSaga'
 import editCustomerSaga from './editCustomerSaga'
 import editEmployeeSaga from './editEmployeeSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
@@ -32,4 +33,5 @@ export default function* sagasMain() {
   yield fork(setSecurityQuestionSaga)
   yield fork(getMovieSaga)
   yield fork(addMovieCopySaga)
+  yield fork(createTransactionSaga)
 }

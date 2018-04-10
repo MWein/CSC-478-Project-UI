@@ -47,3 +47,7 @@ export const getMovieUPC = state => state.movieLookup.upc
 export const getMovieCopyID = state => state.movieLookup.copyID
 export const getNewCopy = state => state.movieLookup.newMovieCopy
 export const getMovieCopiesList = state => state.movieLookup.copiesList
+
+// Transaction Lookup Specific
+export const getMovieList = state => state.transaction.movieList
+export const getCustomer = state => state.transaction.customer

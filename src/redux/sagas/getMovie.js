@@ -31,16 +31,10 @@ export function* getMovieSaga() {
     body: JSON.stringify(body),
   })
 
-  if (response.error && !response.statusText.includes('Not Found')) {
-    yield dispatch(errorMessageActions.displayError(response.statusText))
-
-    return
-  }
-
   if (response.payload.error) {
-
-    // TODO Respond to error... or dont
-
+    yield dispatch(errorMessageActions.displayError(response.payload.errorMsg))
+  } else if (response.payload.rows.length === 0) {
+    yield dispatch(errorMessageActions.displayError('No UPC Found'))
   } else {
     yield dispatch(movieLookupActions.setMoviesList(response.payload.rows))
   }

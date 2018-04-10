@@ -18,6 +18,7 @@ const TransactionContainer = ({
   openMovieLookup,
   movieList,
   setMovieList,
+  createTransaction,
 }) => {
   const style = {
     paper: {
@@ -121,6 +122,7 @@ const TransactionContainer = ({
             <Button
               color='primary'
               disabled={!finishTransactionButtonEnabled()}
+              onClick={createTransaction}
               variant='raised'
             >
               Finish Transaction
@@ -169,6 +171,7 @@ const TransactionContainer = ({
 
 
 TransactionContainer.propTypes = {
+  createTransaction: PropTypes.func.isRequired,
   customer: PropTypes.object.isRequired,
   movieList: PropTypes.array.isRequired,
   openCustomerLookup: PropTypes.func.isRequired,
