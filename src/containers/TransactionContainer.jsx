@@ -1,11 +1,13 @@
 import Button from 'material-ui/Button'
 import CustomerLookupDialog from '../components/CustomerLookupDialog'
 import Grid from 'material-ui/Grid'
+import MovieLookupDialog from '../components/MovieLookupDialog'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import { actions as movieLookupActions } from '../redux/actions/movieLookupActions'
 import { actions as transactionActions } from '../redux/actions/transactionActions'
 
 
@@ -13,6 +15,7 @@ const TransactionContainer = ({
   customer,
   openCustomerLookup,
   setSelectedCustomer,
+  openMovieLookup,
 }) => {
   const style = {
     paper: {
@@ -33,19 +36,19 @@ const TransactionContainer = ({
     },
     {
       title: 'Star Wars Episode 44',
-      copyID: '123456',
+      copyID: '1234567',
     },
     {
       title: 'Fast and Furious 39',
-      copyID: '123456',
+      copyID: '1234568',
     },
     {
       title: 'Another Copy of Star Wars Episode 52',
-      copyID: '123456',
+      copyID: '1234569',
     },
     {
       title: 'Another Copy of Star Wars Episode 52',
-      copyID: '123456',
+      copyID: '12345610',
     },
   ]
 
@@ -53,6 +56,9 @@ const TransactionContainer = ({
   const displayMovieList = () => {
     const rows = movieList.map(movie => (
       <Grid item key={`${movie.title}${movie.copyID}`} xs={3}>
+
+        <MovieLookupDialog />
+
         <Paper style={style.paper}>
           <Grid container>
             <Grid item xs={12}>
@@ -128,6 +134,7 @@ const TransactionContainer = ({
         <Grid item xs={6}>
           <Button
             color='secondary'
+            onClick={() => openMovieLookup(() => console.log('OPEN MOVIE LOOKUP TEST'))}
             style={style.button}
             variant='raised'
           >
@@ -146,11 +153,11 @@ const TransactionContainer = ({
   )
 }
 
-// Don't worry about the things below this line, for now
-
 
 TransactionContainer.propTypes = {
+  customer: PropTypes.object.isRequired,
   openCustomerLookup: PropTypes.func.isRequired,
+  openMovieLookup: PropTypes.func.isRequired,
   setSelectedCustomer: PropTypes.func.isRequired,
 }
 
@@ -161,6 +168,7 @@ const mapStateToProps = state => ({
 const actions = {
   ...customerLookupActions,
   ...transactionActions,
+  ...movieLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(TransactionContainer)
