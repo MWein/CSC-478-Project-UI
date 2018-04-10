@@ -13,6 +13,7 @@ const initialState = {
   newMovieCopy: '',
   selectedCopy: '',
   copiesList: [],
+  copyExists: false,
 }
 
 describe('Movie Lookup reducer spec', () => {
@@ -211,6 +212,21 @@ describe('Movie Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       copiesList: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_COPY_EXISTS_ERROR', () => {
+    const action = {
+      type: lookupActions.SET_COPY_EXISTS_ERROR,
+      payload: true,
+    }
+
+    const expected = {
+      ...initialState,
+      copyExists: action.payload,
     }
 
     const actual = reducer(initialState, action)

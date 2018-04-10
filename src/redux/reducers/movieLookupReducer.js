@@ -92,6 +92,15 @@ const copiesList = (state = [], action = {}) => {
   }
 }
 
+const copyExists = (state = false, action = {}) => {
+  switch (action.type) {
+    case movieConstants.SET_COPY_EXISTS_ERROR: return action.payload
+    case movieConstants.OPEN_MOVIE_LOOKUP: return false
+    case appConstants.PURGE: return false
+    default: return state
+  }
+}
+
 
 const reducer = combineReducers({
   callbackFunction,
@@ -104,6 +113,7 @@ const reducer = combineReducers({
   newMovieCopy,
   selectedCopy,
   copiesList,
+  copyExists,
 })
 
 export default reducer

@@ -1,9 +1,11 @@
 import {
   call,
+  put as dispatch,
   select,
   takeLatest,
 } from 'redux-saga/effects'
 import {
+  getMovieCopiesList,
   getMovieUPC,
   getNewCopy,
   getToken,
@@ -27,10 +29,20 @@ export function* addMovieCopySaga() {
     ],
   }
 
-  yield call(post, {
+  const response = yield call(post, {
     url,
     body: JSON.stringify(body),
   })
+
+  if (response.payload.error && response.payload.errorMsg === 'Copy ID already exists') {
+    yield dispatch(movieLookupActions.setCopyExistsError(true))
+  } else {
+    // Success
+    const copiesList = yield select(getMovieCopiesList)
+
+    yield dispatch(movieLookupActions.setCopyExistsError(false))
+    yield dispatch(movieLookupActions.setCopiesList([ ...copiesList, newCopy ]))
+  }
 }
 
 export default function* () {

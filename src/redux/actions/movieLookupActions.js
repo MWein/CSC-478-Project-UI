@@ -17,6 +17,8 @@ export const {
   setSelectedCopy: 'SET_SELECTED_COPY',
   setCopiesList: 'SET_COPIES_LIST',
 
+  setCopyExistsError: 'SET_COPY_EXISTS_ERROR',
+
   // Sagas
   getMovie: 'GET_MOVIE',
   createCopy: 'CREATE_COPY',

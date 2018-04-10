@@ -10,6 +10,7 @@ import { actions as movieLookupActions } from '../../redux/actions/movieLookupAc
 
 
 const SelectMovieCopy = ({
+  copyExists,
   newMovieCopy,
   setNewMovieCopy,
   selectedCopy,
@@ -17,7 +18,6 @@ const SelectMovieCopy = ({
   transactionMovieList,
   selectedMovieTitle,
   setSelectedCopy,
-  setCopiesList,
   createCopy,
 }) => {
   const movieCopySelected = copyID =>
@@ -25,7 +25,6 @@ const SelectMovieCopy = ({
 
   const addMovieCopyAction = () => {
     createCopy()
-    setCopiesList([ ...copiesList, newMovieCopy ])
     setNewMovieCopy('')
   }
 
@@ -62,7 +61,8 @@ const SelectMovieCopy = ({
 
         <div style={{ flex: '1', textAlign: 'center' }}>
           <TextField
-            label='New Movie Copy'
+            error={copyExists}
+            label={copyExists ? 'Copy Already Exists' : 'New Movie Copy'}
             onChange={event => setNewMovieCopy(event.target.value)}
             value={newMovieCopy}
           />
@@ -90,11 +90,11 @@ const SelectMovieCopy = ({
 
 SelectMovieCopy.propTypes = {
   copiesList: PropTypes.array.isRequired,
+  copyExists: PropTypes.bool.isRequired,
   createCopy: PropTypes.func.isRequired,
   newMovieCopy: PropTypes.string.isRequired,
   selectedCopy: PropTypes.string.isRequired,
   selectedMovieTitle: PropTypes.string.isRequired,
-  setCopiesList: PropTypes.func.isRequired,
   setNewMovieCopy: PropTypes.func.isRequired,
   setSelectedCopy: PropTypes.func.isRequired,
   transactionMovieList: PropTypes.array.isRequired,
@@ -106,6 +106,7 @@ const mapStateToProps = state => ({
   copiesList: state.movieLookup.copiesList,
   transactionMovieList: state.transaction.movieList,
   selectedMovieTitle: state.movieLookup.selectedMovie.title,
+  copyExists: state.movieLookup.copyExists,
 })
 
 
