@@ -83,6 +83,7 @@ const SearchMovieDialog = ({
         &nbsp;&nbsp;
 
         <Button
+          disabled={upc === '' && copyID === ''}
           onClick={getMovie}
           variant='raised'
         >

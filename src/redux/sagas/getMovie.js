@@ -36,13 +36,10 @@ export function* getMovieSaga() {
 
   if (response.payload.error) {
 
-    // TODO Respond to error
+    // TODO Respond to error... or dont
 
   } else {
-
-    // TODO Set movie list
     yield dispatch(movieLookupActions.setMoviesList(response.payload.rows))
-
   }
 }
 

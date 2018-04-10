@@ -16,8 +16,10 @@ const SelectMovieCopy = ({
   copiesList,
   setSelectedCopy,
   setCopiesList,
+  createCopy,
 }) => {
   const addMovieCopyAction = () => {
+    createCopy()
     setCopiesList([ ...copiesList, newMovieCopy ])
     setNewMovieCopy('')
   }
@@ -82,6 +84,7 @@ const SelectMovieCopy = ({
 
 SelectMovieCopy.propTypes = {
   copiesList: PropTypes.array.isRequired,
+  createCopy: PropTypes.func.isRequired,
   newMovieCopy: PropTypes.string.isRequired,
   selectedCopy: PropTypes.string.isRequired,
   setCopiesList: PropTypes.func.isRequired,

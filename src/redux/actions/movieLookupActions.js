@@ -19,4 +19,5 @@ export const {
 
   // Sagas
   getMovie: 'GET_MOVIE',
+  createCopy: 'CREATE_COPY',
 })

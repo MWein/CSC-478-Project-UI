@@ -44,3 +44,4 @@ export const getEmployeeAddress = state => state.employeeEditor.address
 
 // Movie Lookup Specific
 export const getMovieUPC = state => state.movieLookup.upc
+export const getNewCopy = state => state.movieLookup.newMovieCopy
