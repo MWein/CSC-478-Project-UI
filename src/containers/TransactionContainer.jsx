@@ -37,6 +37,10 @@ const TransactionContainer = ({
     ])
   }
 
+  const removeMovie = doomedMovie => {
+    setMovieList(movieList.filter(movie => movie !== doomedMovie))
+  }
+
   const displayMovieList = () => {
     if (movieList.length === 0) {
       return (
@@ -62,6 +66,7 @@ const TransactionContainer = ({
           <div style={{ textAlign: 'right' }}>
             <Button
               color='secondary'
+              onClick={() => removeMovie(movie)}
               variant='raised'
             >
                 Remove
