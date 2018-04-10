@@ -16,6 +16,7 @@ const NavBar = ({
   openEmployeePage,
   openSettingsPage,
   openTransactionPage,
+  openReturnPage,
   enabled,
   userRole,
   firstName,
@@ -86,6 +87,7 @@ const NavBar = ({
       (
         <div>
           <Button color='inherit' disabled={!enabled} onClick={() => navigate(openTransactionPage)}>Transaction</Button>
+          <Button color='inherit' disabled={!enabled} onClick={() => navigate(openReturnPage)}>Returns</Button>
           <Button
             color='inherit'
             disabled={!enabled}
@@ -138,6 +140,7 @@ NavBar.propTypes = {
   logout: PropTypes.func.isRequired,
   openEmployeePage: PropTypes.func.isRequired,
   openReportsPage: PropTypes.func.isRequired,
+  openReturnPage: PropTypes.func.isRequired,
   openSettingsPage: PropTypes.func.isRequired,
   openTransactionPage: PropTypes.func.isRequired,
   setMenuOpen: PropTypes.func.isRequired,

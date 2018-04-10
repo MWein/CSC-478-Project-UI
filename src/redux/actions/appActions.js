@@ -11,6 +11,7 @@ export const {
   openSettingsPage: 'OPEN_SETTINGS_PAGE',
   openEmployeePage: 'OPEN_EMPLOYEE_PAGE',
   openTransactionPage: 'OPEN_TRANSACTION_PAGE',
+  openReturnPage: 'OPEN_RETURN_PAGE',
   setPage: 'SET_PAGE',
 
   incLoading: 'INC_LOADING',
