@@ -18,10 +18,10 @@ export function* logoutSaga() {
     token,
   }
 
-  yield call(post, {
-    url,
-    body: JSON.stringify(body),
-  })
+  // yield call(post, {
+  //   url,
+  //   body: JSON.stringify(body),
+  // })
 
   yield dispatch(appActions.purge())
 }
