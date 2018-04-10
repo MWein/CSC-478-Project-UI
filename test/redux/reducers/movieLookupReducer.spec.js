@@ -106,15 +106,15 @@ describe('Movie Lookup reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
-  it('Responds to SET_COPY_ID', () => {
+  it('Responds to SET_COPY_ID, turns to lowercase', () => {
     const action = {
       type: lookupActions.SET_COPY_ID,
-      payload: 'dfsadfdfsafd',
+      payload: 'dfsadFdfsAfd',
     }
 
     const expected = {
       ...initialState,
-      copyID: action.payload,
+      copyID: 'dfsadfdfsafd',
     }
 
     const actual = reducer(initialState, action)
@@ -156,15 +156,15 @@ describe('Movie Lookup reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
-  it('Responds to SET_NEW_MOVIE_COPY', () => {
+  it('Responds to SET_NEW_MOVIE_COPY, converts to lowercase', () => {
     const action = {
       type: lookupActions.SET_NEW_MOVIE_COPY,
-      payload: '777444111',
+      payload: 'ffffffFFFFFFFfffff',
     }
 
     const expected = {
       ...initialState,
-      newMovieCopy: action.payload,
+      newMovieCopy: 'ffffffffffffffffff',
     }
 
     const actual = reducer(initialState, action)

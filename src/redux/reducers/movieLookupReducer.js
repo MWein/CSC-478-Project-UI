@@ -39,7 +39,7 @@ const upc = (state = '', action = {}) => {
 
 const copyID = (state = '', action = {}) => {
   switch (action.type) {
-    case movieConstants.SET_COPY_ID: return action.payload
+    case movieConstants.SET_COPY_ID: return action.payload.toLowerCase()
     case movieConstants.CLOSE_MOVIE_LOOKUP: return ''
     case appConstants.PURGE: return ''
     default: return state
@@ -65,7 +65,7 @@ const movieList = (state = [], action = {}) => {
 
 const newMovieCopy = (state = '', action = {}) => {
   switch (action.type) {
-    case movieConstants.SET_NEW_MOVIE_COPY: return action.payload
+    case movieConstants.SET_NEW_MOVIE_COPY: return action.payload.toLowerCase()
     case movieConstants.CLOSE_MOVIE_LOOKUP: return ''
     case appConstants.PURGE: return ''
     default: return state
