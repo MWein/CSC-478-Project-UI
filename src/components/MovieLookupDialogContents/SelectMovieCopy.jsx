@@ -14,10 +14,15 @@ const SelectMovieCopy = ({
   setNewMovieCopy,
   selectedCopy,
   copiesList,
+  transactionMovieList,
+  selectedMovieTitle,
   setSelectedCopy,
   setCopiesList,
   createCopy,
 }) => {
+  const movieCopySelected = copyID =>
+    transactionMovieList.find(transactionMovie => transactionMovie.title === selectedMovieTitle && transactionMovie.copyID === copyID) !== undefined
+
   const addMovieCopyAction = () => {
     createCopy()
     setCopiesList([ ...copiesList, newMovieCopy ])
@@ -28,6 +33,7 @@ const SelectMovieCopy = ({
     const copyTable = copiesList.map(copy => (
       <Button
         color='primary'
+        disabled={movieCopySelected(copy)}
         key={copy}
         onClick={() => setSelectedCopy(copy)}
         style={{ width: '100%' }}
@@ -87,15 +93,19 @@ SelectMovieCopy.propTypes = {
   createCopy: PropTypes.func.isRequired,
   newMovieCopy: PropTypes.string.isRequired,
   selectedCopy: PropTypes.string.isRequired,
+  selectedMovieTitle: PropTypes.string.isRequired,
   setCopiesList: PropTypes.func.isRequired,
   setNewMovieCopy: PropTypes.func.isRequired,
   setSelectedCopy: PropTypes.func.isRequired,
+  transactionMovieList: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
   newMovieCopy: state.movieLookup.newMovieCopy,
   selectedCopy: state.movieLookup.selectedCopy,
   copiesList: state.movieLookup.copiesList,
+  transactionMovieList: state.transaction.movieList,
+  selectedMovieTitle: state.movieLookup.selectedMovie.title,
 })
 
 
