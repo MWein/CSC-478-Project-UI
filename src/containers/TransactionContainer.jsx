@@ -106,7 +106,7 @@ const TransactionContainer = ({
       <Grid container>
         <Grid item xs={8}>
           <div style={{ flex: '1', fontSize: '25px' }}>
-            Total: NOT DONE
+            Total: {`$${movieList.length * 3}.00`}
           </div>
         </Grid>
 
