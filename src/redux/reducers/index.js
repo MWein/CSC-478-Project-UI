@@ -9,6 +9,7 @@ import movieLookup from './movieLookupReducer'
 import navBar from './navBarReducer'
 import settings from './UserSettingsReducer'
 import transaction from './transactionReducer'
+import return from './returnReducer'
 
 export default combineReducers({
   app,
@@ -21,4 +22,5 @@ export default combineReducers({
   employeeEditor,
   transaction,
   movieLookup,
+  return,
 })
