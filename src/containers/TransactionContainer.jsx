@@ -17,6 +17,7 @@ const TransactionContainer = ({
   setSelectedCustomer,
   openMovieLookup,
   movieList,
+  setMovieList,
 }) => {
   const style = {
     paper: {
@@ -27,6 +28,13 @@ const TransactionContainer = ({
       width: '100%',
       height: '50px',
     },
+  }
+
+  const addMovieToList = movie => {
+    setMovieList([
+      ...movieList,
+      movie,
+    ])
   }
 
   const displayMovieList = () => {
@@ -47,7 +55,7 @@ const TransactionContainer = ({
             </Grid>
 
             <Grid item xs={12}>
-              Copy: {movie.copyID}
+              {movie.copyID}
             </Grid>
           </Grid>
 
@@ -115,7 +123,7 @@ const TransactionContainer = ({
         <Grid item xs={6}>
           <Button
             color={movieList.length === 0 ? 'secondary' : 'primary'}
-            onClick={() => openMovieLookup(hello => console.log('OPEN MOVIE LOOKUP TEST ', hello))}
+            onClick={() => openMovieLookup(addMovieToList)}
             style={style.button}
             variant='raised'
           >
@@ -140,6 +148,7 @@ TransactionContainer.propTypes = {
   movieList: PropTypes.array.isRequired,
   openCustomerLookup: PropTypes.func.isRequired,
   openMovieLookup: PropTypes.func.isRequired,
+  setMovieList: PropTypes.func.isRequired,
   setSelectedCustomer: PropTypes.func.isRequired,
 }
 

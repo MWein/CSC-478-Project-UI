@@ -38,11 +38,12 @@ const SearchMovieDialog = ({
       </Button>
     ))
 
-    const addNewMovieButton = () => (
-      <Button variant='raised'>
-        Add New Movie
-      </Button>
-    )
+
+    // const addNewMovieButton = () => (
+    //   <Button variant='raised'>
+    //     Add New Movie
+    //   </Button>
+    // )
 
     return movieTable.length > 0 ? (
       <div>
