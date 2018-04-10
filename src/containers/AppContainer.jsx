@@ -46,9 +46,7 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          {/*router()*/}
-
-          <TransactionContainer />
+          {router()}
         </Grid>
       </Grid>
     </div>

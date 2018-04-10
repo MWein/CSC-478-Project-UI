@@ -16,4 +16,7 @@ export const {
   setNewMovieCopy: 'SET_NEW_MOVIE_COPY',
   setSelectedCopy: 'SET_SELECTED_COPY',
   setCopiesList: 'SET_COPIES_LIST',
+
+  // Sagas
+  getMovie: 'GET_MOVIE',
 })

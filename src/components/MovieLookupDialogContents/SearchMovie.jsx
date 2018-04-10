@@ -9,36 +9,28 @@ import { connect } from 'react-redux'
 import { actions as movieLookupActions } from '../../redux/actions/movieLookupActions'
 
 
-const moviesList = [
-  {
-    title: 'Battle of Whatever',
-    upc: '123456',
-  },
-  {
-    title: 'Star Wars',
-    upc: '987654321',
-  },
-  {
-    title: 'Really Really Really Really Really Really Really Really Long movie title',
-    upc: '97654321',
-  },
-]
-
-
 const SearchMovieDialog = ({
   upc,
   copyID,
   selectedMovie,
+  moviesList,
   setUPC,
   setCopyID,
   setSelectedMovie,
+  setCopiesList,
+  getMovie,
 }) => {
+  const selectMovie = movie => {
+    setSelectedMovie(movie)
+    setCopiesList(movie.copies)
+  }
+
   const movieListTable = () => {
     const movieTable = moviesList.map(movie => (
       <Button
         color='primary'
         key={movie.upc}
-        onClick={() => setSelectedMovie(movie)}
+        onClick={() => selectMovie(movie)}
         style={{ width: '100%' }}
         variant={selectedMovie === movie ? 'raised' : 'flat'}
       >
@@ -61,7 +53,7 @@ const SearchMovieDialog = ({
     ) :
       (
         <div>
-          {notFound ? (<div><div style={{ color: 'red' }}>Movie Not Found</div><br /></div>) : null}
+          
           {/*addNewMovieButton()*/}
         </div>
       )
@@ -90,7 +82,10 @@ const SearchMovieDialog = ({
 
         &nbsp;&nbsp;
 
-        <Button variant='raised'>
+        <Button
+          onClick={getMovie}
+          variant='raised'
+        >
           Search
         </Button>
 
@@ -105,7 +100,10 @@ const SearchMovieDialog = ({
 
 SearchMovieDialog.propTypes = {
   copyID: PropTypes.string.isRequired,
+  getMovie: PropTypes.func.isRequired,
+  moviesList: PropTypes.array.isRequired,
   selectedMovie: PropTypes.object.isRequired,
+  setCopiesList: PropTypes.func.isRequired,
   setCopyID: PropTypes.func.isRequired,
   setSelectedMovie: PropTypes.func.isRequired,
   setUPC: PropTypes.func.isRequired,
@@ -116,6 +114,7 @@ const mapStateToProps = state => ({
   upc: state.movieLookup.upc,
   copyID: state.movieLookup.copyID,
   selectedMovie: state.movieLookup.selectedMovie,
+  moviesList: state.movieLookup.movieList,
 })
 
 

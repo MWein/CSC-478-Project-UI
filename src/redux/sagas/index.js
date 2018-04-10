@@ -6,6 +6,7 @@ import editCustomerSaga from './editCustomerSaga'
 import editEmployeeSaga from './editEmployeeSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
 import getAllEmployeesSaga from './getAllEmployeesSaga'
+import getMovieSaga from './getMovie'
 import getSecurityQuestionSaga from './getSecurityQuestionSaga'
 import { getStatusSaga } from './getStatusSaga'
 import loginSaga from './loginSaga'
@@ -28,4 +29,5 @@ export default function* sagasMain() {
   yield fork(logoutSaga)
   yield fork(resetPasswordSaga)
   yield fork(setSecurityQuestionSaga)
+  yield fork(getMovieSaga)
 }

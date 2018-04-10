@@ -41,3 +41,6 @@ export const getEmployeeFName = state => state.employeeEditor.firstName
 export const getEmployeeLName = state => state.employeeEditor.lastName
 export const getEmployeePhone = state => state.employeeEditor.phone
 export const getEmployeeAddress = state => state.employeeEditor.address
+
+// Movie Lookup Specific
+export const getMovieUPC = state => state.movieLookup.upc
