@@ -18,6 +18,10 @@ const moviesList = [
     title: 'Star Wars',
     upc: '987654321',
   },
+  {
+    title: 'Really Really Really Really Really Really Really Really Long movie title',
+    upc: '97654321',
+  },
 ]
 
 

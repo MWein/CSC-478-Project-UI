@@ -35,11 +35,13 @@ const MovieLookupDialog = ({
         content: (<SelectMovieCopy />),
         button: 'Confirm',
         buttonAction: null,
+        title: selectedMovie.title,
       }
       default: return {
         content: (<SearchMovie />),
         button: 'Next',
         buttonAction: () => setMode('copy'),
+        title: 'Movie Lookup',
       }
     }
   }
@@ -48,7 +50,7 @@ const MovieLookupDialog = ({
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>Movie Lookup</DialogTitle>
+      <DialogTitle id='form-dialog-title'>{content.title}</DialogTitle>
 
       {content.content}
 
