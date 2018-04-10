@@ -81,7 +81,7 @@ const TransactionContainer = ({
               onClick={() => removeMovie(movie)}
               variant='raised'
             >
-                Remove
+              Remove
             </Button>
 
           </div>
@@ -109,7 +109,7 @@ const TransactionContainer = ({
           </div>
         </Grid>
 
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <div style={{ textAlign: 'right' }}>
             <Button
               color='secondary'
@@ -117,11 +117,7 @@ const TransactionContainer = ({
             >
               Discard
             </Button>
-          </div>
-        </Grid>
-
-        <Grid item xs={2}>
-          <div style={{ textAlign: 'right' }}>
+            &nbsp;&nbsp;&nbsp;
             <Button
               color='primary'
               disabled={!finishTransactionButtonEnabled()}
