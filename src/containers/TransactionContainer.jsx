@@ -30,6 +30,18 @@ const TransactionContainer = ({
     },
   }
 
+  const finishTransactionButtonEnabled = () => {
+    if (movieList.length === 0) {
+      return false
+    }
+    if (Object.keys(customer).length === 0) {
+      return false
+    }
+
+    return true
+  }
+
+
   const addMovieToList = movie => {
     setMovieList([
       ...movieList,
@@ -91,16 +103,28 @@ const TransactionContainer = ({
       <MovieLookupDialog />
 
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <div style={{ flex: '1', fontSize: '25px' }}>
             Total: $27.62
           </div>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={2}>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='secondary'
+              variant='raised'
+            >
+              Discard
+            </Button>
+          </div>
+        </Grid>
+
+        <Grid item xs={2}>
           <div style={{ textAlign: 'right' }}>
             <Button
               color='primary'
+              disabled={!finishTransactionButtonEnabled()}
               variant='raised'
             >
               Finish Transaction
