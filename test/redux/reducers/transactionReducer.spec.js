@@ -4,6 +4,7 @@ import reducer from '../../../src/redux/reducers/transactionReducer'
 
 const initialState = {
   customer: {},
+  movieList: [],
 }
 
 
@@ -34,6 +35,21 @@ describe('Transaction reducer spec', () => {
     const expected = {
       ...initialState,
       customer: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_MOVIE_LIST', () => {
+    const action = {
+      type: transActions.SET_MOVIE_LIST,
+      payload: [ '', '' ],
+    }
+
+    const expected = {
+      ...initialState,
+      movieList: action.payload,
     }
 
     const actual = reducer(initialState, action)

@@ -12,8 +12,18 @@ const customer = (state = {}, action = {}) => {
   }
 }
 
+const movieList = (state = [], action = {}) => {
+  switch (action.type) {
+    case transactionConstants.SET_MOVIE_LIST: return action.payload
+    case transactionConstants.CLEAR_TRANSACTION: return []
+    case appConstants.PURGE: return []
+    default: return state
+  }
+}
+
 const reducer = combineReducers({
   customer,
+  movieList,
 })
 
 export default reducer
