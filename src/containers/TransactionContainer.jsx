@@ -16,6 +16,7 @@ const TransactionContainer = ({
   openCustomerLookup,
   setSelectedCustomer,
   openMovieLookup,
+  movieList,
 }) => {
   const style = {
     paper: {
@@ -28,37 +29,17 @@ const TransactionContainer = ({
     },
   }
 
-
-  const movieList = [
-    {
-      title: 'Star Wars Episode 52',
-      copyID: '123456',
-    },
-    {
-      title: 'Star Wars Episode 44',
-      copyID: '1234567',
-    },
-    {
-      title: 'Fast and Furious 39',
-      copyID: '1234568',
-    },
-    {
-      title: 'Another Copy of Star Wars Episode 52',
-      copyID: '1234569',
-    },
-    {
-      title: 'Another Copy of Star Wars Episode 52',
-      copyID: '12345610',
-    },
-  ]
-
-
   const displayMovieList = () => {
+    if (movieList.length === 0) {
+      return (
+        <div style={{ flex: '1', textAlign: 'center', color: 'red' }}>
+          No Movies Selected
+        </div>
+      )
+    }
+
     const rows = movieList.map(movie => (
       <Grid item key={`${movie.title}${movie.copyID}`} xs={3}>
-
-        <MovieLookupDialog />
-
         <Paper style={style.paper}>
           <Grid container>
             <Grid item xs={12}>
@@ -93,8 +74,8 @@ const TransactionContainer = ({
 
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
-
       <CustomerLookupDialog />
+      <MovieLookupDialog />
 
       <Grid container>
         <Grid item xs={6}>
@@ -133,7 +114,7 @@ const TransactionContainer = ({
 
         <Grid item xs={6}>
           <Button
-            color='secondary'
+            color={movieList.length === 0 ? 'secondary' : 'primary'}
             onClick={() => openMovieLookup(() => console.log('OPEN MOVIE LOOKUP TEST'))}
             style={style.button}
             variant='raised'
@@ -156,6 +137,7 @@ const TransactionContainer = ({
 
 TransactionContainer.propTypes = {
   customer: PropTypes.object.isRequired,
+  movieList: PropTypes.array.isRequired,
   openCustomerLookup: PropTypes.func.isRequired,
   openMovieLookup: PropTypes.func.isRequired,
   setSelectedCustomer: PropTypes.func.isRequired,
@@ -163,6 +145,7 @@ TransactionContainer.propTypes = {
 
 const mapStateToProps = state => ({
   customer: state.transaction.customer,
+  movieList: state.transaction.movieList,
 })
 
 const actions = {
