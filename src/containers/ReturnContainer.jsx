@@ -19,12 +19,14 @@ const ReturnContainer = ({
     }
 
     const rows = openTransactions.map(transaction => (
-      <Grid item key={`${transaction.customerID}`} xs={6}>
-        <Paper style={{ width: '500px', padding: '30px' }}>
+      <Grid item key={`${transaction.customerID}`} xs={4}>
+        <Paper style={{ padding: '20px' }}>
           <Grid container>
 
             <Grid item xs={12}>
-              {transaction.f_name} {transaction.l_name}
+              <div style={{ fontSize: '20px' }}>
+                {transaction.f_name} {transaction.l_name}
+              </div>
             </Grid>
 
             <Grid item xs={6}>
@@ -60,20 +62,15 @@ const ReturnContainer = ({
     ))
 
     return (
-      <Grid container>
+      <Grid container style={{ backgroundColor: 'green' }}>
         {rows}
       </Grid>
     )
   }
 
   return (
-    <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
-      Still Under Development<br />
-      The buttons don't work yet<br /><br />
-
-      <Grid container>
-        {displayTransactions()}
-      </Grid>
+    <div style={{ flex: '1', justifyContent: 'center', padding: '50px' }}>
+      {displayTransactions()}
     </div>
   )
 }
@@ -100,6 +97,33 @@ const mapStateToProps = state => ({
       f_name: 'Jake',
       l_name: 'Rawls',
       title: 'Battle LA (sucked)',
+      dueDate: new Date().toDateString(),
+      phone: '1234567890',
+      email: 'iworkat@google.com',
+    },
+    {
+      customerID: '1234',
+      f_name: 'Jake',
+      l_name: 'Rawls',
+      title: 'Really really really really really really really really really really long title',
+      dueDate: new Date().toDateString(),
+      phone: '1234567890',
+      email: 'iworkat@google.com',
+    },
+    {
+      customerID: '1235',
+      f_name: 'Jake',
+      l_name: 'Rawls',
+      title: 'Battle LA (sucked)',
+      dueDate: new Date().toDateString(),
+      phone: '1234567890',
+      email: 'iworkat@google.com',
+    },
+    {
+      customerID: '1236',
+      f_name: 'Jake',
+      l_name: 'Rawls',
+      title: 'Really really really really really really really really really really long title',
       dueDate: new Date().toDateString(),
       phone: '1234567890',
       email: 'iworkat@google.com',
