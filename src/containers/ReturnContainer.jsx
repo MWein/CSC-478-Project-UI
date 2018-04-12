@@ -18,6 +18,10 @@ const ReturnContainer = ({
       )
     }
 
+
+    const dueDateColor = date => new Date() > new Date(date) ? 'red' : 'black'
+
+
     const rows = openTransactions.map(transaction => (
       <Grid item key={`${transaction.customerID}`} xs={4}>
         <Paper style={{ padding: '20px' }}>
@@ -34,7 +38,7 @@ const ReturnContainer = ({
             </Grid>
 
             <Grid item xs={6}>
-              Due: {transaction.dueDate}
+              Due: <span style={{ color: dueDateColor(transaction.dueDate) }}>{transaction.dueDate}</span>
             </Grid>
 
             <Grid item xs={6}>
@@ -62,7 +66,7 @@ const ReturnContainer = ({
     ))
 
     return (
-      <Grid container style={{ backgroundColor: 'green' }}>
+      <Grid container>
         {rows}
       </Grid>
     )
@@ -88,7 +92,7 @@ const mapStateToProps = state => ({
       f_name: 'Jerry',
       l_name: 'Jerbear',
       title: 'God hates you',
-      dueDate: new Date().toDateString(),
+      dueDate: new Date('1 April 2018').toDateString(),
       phone: '1234567890',
       email: 'guy@pornhub.com',
     },
@@ -105,8 +109,8 @@ const mapStateToProps = state => ({
       customerID: '1234',
       f_name: 'Jake',
       l_name: 'Rawls',
-      title: 'Really really really really really really really really really really long title',
-      dueDate: new Date().toDateString(),
+      title: 'Some title',
+      dueDate: new Date('19 April 2018').toDateString(),
       phone: '1234567890',
       email: 'iworkat@google.com',
     },
@@ -123,7 +127,7 @@ const mapStateToProps = state => ({
       customerID: '1236',
       f_name: 'Jake',
       l_name: 'Rawls',
-      title: 'Really really really really really really really really really really long title',
+      title: 'Some title',
       dueDate: new Date().toDateString(),
       phone: '1234567890',
       email: 'iworkat@google.com',
