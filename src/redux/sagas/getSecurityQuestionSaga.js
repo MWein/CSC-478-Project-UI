@@ -21,6 +21,10 @@ export function* getSecurityQuestionsSaga() {
     body: JSON.stringify(body),
   })
 
+  if (response.error) {
+    return yield dispatch(loginActions.setUsernameError('Check your network connection'))
+  }
+
   if (response.payload.error) {
     yield dispatch(loginActions.setUsernameError(response.payload.errorMsg))
   } else {
