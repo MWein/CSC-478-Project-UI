@@ -85,54 +85,7 @@ ReturnContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  //openTransactions: state.returns.openTransactions,
-  openTransactions: [
-    {
-      customerID: '7777888889999',
-      f_name: 'Jerry',
-      l_name: 'Jerbear',
-      title: 'God hates you',
-      dueDate: new Date('1 April 2018').toDateString(),
-      phone: '1234567890',
-      email: 'guy@pornhub.com',
-    },
-    {
-      customerID: '123',
-      f_name: 'Jake',
-      l_name: 'Rawls',
-      title: 'Battle LA (sucked)',
-      dueDate: new Date().toDateString(),
-      phone: '1234567890',
-      email: 'iworkat@google.com',
-    },
-    {
-      customerID: '1234',
-      f_name: 'Jake',
-      l_name: 'Rawls',
-      title: 'Some title',
-      dueDate: new Date('19 April 2018').toDateString(),
-      phone: '1234567890',
-      email: 'iworkat@google.com',
-    },
-    {
-      customerID: '1235',
-      f_name: 'Jake',
-      l_name: 'Rawls',
-      title: 'Battle LA (sucked)',
-      dueDate: new Date().toDateString(),
-      phone: '1234567890',
-      email: 'iworkat@google.com',
-    },
-    {
-      customerID: '1236',
-      f_name: 'Jake',
-      l_name: 'Rawls',
-      title: 'Some title',
-      dueDate: new Date().toDateString(),
-      phone: '1234567890',
-      email: 'iworkat@google.com',
-    },
-  ],
+  openTransactions: state.returns.openTransactions,
 })
 
 const actions = {
