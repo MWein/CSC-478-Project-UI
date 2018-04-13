@@ -3,6 +3,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SearchMovie from '../components/MovieLookupDialogContents/SearchMovie'
@@ -76,7 +77,17 @@ const MovieLookupDialog = ({
 
       {content.content}
 
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+      <DialogActions style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '20px' }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Button
+              color='primary'
+            >
+              Create Movie
+            </Button>
+          </Grid>
+        </Grid>
+
         <Button
           color='secondary'
           onClick={closeMovieLookup}
