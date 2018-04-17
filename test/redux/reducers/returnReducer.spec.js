@@ -29,9 +29,9 @@ describe('Return reducer spec', () => {
     expect(actual).toEqual(expected)
   })
 
-  it('Responds to SET_SHOW_OVERDUE', () => {
+  it('Responds to SET_OVERDUE_ONLY', () => {
     const action = {
-      type: returnActions.SET_SHOW_OVERDUE,
+      type: returnActions.SET_OVERDUE_ONLY,
       payload: true,
     }
 

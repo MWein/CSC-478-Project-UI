@@ -6,10 +6,13 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { actions as returnActions } from '../redux/actions/returnActions'
 
 
 const ReturnContainer = ({
   openTransactions,
+  overdueOnly,
+  setOverdueOnly,
 }) => {
   const displayTransactions = () => {
     if (openTransactions.length === 0) {
@@ -20,7 +23,8 @@ const ReturnContainer = ({
       )
     }
 
-    const dueDateColor = date => new Date() > new Date(date) ? 'red' : 'black'
+    const isOverdue = date => new Date() > new Date(date)
+
 
     const rows = openTransactions.map(transaction => (
       <Grid item key={`${transaction.customerID}`} xs={4}>
@@ -38,7 +42,7 @@ const ReturnContainer = ({
             </Grid>
 
             <Grid item xs={6}>
-              Due: <span style={{ color: dueDateColor(transaction.dueDate) }}>{transaction.dueDate}</span>
+              Due: <span style={{ color: isOverdue(transaction.dueDate) ? 'red' : 'black' }}>{transaction.dueDate}</span>
             </Grid>
 
             <Grid item xs={6}>
@@ -55,7 +59,7 @@ const ReturnContainer = ({
                   color='primary'
                   variant='raised'
                 >
-                  Return
+                  Select
                 </Button>
               </div>
             </Grid>
@@ -77,7 +81,10 @@ const ReturnContainer = ({
           <div style={{ textAlign: 'center' }}>
             <FormControlLabel
               control={
-                <Checkbox />
+                <Checkbox
+                  checked={overdueOnly}
+                  onChange={event => setOverdueOnly(event.target.checked)}
+                />
               }
               label='Show Overdue Only'
             />
@@ -110,9 +117,12 @@ const ReturnContainer = ({
 
 ReturnContainer.propTypes = {
   openTransactions: PropTypes.array.isRequired,
+  overdueOnly: PropTypes.bool.isRequired,
+  setOverdueOnly: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  overdueOnly: state.returns.overdueOnly,
   //openTransactions: state.returns.openTransactions,
   openTransactions: [
     {
@@ -164,6 +174,7 @@ const mapStateToProps = state => ({
 })
 
 const actions = {
+  ...returnActions,
 }
 
 export default connect(mapStateToProps, actions)(ReturnContainer)

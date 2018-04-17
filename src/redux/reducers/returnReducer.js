@@ -13,7 +13,7 @@ const openTransactions = (state = [], action = {}) => {
 
 const overdueOnly = (state = false, action = {}) => {
   switch (action.type) {
-    case returnActions.SET_SHOW_OVERDUE: return action.payload
+    case returnActions.SET_OVERDUE_ONLY: return action.payload
     case appConstants.PURGE: return []
     default: return state
   }

@@ -5,5 +5,5 @@ export const {
   actions,
 } = createActions('return', {
   setOpenTransactions: 'SET_OPEN_TRANSACTIONS',
-  setShowOverdue: 'SET_SHOW_OVERDUE',
+  setOverdueOnly: 'SET_OVERDUE_ONLY',
 })
