@@ -26,48 +26,49 @@ const ReturnContainer = ({
     const isOverdue = date => new Date() > new Date(date)
 
 
-    const rows = openTransactions.map(transaction => (
-      <Grid item key={`${transaction.customerID}`} xs={4}>
-        <Paper style={{ padding: '20px' }}>
-          <Grid container>
+    const rows = openTransactions.filter(transaction => !overdueOnly || isOverdue(transaction.dueDate))
+      .map(transaction => (
+        <Grid item key={`${transaction.customerID}`} xs={4}>
+          <Paper style={{ padding: '20px' }}>
+            <Grid container>
 
-            <Grid item xs={12}>
-              <div style={{ fontSize: '20px' }}>
-                {transaction.f_name} {transaction.l_name}
-              </div>
-            </Grid>
+              <Grid item xs={12}>
+                <div style={{ fontSize: '20px' }}>
+                  {transaction.f_name} {transaction.l_name}
+                </div>
+              </Grid>
 
-            <Grid item xs={6}>
-              {transaction.title}
-            </Grid>
+              <Grid item xs={6}>
+                {transaction.title}
+              </Grid>
 
-            <Grid item xs={6}>
+              <Grid item xs={6}>
               Due: <span style={{ color: isOverdue(transaction.dueDate) ? 'red' : 'black' }}>{transaction.dueDate}</span>
-            </Grid>
+              </Grid>
 
-            <Grid item xs={6}>
+              <Grid item xs={6}>
               Phone: {transaction.phone}
-            </Grid>
+              </Grid>
 
-            <Grid item xs={6}>
+              <Grid item xs={6}>
               Email: {transaction.email}
-            </Grid>
+              </Grid>
 
-            <Grid item xs={12}>
-              <div style={{ textAlign: 'right' }}>
-                <Button
-                  color='primary'
-                  variant='raised'
-                >
+              <Grid item xs={12}>
+                <div style={{ textAlign: 'right' }}>
+                  <Button
+                    color='primary'
+                    variant='raised'
+                  >
                   Select
-                </Button>
-              </div>
-            </Grid>
+                  </Button>
+                </div>
+              </Grid>
 
-          </Grid>
-        </Paper>
-      </Grid>
-    ))
+            </Grid>
+          </Paper>
+        </Grid>
+      ))
 
     return (
       <Grid container>
