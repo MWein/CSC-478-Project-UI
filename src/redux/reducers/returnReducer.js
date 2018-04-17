@@ -11,8 +11,18 @@ const openTransactions = (state = [], action = {}) => {
   }
 }
 
+const overdueOnly = (state = false, action = {}) => {
+  switch (action.type) {
+    case returnActions.SET_SHOW_OVERDUE: return action.payload
+    case appConstants.PURGE: return []
+    default: return state
+  }
+}
+
+
 const reducer = combineReducers({
   openTransactions,
+  overdueOnly,
 })
 
 export default reducer
