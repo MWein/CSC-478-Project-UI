@@ -20,9 +20,7 @@ const ReturnContainer = ({
       )
     }
 
-
     const dueDateColor = date => new Date() > new Date(date) ? 'red' : 'black'
-
 
     const rows = openTransactions.map(transaction => (
       <Grid item key={`${transaction.customerID}`} xs={4}>
@@ -69,20 +67,31 @@ const ReturnContainer = ({
 
     return (
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <div style={{ fontSize: '25px' }}>
             Open Transactions
           </div>
         </Grid>
 
-        <Grid item xs={6}>
-          <div style={{ justifyContent: 'right', textAlign: 'right' }}>
+        <Grid item xs={4}>
+          <div style={{ textAlign: 'center' }}>
             <FormControlLabel
               control={
                 <Checkbox />
               }
               label='Show Overdue Only'
             />
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div style={{ justifyContent: 'right', textAlign: 'right' }}>
+            <Button
+              color='primary'
+              variant='raised'
+            >
+              Return Selected
+            </Button>
           </div>
         </Grid>
 
