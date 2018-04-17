@@ -98,7 +98,7 @@ const EditEmployeeDialog = ({
   const passwordField = () => mode === 'add' ? (
     <Grid item xs={6}>
       <TextField
-        label='Password'
+        label='Password - Required'
         onChange={event => setPassword(event.target.value)}
         type='password'
         value={password}
@@ -109,7 +109,7 @@ const EditEmployeeDialog = ({
   const confirmPasswordField = () => mode === 'add' ? (
     <Grid item xs={6}>
       <TextField
-        label='Confirm Password'
+        label='Confirm Password - Required'
         onChange={event => setConfirmPassword(event.target.value)}
         type='password'
         value={confirmPassword}
@@ -148,7 +148,7 @@ const EditEmployeeDialog = ({
                 <TextField
                   disabled={mode === 'edit'}
                   onChange={event => setUsername(event.target.value)}
-                  placeholder='Username'
+                  placeholder='Username - Required'
                   value={username}
                 />
               </Grid>
@@ -166,28 +166,28 @@ const EditEmployeeDialog = ({
 
               <Grid item xs={6}>
                 <TextField
-                  label='First Name'
+                  label='First Name - Required'
                   onChange={event => setFirstName(event.target.value)}
                   value={firstName}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Last Name'
+                  label='Last Name - Required'
                   onChange={event => setLastName(event.target.value)}
                   value={lastName}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Phone Number'
+                  label='Phone Number - Required'
                   onChange={event => setPhoneNumber(event.target.value)}
                   value={phone}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Address'
+                  label='Address - Required'
                   onChange={event => setAddress(event.target.value)}
                   value={address}
                 />
