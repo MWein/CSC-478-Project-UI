@@ -41,6 +41,7 @@ const EditEmployeeDialog = ({
   setAddress,
   setPassword,
   setConfirmPassword,
+  closeEmployeeEditor,
 }) => {
   const saveButton = () => {
     if (mode === 'add') {
@@ -109,7 +110,7 @@ const EditEmployeeDialog = ({
   const confirmPasswordField = () => mode === 'add' ? (
     <Grid item xs={6}>
       <TextField
-        label='Confirm Password - Required'
+        label='Confirm Password'
         onChange={event => setConfirmPassword(event.target.value)}
         type='password'
         value={confirmPassword}
@@ -180,7 +181,7 @@ const EditEmployeeDialog = ({
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Phone Number - Required'
+                  label='Phone - Required'
                   onChange={event => setPhoneNumber(event.target.value)}
                   value={phone}
                 />
@@ -200,7 +201,17 @@ const EditEmployeeDialog = ({
           </div>
         </DialogContent>
 
-        <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        <DialogActions style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '20px' }}>
+
+          <div style={{ flex: '1' }}>
+            <Button
+              onClick={closeEmployeeEditor}
+              variant='raised'
+            >
+              Cancel
+            </Button>
+          </div>
+
           {resetPasswordButton()}
           <Button
             color='primary'
@@ -219,6 +230,7 @@ const EditEmployeeDialog = ({
 
 EditEmployeeDialog.propTypes = {
   address: PropTypes.string.isRequired,
+  closeEmployeeEditor: PropTypes.func.isRequired,
   confirmPassword: PropTypes.string.isRequired,
   createNewEmployee: PropTypes.func.isRequired,
   editEmployee: PropTypes.func.isRequired,
