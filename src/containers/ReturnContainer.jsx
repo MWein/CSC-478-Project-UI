@@ -1,4 +1,6 @@
 import Button from 'material-ui/Button'
+import Checkbox from 'material-ui/Checkbox'
+import { FormControlLabel } from 'material-ui/Form'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
@@ -67,6 +69,23 @@ const ReturnContainer = ({
 
     return (
       <Grid container>
+        <Grid item xs={6}>
+          <div style={{ fontSize: '25px' }}>
+            Open Transactions
+          </div>
+        </Grid>
+
+        <Grid item xs={6}>
+          <div style={{ justifyContent: 'right', textAlign: 'right' }}>
+            <FormControlLabel
+              control={
+                <Checkbox />
+              }
+              label='Show Overdue Only'
+            />
+          </div>
+        </Grid>
+
         {rows}
       </Grid>
     )
