@@ -49,7 +49,7 @@ const ReturnContainer = ({
                   color='primary'
                   variant='raised'
                 >
-                  Return
+                  Select for Return
                 </Button>
               </div>
             </Grid>
@@ -80,7 +80,7 @@ const ReturnContainer = ({
               color='primary'
               variant='raised'
             >
-              Process Multiple Returns
+              Process Selected Returns
             </Button>
           </div>
         </Grid>
