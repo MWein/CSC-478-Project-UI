@@ -19,7 +19,7 @@ const ReturnContainer = ({
     }
 
     const rows = openTransactions.map(transaction => (
-      <Grid item key={`${transaction.customerID}`} xs={6}>
+      <Grid item key={`${transaction.customerID}`} xs={4}>
         <Paper style={{ width: '500px', padding: '30px' }}>
           <Grid container>
 
@@ -68,8 +68,23 @@ const ReturnContainer = ({
 
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
-      Still Under Development<br />
-      The buttons don't work yet<br /><br />
+      <Grid container>
+        <Grid item xs={6}>
+          <div style={{ fontSize: '25px' }}>
+            Open Transactions<br /><br />
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='primary'
+              variant='raised'
+            >
+              Process Multiple Returns
+            </Button>
+          </div>
+        </Grid>
+      </Grid>
 
       <Grid container>
         {displayTransactions()}

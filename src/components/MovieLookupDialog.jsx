@@ -135,8 +135,7 @@ MovieLookupDialog.propTypes = {
 
 const mapStateToProps = state => ({
   mode: state.movieLookup.mode,
-  //open: state.movieLookup.open,
-  open: true,
+  open: state.movieLookup.open,
   selectedMovie: state.movieLookup.selectedMovie,
   selectedCopy: state.movieLookup.selectedCopy,
   callbackFunction: state.movieLookup.callbackFunction,
