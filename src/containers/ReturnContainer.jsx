@@ -19,7 +19,7 @@ const ReturnContainer = ({
     }
 
     const rows = openTransactions.map(transaction => (
-      <Grid item key={`${transaction.customerID}`} xs={4}>
+      <Grid item key={`${transaction.customerID}${transaction.copyID}`} xs={4}>
         <Paper style={{ width: '500px', padding: '30px' }}>
           <Grid container>
 

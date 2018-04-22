@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import { actions as errorActions } from '../redux/actions/errorMessageActions'
 import { actions as movieLookupActions } from '../redux/actions/movieLookupActions'
 import { actions as transactionActions } from '../redux/actions/transactionActions'
 
@@ -17,8 +18,10 @@ const TransactionContainer = ({
   setSelectedCustomer,
   openMovieLookup,
   movieList,
+  openTransactions,
   setMovieList,
   createTransaction,
+  displayError,
 }) => {
   const style = {
     paper: {
@@ -44,6 +47,18 @@ const TransactionContainer = ({
 
 
   const addMovieToList = movie => {
+    if (movieList.map(movie => movie.copyID).includes(movie.copyID)) {
+      displayError('Movie Already Selected')
+
+      return
+    }
+
+    if (openTransactions.map(movie => movie.copyID).includes(movie.copyID)) {
+      displayError('Movie Already Checked Out')
+
+      return
+    }
+
     setMovieList([
       ...movieList,
       movie,
@@ -173,9 +188,11 @@ const TransactionContainer = ({
 TransactionContainer.propTypes = {
   createTransaction: PropTypes.func.isRequired,
   customer: PropTypes.object.isRequired,
+  displayError: PropTypes.func.isRequired,
   movieList: PropTypes.array.isRequired,
   openCustomerLookup: PropTypes.func.isRequired,
   openMovieLookup: PropTypes.func.isRequired,
+  openTransactions: PropTypes.array.isRequired,
   setMovieList: PropTypes.func.isRequired,
   setSelectedCustomer: PropTypes.func.isRequired,
 }
@@ -183,12 +200,14 @@ TransactionContainer.propTypes = {
 const mapStateToProps = state => ({
   customer: state.transaction.customer,
   movieList: state.transaction.movieList,
+  openTransactions: state.returns.openTransactions,
 })
 
 const actions = {
   ...customerLookupActions,
   ...transactionActions,
   ...movieLookupActions,
+  ...errorActions,
 }
 
 export default connect(mapStateToProps, actions)(TransactionContainer)

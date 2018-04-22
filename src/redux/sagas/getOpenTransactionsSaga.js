@@ -34,6 +34,7 @@ export default function* () {
   yield takeLatest(
     [
       appActions.openReturnPage().type,
+      appActions.openTransactionPage().type,
     ],
     getOpenTransactionsSaga
   )
