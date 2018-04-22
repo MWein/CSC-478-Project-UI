@@ -169,7 +169,7 @@ const TransactionContainer = ({
             style={style.button}
             variant='raised'
           >
-            Select Movie
+            Add Movie
           </Button>
         </Grid>
 
