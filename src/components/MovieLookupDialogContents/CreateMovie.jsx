@@ -10,7 +10,12 @@ import { connect } from 'react-redux'
 import { actions as movieLookupActions } from '../../redux/actions/movieLookupActions'
 
 
-const SelectMovieCopy = () => {
+const SelectMovieCopy = ({
+  title,
+  upc,
+  setNewMovieTitle,
+  setNewMovieUPC,
+}) => {
 
   return (
     <div style={{ width: '500px' }}>
@@ -23,12 +28,16 @@ const SelectMovieCopy = () => {
               <TextField
                 fullWidth
                 label='Title - Required'
+                onChange={event => setNewMovieTitle(event.target.value)}
+                value={title}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth
                 label='UPC - Required'
+                onChange={event => setNewMovieUPC(event.target.value)}
+                value={upc}
               />
             </Grid>
 
@@ -43,13 +52,20 @@ const SelectMovieCopy = () => {
 
 
 SelectMovieCopy.propTypes = {
+  setNewMovieTitle: PropTypes.func.isRequired,
+  setNewMovieUPC: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  upc: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+  title: state.movieLookup.newMovieTitle,
+  upc: state.movieLookup.newMovieUPC,
 })
 
 
 const actions = {
+  ...movieLookupActions,
 }
 
 export default connect(mapStateToProps, actions)(SelectMovieCopy)
