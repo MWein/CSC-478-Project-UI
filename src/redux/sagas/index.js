@@ -8,6 +8,7 @@ import editCustomerSaga from './editCustomerSaga'
 import editEmployeeSaga from './editEmployeeSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
 import getAllEmployeesSaga from './getAllEmployeesSaga'
+import getBestCustomersSaga from './getBestCustomersSaga'
 import getMovieSaga from './getMovie'
 import getOpenTransactionsSaga from './getOpenTransactionsSaga'
 import getSecurityQuestionSaga from './getSecurityQuestionSaga'
@@ -16,6 +17,7 @@ import loginSaga from './loginSaga'
 import logoutSaga from './logoutSaga'
 import resetPasswordSaga from './resetPasswordSaga'
 import setSecurityQuestionSaga from './setSecurityQuestionSaga'
+
 
 export default function* sagasMain() {
   yield call(getStatusSaga)
@@ -36,4 +38,5 @@ export default function* sagasMain() {
   yield fork(addMovieCopySaga)
   yield fork(createTransactionSaga)
   yield fork(getOpenTransactionsSaga)
+  yield fork(getBestCustomersSaga)
 }
