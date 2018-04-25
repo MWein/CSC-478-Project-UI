@@ -9,6 +9,7 @@ import editEmployeeSaga from './editEmployeeSaga'
 import getAllCustomersSaga from './getAllCustomersSaga'
 import getAllEmployeesSaga from './getAllEmployeesSaga'
 import getBestCustomersSaga from './getBestCustomersSaga'
+import getBestMoviesSaga from './getBestMoviesSaga'
 import getMovieSaga from './getMovie'
 import getOpenTransactionsSaga from './getOpenTransactionsSaga'
 import getSecurityQuestionSaga from './getSecurityQuestionSaga'
@@ -39,4 +40,5 @@ export default function* sagasMain() {
   yield fork(createTransactionSaga)
   yield fork(getOpenTransactionsSaga)
   yield fork(getBestCustomersSaga)
+  yield fork(getBestMoviesSaga)
 }
