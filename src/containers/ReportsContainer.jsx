@@ -7,13 +7,11 @@ const ReportsContainer = ({
   bestCustomers,
   bestMovies,
 }) => {
-  const tableHeaderText = text => {
-    return (
-      <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
-        {text}
-      </div>
-    )
-  }
+  const tableHeaderText = text => (
+    <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
+      {text}
+    </div>
+  )
 
   const createCustomersTable = () => {
     const customerRows = bestCustomers.map(customer => (
