@@ -8,11 +8,10 @@ import { actions as appActions } from '../actions/appActions'
 import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
-import { actions as returnActions } from '../actions/returnActions'
+import { actions as reportsActions } from '../actions/reportsActions'
 
-
-export function* getOpenTransactionsSaga() {
-  const url = `${getServerURL()}/openTransactions`
+export function* getBestCustomersSaga() {
+  const url = `${getServerURL()}/bestCustomers`
   const token = yield select(getToken)
   const body = {
     token,
@@ -23,19 +22,14 @@ export function* getOpenTransactionsSaga() {
     body: JSON.stringify(body),
   })
 
-  if (response.payload.error) {
-    console.log('Error ', response.payload.errorMsg)
-  } else {
-    yield dispatch(returnActions.setOpenTransactions(response.payload.rows))
-  }
+  yield dispatch(reportsActions.setBestCustomers(response.payload))
 }
 
 export default function* () {
   yield takeLatest(
     [
-      appActions.openReturnPage().type,
-      appActions.openTransactionPage().type,
+      appActions.openReportsPage().type,
     ],
-    getOpenTransactionsSaga
+    getBestCustomersSaga
   )
 }

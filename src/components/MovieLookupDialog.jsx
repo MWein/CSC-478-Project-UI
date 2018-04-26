@@ -3,13 +3,14 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
+import CreateMovie from '../components/MovieLookupDialogContents/CreateMovie'
+import Grid from 'material-ui/Grid'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SearchMovie from '../components/MovieLookupDialogContents/SearchMovie'
 import SelectMovieCopy from '../components/MovieLookupDialogContents/SelectMovieCopy'
 import { connect } from 'react-redux'
 import { actions as movieLookupActions } from '../redux/actions/movieLookupActions'
-
 
 const MovieLookupDialog = ({
   open,
@@ -20,6 +21,9 @@ const MovieLookupDialog = ({
   setMode,
   closeMovieLookup,
   callbackFunction,
+  createMovie,
+  setNewMovieTitle,
+  setNewMovieUPC,
 }) => {
   const validateButton = () => {
     if (mode === '') {
@@ -29,6 +33,13 @@ const MovieLookupDialog = ({
     }
 
     return true
+  }
+
+  const createMovieAction = () => {
+    createMovie()
+    setMode('')
+    setNewMovieTitle('')
+    setNewMovieUPC('')
   }
 
   const confirmButtonAction = () => {
@@ -59,6 +70,12 @@ const MovieLookupDialog = ({
         buttonAction: confirmButtonAction,
         title: selectedMovie.title,
       }
+      case 'create': return {
+        content: (<CreateMovie />),
+        button: 'Create',
+        buttonAction: createMovieAction,
+        title: 'Create New Movie',
+      }
       default: return {
         content: (<SearchMovie />),
         button: 'Next',
@@ -70,18 +87,36 @@ const MovieLookupDialog = ({
   const content = contentByMode()
 
 
+  const createMovieButton = () => {
+    return mode === '' ? (
+      <Grid container>
+        <Grid item xs={12}>
+          <Button
+            color='primary'
+            onClick={() => setMode('create')}
+          >
+            Create Movie
+          </Button>
+        </Grid>
+      </Grid>
+    ) : null
+  }
+
+
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
       <DialogTitle id='form-dialog-title'>{content.title}</DialogTitle>
 
       {content.content}
 
-      <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+      <DialogActions style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '20px' }}>
+        {createMovieButton()}
+
         <Button
           color='secondary'
           onClick={closeMovieLookup}
         >
-            Cancel
+          Cancel
         </Button>
         <Button
           color='primary'
@@ -101,11 +136,14 @@ MovieLookupDialog.propTypes = {
   callbackFunction: PropTypes.func,
   closeMovieLookup: PropTypes.func.isRequired,
   copyID: PropTypes.string.isRequired,
+  createMovie: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   selectedCopy: PropTypes.string.isRequired,
   selectedMovie: PropTypes.object.isRequired,
   setMode: PropTypes.func.isRequired,
+  setNewMovieTitle: PropTypes.func.isRequired,
+  setNewMovieUPC: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

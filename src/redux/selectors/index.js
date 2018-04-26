@@ -48,6 +48,10 @@ export const getMovieCopyID = state => state.movieLookup.copyID
 export const getNewCopy = state => state.movieLookup.newMovieCopy
 export const getMovieCopiesList = state => state.movieLookup.copiesList
 
+// Create movie dialog specific
+export const getNewMovieTitle = state => state.movieLookup.newMovieTitle
+export const getNewMovieUPC = state => state.movieLookup.newMovieUPC
+
 // Transaction Lookup Specific
 export const getMovieList = state => state.transaction.movieList
 export const getCustomer = state => state.transaction.customer
