@@ -36,9 +36,8 @@ export function* createNewMovieSaga() {
     yield dispatch(errorMessageActions.displayError(response.payload.errorMsg))
   } else {
     // Success
-    
-    console.log('NEW MOVIE ADDED')
 
+    console.log('NEW MOVIE ADDED')
   }
 }
 

@@ -87,20 +87,18 @@ const MovieLookupDialog = ({
   const content = contentByMode()
 
 
-  const createMovieButton = () => {
-    return mode === '' ? (
-      <Grid container>
-        <Grid item xs={12}>
-          <Button
-            color='primary'
-            onClick={() => setMode('create')}
-          >
+  const createMovieButton = () => mode === '' ? (
+    <Grid container>
+      <Grid item xs={12}>
+        <Button
+          color='primary'
+          onClick={() => setMode('create')}
+        >
             Create Movie
-          </Button>
-        </Grid>
+        </Button>
       </Grid>
-    ) : null
-  }
+    </Grid>
+  ) : null
 
 
   return (
