@@ -15,40 +15,37 @@ const SelectMovieCopy = ({
   upc,
   setNewMovieTitle,
   setNewMovieUPC,
-}) => {
+}) => (
+  <div style={{ width: '500px' }}>
+    <DialogContent>
 
-  return (
-    <div style={{ width: '500px' }}>
-      <DialogContent>
+      <div style={{ flex: '1', textAlign: 'center' }}>
 
-        <div style={{ flex: '1', textAlign: 'center' }}>
-
-          <Grid container>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label='Title - Required'
-                onChange={event => setNewMovieTitle(event.target.value)}
-                value={title}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label='UPC - Required'
-                onChange={event => setNewMovieUPC(event.target.value)}
-                value={upc}
-              />
-            </Grid>
-
+        <Grid container>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Title - Required'
+              onChange={event => setNewMovieTitle(event.target.value)}
+              value={title}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='UPC - Required'
+              onChange={event => setNewMovieUPC(event.target.value)}
+              value={upc}
+            />
           </Grid>
 
-        </div>
+        </Grid>
 
-      </DialogContent>
-    </div>
-  )
-}
+      </div>
+
+    </DialogContent>
+  </div>
+)
 
 
 SelectMovieCopy.propTypes = {
