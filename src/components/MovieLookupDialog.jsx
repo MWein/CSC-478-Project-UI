@@ -21,6 +21,9 @@ const MovieLookupDialog = ({
   setMode,
   closeMovieLookup,
   callbackFunction,
+  createMovie,
+  setNewMovieTitle,
+  setNewMovieUPC,
 }) => {
   const validateButton = () => {
     if (mode === '') {
@@ -30,6 +33,13 @@ const MovieLookupDialog = ({
     }
 
     return true
+  }
+
+  const createMovieAction = () => {
+    createMovie()
+    setMode('')
+    setNewMovieTitle('')
+    setNewMovieUPC('')
   }
 
   const confirmButtonAction = () => {
@@ -63,7 +73,7 @@ const MovieLookupDialog = ({
       case 'create': return {
         content: (<CreateMovie />),
         button: 'Create',
-        buttonAction: null,
+        buttonAction: createMovieAction,
         title: 'Create New Movie',
       }
       default: return {
@@ -126,11 +136,14 @@ MovieLookupDialog.propTypes = {
   callbackFunction: PropTypes.func,
   closeMovieLookup: PropTypes.func.isRequired,
   copyID: PropTypes.string.isRequired,
+  createMovie: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   selectedCopy: PropTypes.string.isRequired,
   selectedMovie: PropTypes.object.isRequired,
   setMode: PropTypes.func.isRequired,
+  setNewMovieTitle: PropTypes.func.isRequired,
+  setNewMovieUPC: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
