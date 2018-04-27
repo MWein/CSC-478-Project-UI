@@ -6,4 +6,7 @@ export const {
 } = createActions('return', {
   setOpenTransactions: 'SET_OPEN_TRANSACTIONS',
   setOverdueOnly: 'SET_OVERDUE_ONLY',
+
+  selectCopyID: 'SELECT_COPY_ID',
+  deselectCopyID: 'DESELECT_COPY_ID',
 })
