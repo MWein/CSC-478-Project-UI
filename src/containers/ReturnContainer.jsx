@@ -94,6 +94,7 @@ const ReturnContainer = ({
           <div style={{ justifyContent: 'right', textAlign: 'right' }}>
             <Button
               color='primary'
+              disabled={openTransactions.reduce((acc, transaction) => transaction.selected ? acc + 1 : acc, 0) === 0}
               variant='raised'
             >
               Process Selected Returns
