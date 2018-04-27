@@ -9,4 +9,6 @@ export const {
 
   selectCopyID: 'SELECT_COPY_ID',
   deselectCopyID: 'DESELECT_COPY_ID',
+
+  processReturns: 'PROCESS_RETURNS',
 })
