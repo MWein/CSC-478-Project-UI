@@ -14,6 +14,8 @@ const initialState = {
   selectedCopy: '',
   copiesList: [],
   copyExists: false,
+  newMovieTitle: '',
+  newMovieUPC: '',
 }
 
 describe('Movie Lookup reducer spec', () => {
@@ -227,6 +229,36 @@ describe('Movie Lookup reducer spec', () => {
     const expected = {
       ...initialState,
       copyExists: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_NEW_MOVIE_TITLE', () => {
+    const action = {
+      type: lookupActions.SET_NEW_MOVIE_TITLE,
+      payload: 'Planet of the Apes',
+    }
+
+    const expected = {
+      ...initialState,
+      newMovieTitle: action.payload,
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
+  it('Responds to SET_NEW_MOVIE_UPC', () => {
+    const action = {
+      type: lookupActions.SET_NEW_MOVIE_UPC,
+      payload: '4544445',
+    }
+
+    const expected = {
+      ...initialState,
+      newMovieUPC: action.payload,
     }
 
     const actual = reducer(initialState, action)

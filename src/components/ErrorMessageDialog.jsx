@@ -13,10 +13,11 @@ import { actions as errorActions } from '../redux/actions/errorMessageActions'
 const ErrorMessageDialog = ({
   error,
   message,
+  title,
   dismissError,
 }) => (
   <Dialog aria-labelledby='form-dialog-title' open={error}>
-    <DialogTitle id='form-dialog-title'>Error</DialogTitle>
+    <DialogTitle id='form-dialog-title'>{title}</DialogTitle>
 
     <DialogContent>
       {message}
@@ -39,11 +40,13 @@ ErrorMessageDialog.propTypes = {
   dismissError: PropTypes.func.isRequired,
   error: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
   error: state.error.error,
   message: state.error.message,
+  title: state.error.title,
 })
 
 

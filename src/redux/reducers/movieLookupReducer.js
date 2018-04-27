@@ -102,6 +102,25 @@ const copyExists = (state = false, action = {}) => {
 }
 
 
+const newMovieTitle = (state = '', action = {}) => {
+  switch (action.type) {
+    case movieConstants.SET_NEW_MOVIE_TITLE: return action.payload
+    case movieConstants.OPEN_MOVIE_LOOKUP: return ''
+    case appConstants.PURGE: return ''
+    default: return state
+  }
+}
+
+const newMovieUPC = (state = '', action = {}) => {
+  switch (action.type) {
+    case movieConstants.SET_NEW_MOVIE_UPC: return action.payload
+    case movieConstants.OPEN_MOVIE_LOOKUP: return ''
+    case appConstants.PURGE: return ''
+    default: return state
+  }
+}
+
+
 const reducer = combineReducers({
   callbackFunction,
   mode,
@@ -114,6 +133,8 @@ const reducer = combineReducers({
   selectedCopy,
   copiesList,
   copyExists,
+  newMovieTitle,
+  newMovieUPC,
 })
 
 export default reducer

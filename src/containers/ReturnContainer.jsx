@@ -1,28 +1,23 @@
 import Button from 'material-ui/Button'
+import Checkbox from 'material-ui/Checkbox'
+import { FormControlLabel } from 'material-ui/Form'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { actions as returnActions } from '../redux/actions/returnActions'
 
 
 const ReturnContainer = ({
   openTransactions,
+  overdueOnly,
+  setOverdueOnly,
 }) => {
-  const displayTransactions = () => {
-    if (openTransactions.length === 0) {
-      return (
-        <div style={{ flex: '1', textAlign: 'center', color: 'red' }}>
-          No Open Transactions
-        </div>
-      )
-    }
+  const isOverdue = date => new Date() > new Date(date)
 
-
-    const dueDateColor = date => new Date() > new Date(date) ? 'red' : 'black'
-
-
-    const rows = openTransactions.map(transaction => (
+  const rows = openTransactions.filter(transaction => !overdueOnly || isOverdue(transaction.dueDate))
+    .map(transaction => (
       <Grid item key={`${transaction.customerID}`} xs={4}>
         <Paper style={{ padding: '20px' }}>
           <Grid container>
@@ -38,15 +33,15 @@ const ReturnContainer = ({
             </Grid>
 
             <Grid item xs={6}>
-              Due: <span style={{ color: dueDateColor(transaction.dueDate) }}>{transaction.dueDate}</span>
+                Due: <span style={{ color: isOverdue(transaction.dueDate) ? 'red' : 'black' }}>{transaction.dueDate}</span>
             </Grid>
 
             <Grid item xs={6}>
-              Phone: {transaction.phone}
+                Phone: {transaction.phone}
             </Grid>
 
             <Grid item xs={6}>
-              Email: {transaction.email}
+                Email: {transaction.email}
             </Grid>
 
             <Grid item xs={12}>
@@ -55,7 +50,7 @@ const ReturnContainer = ({
                   color='primary'
                   variant='raised'
                 >
-                  Return
+                  Select
                 </Button>
               </div>
             </Grid>
@@ -65,16 +60,42 @@ const ReturnContainer = ({
       </Grid>
     ))
 
-    return (
+  return (
+    <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
       <Grid container>
+        <Grid item xs={4}>
+          <div style={{ fontSize: '25px' }}>
+            Open Transactions
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div style={{ textAlign: 'center' }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={overdueOnly}
+                  onChange={event => setOverdueOnly(event.target.checked)}
+                />
+              }
+              label='Show Overdue Only'
+            />
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div style={{ justifyContent: 'right', textAlign: 'right' }}>
+            <Button
+              color='primary'
+              variant='raised'
+            >
+              Process Selected Returns
+            </Button>
+          </div>
+        </Grid>
+
         {rows}
       </Grid>
-    )
-  }
-
-  return (
-    <div style={{ flex: '1', justifyContent: 'center', padding: '50px' }}>
-      {displayTransactions()}
     </div>
   )
 }
@@ -82,13 +103,17 @@ const ReturnContainer = ({
 
 ReturnContainer.propTypes = {
   openTransactions: PropTypes.array.isRequired,
+  overdueOnly: PropTypes.bool.isRequired,
+  setOverdueOnly: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  overdueOnly: state.returns.overdueOnly,
   openTransactions: state.returns.openTransactions,
 })
 
 const actions = {
+  ...returnActions,
 }
 
 export default connect(mapStateToProps, actions)(ReturnContainer)

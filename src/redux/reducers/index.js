@@ -7,6 +7,7 @@ import error from './errorMessageReducer'
 import login from './loginReducer'
 import movieLookup from './movieLookupReducer'
 import navBar from './navBarReducer'
+import reports from './reportsReducer'
 import returns from './returnReducer'
 import settings from './UserSettingsReducer'
 import transaction from './transactionReducer'
@@ -23,4 +24,5 @@ export default combineReducers({
   transaction,
   movieLookup,
   returns,
+  reports,
 })

@@ -3,6 +3,7 @@ import reducer from '../../../src/redux/reducers/errorMessageReducer'
 
 
 const initialState = {
+  title: '',
   error: false,
   message: '',
 }
@@ -14,6 +15,22 @@ describe('Error message reducer spec', () => {
     expect(actual).toEqual(initialState)
   })
 
+  it('Responds to DISPLAY_MESSAGE', () => {
+    const action = {
+      type: errorActions.DISPLAY_MESSAGE,
+      payload: 'Owen Wilson - Wooow',
+    }
+
+    const expected = {
+      error: true,
+      message: action.payload,
+      title: 'Message',
+    }
+
+    const actual = reducer(initialState, action)
+    expect(actual).toEqual(expected)
+  })
+
   it('Responds to DISPLAY_ERROR', () => {
     const action = {
       type: errorActions.DISPLAY_ERROR,
@@ -23,6 +40,7 @@ describe('Error message reducer spec', () => {
     const expected = {
       error: true,
       message: action.payload,
+      title: 'Error',
     }
 
     const actual = reducer(initialState, action)
@@ -36,6 +54,7 @@ describe('Error message reducer spec', () => {
     }
 
     const mockState = {
+      title: 'Error',
       error: true,
       message: 'Hello, Joe'
     }
