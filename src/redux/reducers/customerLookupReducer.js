@@ -39,8 +39,10 @@ const lName = (state = '', action = {}) => {
 }
 
 const phone = (state = '', action = {}) => {
+  const validatePhone = () => isNaN(action.payload) || action.payload.length > 10 ? state : action.payload
+
   switch (action.type) {
-    case lookupConstants.SET_PHONE_NUMBER: return isNaN(action.payload) ? state : action.payload
+    case lookupConstants.SET_PHONE_NUMBER: return validatePhone()
     case lookupConstants.CLOSE_CUSTOMER_LOOKUP: return ''
     case appConstants.PURGE: return ''
     default: return state

@@ -79,9 +79,11 @@ const lastName = (state = '', action = {}) => {
 
 
 const phone = (state = '', action = {}) => {
+  const validatePhone = () => isNaN(action.payload) || action.payload.length > 10 ? state : action.payload
+
   switch (action.type) {
     case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.phone
-    case editEmployeeConstants.SET_PHONE_NUMBER: return isNaN(action.payload) ? state : action.payload
+    case editEmployeeConstants.SET_PHONE_NUMBER: return validatePhone()
     case appConstants.PURGE: return ''
     default: return state
   }
