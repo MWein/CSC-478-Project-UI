@@ -8,6 +8,7 @@ import {
   getOpenTransactions,
   getToken,
 } from '../selectors'
+import { formattedDateString } from '../dateFunctions'
 import getServerURL from './helpers/getServerURL'
 import { post } from './helpers/makeFetchCall'
 import { actions as returnActions } from '../actions/returnActions'
@@ -31,18 +32,11 @@ export function* processReturnsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    const responseWithSelection = response.payload.map(transaction => {
-      const dueDate = new Date(transaction.dueDate)
-
-      const month = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ][dueDate.getMonth()]
-      const dateString = `${month} ${dueDate.getDate()}, ${dueDate.getFullYear()}`
-
-      return {
-        ...transaction,
-        selected: false,
-        dueDate: dateString,
-      }
-    })
+    const responseWithSelection = response.payload.map(transaction => ({
+      ...transaction,
+      selected: false,
+      dueDate: formattedDateString(transaction.dueDate),
+    }))
 
     yield dispatch(returnActions.setOpenTransactions(responseWithSelection))
   }

@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { actions as appActions } from '../actions/appActions'
+import { formattedDateString } from '../dateFunctions'
 import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
@@ -26,18 +27,11 @@ export function* getOpenTransactionsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    const responseWithSelection = response.payload.rows.map(transaction => {
-      const dueDate = new Date(transaction.dueDate)
-
-      const month = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ][dueDate.getMonth()]
-      const dateString = `${month} ${dueDate.getDate()}, ${dueDate.getFullYear()}`
-
-      return {
-        ...transaction,
-        selected: false,
-        dueDate: dateString,
-      }
-    })
+    const responseWithSelection = response.payload.rows.map(transaction => ({
+      ...transaction,
+      selected: false,
+      dueDate: formattedDateString(transaction.dueDate),
+    }))
 
     yield dispatch(returnActions.setOpenTransactions(responseWithSelection))
   }
