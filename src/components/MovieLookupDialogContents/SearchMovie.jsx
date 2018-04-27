@@ -38,26 +38,12 @@ const SearchMovieDialog = ({
       </Button>
     ))
 
-
-    // const addNewMovieButton = () => (
-    //   <Button variant='raised'>
-    //     Add New Movie
-    //   </Button>
-    // )
-
     return movieTable.length > 0 ? (
       <div>
         {movieTable}
         <br /><br />
-        {/*addNewMovieButton()*/}
       </div>
-    ) :
-      (
-        <div>
-          
-          {/*addNewMovieButton()*/}
-        </div>
-      )
+    ) : null
   }
 
 
@@ -71,9 +57,9 @@ const SearchMovieDialog = ({
           value={upc}
         />
 
-          &nbsp;&nbsp;&nbsp;
-          OR
-          &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+        OR
+        &nbsp;&nbsp;&nbsp;&nbsp;
 
         <TextField
           label='Copy ID'

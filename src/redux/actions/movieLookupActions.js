@@ -19,7 +19,11 @@ export const {
 
   setCopyExistsError: 'SET_COPY_EXISTS_ERROR',
 
+  setNewMovieTitle: 'SET_NEW_MOVIE_TITLE',
+  setNewMovieUPC: 'SET_NEW_MOVIE_UPC',
+
   // Sagas
   getMovie: 'GET_MOVIE',
   createCopy: 'CREATE_COPY',
+  createMovie: 'CREATE_MOVIE',
 })

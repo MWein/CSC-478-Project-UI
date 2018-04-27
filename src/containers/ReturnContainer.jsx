@@ -23,7 +23,13 @@ const ReturnContainer = ({
       )
     }
 
+
     const isOverdue = date => new Date() > new Date(date)
+
+    const rows = openTransactions.map(transaction => (
+      <Grid item key={`${transaction.customerID}${transaction.copyID}`} xs={4}>
+        <Paper style={{ width: '500px', padding: '30px' }}>
+          <Grid container>
 
 
     const rows = openTransactions.filter(transaction => !overdueOnly || isOverdue(transaction.dueDate))
@@ -65,6 +71,15 @@ const ReturnContainer = ({
                 </div>
               </Grid>
 
+            <Grid item xs={12}>
+              <div style={{ textAlign: 'right' }}>
+                <Button
+                  color='primary'
+                  variant='raised'
+                >
+                  Select for Return
+                </Button>
+              </div>
             </Grid>
           </Paper>
         </Grid>
@@ -109,8 +124,28 @@ const ReturnContainer = ({
   }
 
   return (
-    <div style={{ flex: '1', justifyContent: 'center', padding: '50px' }}>
-      {displayTransactions()}
+    <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
+      <Grid container>
+        <Grid item xs={6}>
+          <div style={{ fontSize: '25px' }}>
+            Open Transactions<br /><br />
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <div style={{ textAlign: 'right' }}>
+            <Button
+              color='primary'
+              variant='raised'
+            >
+              Process Selected Returns
+            </Button>
+          </div>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        {displayTransactions()}
+      </Grid>
     </div>
   )
 }
