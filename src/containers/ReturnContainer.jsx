@@ -1,30 +1,31 @@
 import Button from 'material-ui/Button'
+import Checkbox from 'material-ui/Checkbox'
+import { FormControlLabel } from 'material-ui/Form'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { actions as returnActions } from '../redux/actions/returnActions'
 
 
 const ReturnContainer = ({
   openTransactions,
+  overdueOnly,
+  setOverdueOnly,
 }) => {
-  const displayTransactions = () => {
-    if (openTransactions.length === 0) {
-      return (
-        <div style={{ flex: '1', textAlign: 'center', color: 'red' }}>
-          No Open Transactions
-        </div>
-      )
-    }
+  const isOverdue = date => new Date() > new Date(date)
 
-    const rows = openTransactions.map(transaction => (
-      <Grid item key={`${transaction.customerID}${transaction.copyID}`} xs={4}>
-        <Paper style={{ width: '500px', padding: '30px' }}>
+  const rows = openTransactions.filter(transaction => !overdueOnly || isOverdue(transaction.dueDate))
+    .map(transaction => (
+      <Grid item key={`${transaction.customerID}`} xs={4}>
+        <Paper style={{ padding: '20px' }}>
           <Grid container>
 
             <Grid item xs={12}>
-              {transaction.f_name} {transaction.l_name}
+              <div style={{ fontSize: '20px' }}>
+                {transaction.f_name} {transaction.l_name}
+              </div>
             </Grid>
 
             <Grid item xs={6}>
@@ -32,15 +33,15 @@ const ReturnContainer = ({
             </Grid>
 
             <Grid item xs={6}>
-              Due: {transaction.dueDate}
+                Due: <span style={{ color: isOverdue(transaction.dueDate) ? 'red' : 'black' }}>{transaction.dueDate}</span>
             </Grid>
 
             <Grid item xs={6}>
-              Phone: {transaction.phone}
+                Phone: {transaction.phone}
             </Grid>
 
             <Grid item xs={6}>
-              Email: {transaction.email}
+                Email: {transaction.email}
             </Grid>
 
             <Grid item xs={12}>
@@ -49,7 +50,7 @@ const ReturnContainer = ({
                   color='primary'
                   variant='raised'
                 >
-                  Select for Return
+                  Select
                 </Button>
               </div>
             </Grid>
@@ -59,23 +60,31 @@ const ReturnContainer = ({
       </Grid>
     ))
 
-    return (
-      <Grid container>
-        {rows}
-      </Grid>
-    )
-  }
-
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <div style={{ fontSize: '25px' }}>
-            Open Transactions<br /><br />
+            Open Transactions
           </div>
         </Grid>
-        <Grid item xs={6}>
-          <div style={{ textAlign: 'right' }}>
+
+        <Grid item xs={4}>
+          <div style={{ textAlign: 'center' }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={overdueOnly}
+                  onChange={event => setOverdueOnly(event.target.checked)}
+                />
+              }
+              label='Show Overdue Only'
+            />
+          </div>
+        </Grid>
+
+        <Grid item xs={4}>
+          <div style={{ justifyContent: 'right', textAlign: 'right' }}>
             <Button
               color='primary'
               variant='raised'
@@ -84,10 +93,8 @@ const ReturnContainer = ({
             </Button>
           </div>
         </Grid>
-      </Grid>
 
-      <Grid container>
-        {displayTransactions()}
+        {rows}
       </Grid>
     </div>
   )
@@ -96,13 +103,17 @@ const ReturnContainer = ({
 
 ReturnContainer.propTypes = {
   openTransactions: PropTypes.array.isRequired,
+  overdueOnly: PropTypes.bool.isRequired,
+  setOverdueOnly: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+  overdueOnly: state.returns.overdueOnly,
   openTransactions: state.returns.openTransactions,
 })
 
 const actions = {
+  ...returnActions,
 }
 
 export default connect(mapStateToProps, actions)(ReturnContainer)
