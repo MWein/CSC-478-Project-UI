@@ -23,5 +23,5 @@ export const totalCost = date => {
   const timeDiff = today.getTime() - dueDate.getTime()
   const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24))
 
-  return diffDays > 0 ? 3 + (diffDays * 3) : 3
+  return diffDays > 0 ? 3 + diffDays * 3 : 3
 }

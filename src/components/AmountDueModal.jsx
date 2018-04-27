@@ -4,8 +4,8 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog'
 import {
-  totalCost,
   isOverdue,
+  totalCost,
 } from '../redux/dateFunctions'
 import Button from 'material-ui/Button'
 import Divider from 'material-ui/Divider'
