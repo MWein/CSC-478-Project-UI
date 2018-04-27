@@ -12,66 +12,6 @@ import { actions as returnActions } from '../redux/actions/returnActions'
 import { uniqBy } from 'lodash'
 
 
-
-const testValues = [
-  {
-    customerID: 'yyy',
-    address: '',
-    copyID: 'g',
-    dueDate: 'April 25, 2018',
-    email: 'mweinberg21@gmail.com',
-    f_name: 'Mike',
-    l_name: 'Weinberg',
-    phone: '44444444',
-    title: 'Lord of the Flies Ultra HD',
-  },
-  {
-    customerID: 'yyy',
-    address: '',
-    copyID: 'g',
-    dueDate: 'April 25, 2018',
-    email: 'mweinberg21@gmail.com',
-    f_name: 'Mike',
-    l_name: 'Weinberg',
-    phone: '44444444',
-    title: 'Lord of the Flies Mega HD',
-  },
-  {
-    customerID: 'fffff',
-    address: '',
-    copyID: 'g',
-    dueDate: 'April 27, 2018',
-    email: 'mweinberg21@gmail.com',
-    f_name: 'Brad',
-    l_name: 'Grimshaw',
-    phone: '44444444',
-    title: 'Lord of the Flies Quadruple HD',
-  },
-  {
-    customerID: 'lllllllllll',
-    address: '',
-    copyID: 'g',
-    dueDate: 'April 25, 2018',
-    email: 'mweinberg21@gmail.com',
-    f_name: 'Ray',
-    l_name: 'Kraus',
-    phone: '44444444',
-    title: 'Lord of the Flies Ultra HD',
-  },
-  {
-    customerID: 'lllllllllll',
-    address: '',
-    copyID: 'g',
-    dueDate: 'April 25, 2018',
-    email: 'mweinberg21@gmail.com',
-    f_name: 'Ray',
-    l_name: 'Kraus',
-    phone: '44444444',
-    title: 'Lord of the Rings',
-  },
-]
-
-
 const AdminResetPasswordDialog = ({
   open,
   returnedTransactions,
@@ -81,22 +21,31 @@ const AdminResetPasswordDialog = ({
     const rows = () => returnedTransactions.filter(transaction => transaction.customerID === customer.customerID)
       .map(transaction => (
         <div key={transaction.copyID}>
-          <td>{transaction.title}</td>
-          <td>{transaction.copyID}</td>
-          <td>{transaction.dueDate}</td>
-          <td>$9.00</td>
+          <td width='400px'>{transaction.title}</td>
+          <td width='150px'>{transaction.copyID}</td>
+          <td style={{ textAlign: 'right' }} width='200px'>{transaction.dueDate}</td>
+          <td style={{ textAlign: 'right' }} width='200px'>$9.00</td>
         </div>
       ))
 
     return (
       <div>
-        {customer.f_name} {customer.l_name}
+        <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
+          {customer.f_name} {customer.l_name}
+        </div>
 
-        <table border='1'>
+        <br />
+
+        <table width='100%'>
           <tbody>
             {rows()}
+
+            <tr>
+              <td style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold' }}>Total: $40.00</td>
+            </tr>
           </tbody>
         </table>
+        <br />
       </div>
     )
   }
@@ -111,7 +60,7 @@ const AdminResetPasswordDialog = ({
 
 
   return (
-    <Dialog aria-labelledby='form-dialog-title' open={open}>
+    <Dialog aria-labelledby='form-dialog-title' maxWidth='lg' open={open}>
       <DialogTitle id='form-dialog-title'>Balances Due</DialogTitle>
 
       <DialogContent>
@@ -139,10 +88,10 @@ AdminResetPasswordDialog.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  //open: state.returns.balanceModalOpen,
-  open: true,
-  //returnedTransactions: state.returns.returnedTransactions,
-  returnedTransactions: testValues,
+  open: state.returns.balanceModalOpen,
+  //open: true,
+  returnedTransactions: state.returns.returnedTransactions,
+  //returnedTransactions: testValues,
 })
 
 
