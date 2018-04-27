@@ -4,18 +4,23 @@ import {
   select,
   takeLatest,
 } from 'redux-saga/effects'
-import { actions as appActions } from '../actions/appActions'
+import {
+  getOpenTransactions,
+  getToken,
+} from '../selectors'
 import getServerURL from './helpers/getServerURL'
-import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
 import { actions as returnActions } from '../actions/returnActions'
 
 
-export function* getOpenTransactionsSaga() {
-  const url = `${getServerURL()}/openTransactions`
+export function* processReturnsSaga() {
+  const url = `${getServerURL()}/returnMovie`
   const token = yield select(getToken)
+  const transactions = yield select(getOpenTransactions)
+  const copyIDs = transactions.reduce((acc, transaction) => transaction.selected ? [ ...acc, transaction.copyID ] : acc, [])
   const body = {
     token,
+    copyIDs,
   }
 
   const response = yield call(post, {
@@ -26,7 +31,7 @@ export function* getOpenTransactionsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    const responseWithSelection = response.payload.rows.map(transaction => ({
+    const responseWithSelection = response.payload.map(transaction => ({
       ...transaction,
       selected: false,
     }))
@@ -38,9 +43,8 @@ export function* getOpenTransactionsSaga() {
 export default function* () {
   yield takeLatest(
     [
-      appActions.openReturnPage().type,
-      appActions.openTransactionPage().type,
+      returnActions.processReturns().type,
     ],
-    getOpenTransactionsSaga
+    processReturnsSaga
   )
 }

@@ -17,6 +17,7 @@ import getSecurityQuestionSaga from './getSecurityQuestionSaga'
 import { getStatusSaga } from './getStatusSaga'
 import loginSaga from './loginSaga'
 import logoutSaga from './logoutSaga'
+import processReturnsSaga from './processReturns'
 import resetPasswordSaga from './resetPasswordSaga'
 import setSecurityQuestionSaga from './setSecurityQuestionSaga'
 
@@ -42,4 +43,5 @@ export default function* sagasMain() {
   yield fork(getBestCustomersSaga)
   yield fork(getBestMoviesSaga)
   yield fork(createNewMovieSaga)
+  yield fork(processReturnsSaga)
 }

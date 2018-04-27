@@ -13,12 +13,25 @@ const ReturnContainer = ({
   openTransactions,
   overdueOnly,
   setOverdueOnly,
+  selectCopyID,
+  deselectCopyID,
+  processReturns,
 }) => {
   const isOverdue = date => new Date() > new Date(date)
 
+  const selectionButton = transaction => (
+    <Button
+      color={transaction.selected ? 'secondary' : 'primary'}
+      onClick={transaction.selected ? () => deselectCopyID(transaction.copyID) : () => selectCopyID(transaction.copyID)}
+      variant='raised'
+    >
+      {transaction.selected ? 'Deselect' : 'Select'}
+    </Button>
+  )
+
   const rows = openTransactions.filter(transaction => !overdueOnly || isOverdue(transaction.dueDate))
     .map(transaction => (
-      <Grid item key={`${transaction.customerID}`} xs={4}>
+      <Grid item key={`${transaction.customerID}${transaction.copyID}`} xs={4}>
         <Paper style={{ padding: '20px' }}>
           <Grid container>
 
@@ -46,12 +59,7 @@ const ReturnContainer = ({
 
             <Grid item xs={12}>
               <div style={{ textAlign: 'right' }}>
-                <Button
-                  color='primary'
-                  variant='raised'
-                >
-                  Select
-                </Button>
+                {selectionButton(transaction)}
               </div>
             </Grid>
 
@@ -87,6 +95,8 @@ const ReturnContainer = ({
           <div style={{ justifyContent: 'right', textAlign: 'right' }}>
             <Button
               color='primary'
+              disabled={openTransactions.reduce((acc, transaction) => transaction.selected ? acc + 1 : acc, 0) === 0}
+              onClick={processReturns}
               variant='raised'
             >
               Process Selected Returns
@@ -102,8 +112,11 @@ const ReturnContainer = ({
 
 
 ReturnContainer.propTypes = {
+  deselectCopyID: PropTypes.func.isRequired,
   openTransactions: PropTypes.array.isRequired,
   overdueOnly: PropTypes.bool.isRequired,
+  processReturns: PropTypes.func.isRequired,
+  selectCopyID: PropTypes.func.isRequired,
   setOverdueOnly: PropTypes.func.isRequired,
 }
 

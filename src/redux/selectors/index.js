@@ -55,3 +55,6 @@ export const getNewMovieUPC = state => state.movieLookup.newMovieUPC
 // Transaction Lookup Specific
 export const getMovieList = state => state.transaction.movieList
 export const getCustomer = state => state.transaction.customer
+
+// Returns Page Specific
+export const getOpenTransactions = state => state.returns.openTransactions
