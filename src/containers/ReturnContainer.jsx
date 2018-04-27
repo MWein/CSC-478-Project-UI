@@ -17,7 +17,14 @@ const ReturnContainer = ({
   deselectCopyID,
   processReturns,
 }) => {
-  const isOverdue = date => new Date() > new Date(date)
+  const isOverdue = date => {
+    const today = new Date()
+    const dueDate = new Date(date)
+
+    dueDate.setHours(23, 59, 59)
+
+    return today > dueDate
+  }
 
   const selectionButton = transaction => (
     <Button
