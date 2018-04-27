@@ -5,6 +5,7 @@ export const getToken = state => state.app.token
 export const validateEmail = email =>
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     .test(email)
+export const validatePhone = phone => phone.length === 10
 
 // Password and Security Question Specific
 export const requireSecurityQuestion = state => state.app.requireSecurityQuestion

@@ -14,6 +14,7 @@ import Switch from 'material-ui/Switch'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as employeeActions } from '../redux/actions/editEmployeeActions'
+import { validatePhone } from '../redux/selectors'
 
 
 const EditEmployeeDialog = ({
@@ -59,7 +60,7 @@ const EditEmployeeDialog = ({
       return false
     }
 
-    return true
+    return validatePhone(phone)
   }
 
 

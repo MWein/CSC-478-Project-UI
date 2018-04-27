@@ -2,6 +2,10 @@ import Dialog, {
   DialogActions,
   DialogTitle,
 } from 'material-ui/Dialog'
+import {
+  validateEmail,
+  validatePhone,
+} from '../redux/selectors'
 import AddEditCustomerDialog from './CustomerLookupDialogContents/AddEditCustomer'
 import Button from 'material-ui/Button'
 import PropTypes from 'prop-types'
@@ -9,7 +13,6 @@ import React from 'react'
 import SearchCustomerDialog from './CustomerLookupDialogContents/SearchCustomer'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
-import { validateEmail } from '../redux/selectors'
 
 
 const CustomerLookupDialog = ({
@@ -71,7 +74,7 @@ const CustomerLookupDialog = ({
         return true
       }
 
-      return !validateEmail(email)
+      return !(validateEmail(email) && validatePhone(phone))
     }
 
     switch (mode) {
