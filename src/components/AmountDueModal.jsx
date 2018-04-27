@@ -3,8 +3,12 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog'
+import {
+  totalCost,
+  isOverdue,
+} from '../redux/dateFunctions'
 import Button from 'material-ui/Button'
-import Grid from 'material-ui/Grid'
+import Divider from 'material-ui/Divider'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -17,16 +21,23 @@ const AdminResetPasswordDialog = ({
   returnedTransactions,
   closeBalanceModal,
 }) => {
+  const transactionsWithCost = returnedTransactions.map(transaction => ({
+    ...transaction,
+    amountDue: totalCost(transaction.dueDate),
+  }))
+
+  const colorByDueDate = date => isOverdue(date) ? 'red' : 'black'
+
   const transactionTableForCustomer = customer => {
-    const rows = () => returnedTransactions.filter(transaction => transaction.customerID === customer.customerID)
-      .map(transaction => (
-        <div key={transaction.copyID}>
-          <td width='400px'>{transaction.title}</td>
-          <td width='150px'>{transaction.copyID}</td>
-          <td style={{ textAlign: 'right' }} width='200px'>{transaction.dueDate}</td>
-          <td style={{ textAlign: 'right' }} width='200px'>$9.00</td>
-        </div>
-      ))
+    const thisCustomerTransactions = transactionsWithCost.filter(transaction => transaction.customerID === customer.customerID)
+
+    const rows = () => thisCustomerTransactions.map(transaction => (
+      <tr key={transaction.copyID}>
+        <td width='400px'>{transaction.title}</td>
+        <td style={{ textAlign: 'right', color: colorByDueDate(transaction.dueDate) }} width='200px'>{transaction.dueDate}</td>
+        <td style={{ textAlign: 'right' }} width='200px'>${transaction.amountDue}.00</td>
+      </tr>
+    ))
 
     return (
       <div>
@@ -39,10 +50,7 @@ const AdminResetPasswordDialog = ({
         <table width='100%'>
           <tbody>
             {rows()}
-
-            <tr>
-              <td style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold' }}>Total: $40.00</td>
-            </tr>
+            <tr><td colSpan='3' style={{ textAlign: 'right', fontSize: '20px', fontWeight: 'bold' }}>Total: ${thisCustomerTransactions.reduce((acc, transaction) => transaction.amountDue + acc, 0)}.00</td></tr>
           </tbody>
         </table>
         <br />
@@ -61,12 +69,11 @@ const AdminResetPasswordDialog = ({
 
   return (
     <Dialog aria-labelledby='form-dialog-title' maxWidth='lg' open={open}>
-      <DialogTitle id='form-dialog-title'>Balances Due</DialogTitle>
-
+      <DialogTitle id='form-dialog-title'>Balances Due - ${transactionsWithCost.reduce((acc, transaction) => transaction.amountDue + acc, 0)}.00</DialogTitle>
+      <Divider /><br />
       <DialogContent>
         {tables}
       </DialogContent>
-
       <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
         <Button
           color='primary'
@@ -89,9 +96,7 @@ AdminResetPasswordDialog.propTypes = {
 
 const mapStateToProps = state => ({
   open: state.returns.balanceModalOpen,
-  //open: true,
   returnedTransactions: state.returns.returnedTransactions,
-  //returnedTransactions: testValues,
 })
 
 
