@@ -18,7 +18,8 @@ export function* processReturnsSaga() {
   const url = `${getServerURL()}/returnMovie`
   const token = yield select(getToken)
   const transactions = yield select(getOpenTransactions)
-  const copyIDs = transactions.reduce((acc, transaction) => transaction.selected ? [ ...acc, transaction.copyID ] : acc, [])
+  const returnedTransactions = transactions.filter(transaction => transaction.selected)
+  const copyIDs = returnedTransactions.map(transaction => transaction.copyID)
   const body = {
     token,
     copyIDs,
@@ -39,6 +40,8 @@ export function* processReturnsSaga() {
     }))
 
     yield dispatch(returnActions.setOpenTransactions(responseWithSelection))
+    yield dispatch(returnActions.setReturnedTransactions(returnedTransactions))
+    yield dispatch(returnActions.openBalanceModal())
   }
 }
 
