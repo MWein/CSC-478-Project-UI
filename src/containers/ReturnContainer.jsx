@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { isOverdue } from '../redux/dateFunctions'
 import { actions as returnActions } from '../redux/actions/returnActions'
 
 
@@ -17,15 +18,6 @@ const ReturnContainer = ({
   deselectCopyID,
   processReturns,
 }) => {
-  const isOverdue = date => {
-    const today = new Date()
-    const dueDate = new Date(date)
-
-    dueDate.setHours(23, 59, 59)
-
-    return today > dueDate
-  }
-
   const selectionButton = transaction => (
     <Button
       color={transaction.selected ? 'secondary' : 'primary'}
