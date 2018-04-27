@@ -41,6 +41,7 @@ const EditEmployeeDialog = ({
   setAddress,
   setPassword,
   setConfirmPassword,
+  closeEmployeeEditor,
 }) => {
   const saveButton = () => {
     if (mode === 'add') {
@@ -98,7 +99,7 @@ const EditEmployeeDialog = ({
   const passwordField = () => mode === 'add' ? (
     <Grid item xs={6}>
       <TextField
-        label='Password'
+        label='Password - Required'
         onChange={event => setPassword(event.target.value)}
         type='password'
         value={password}
@@ -148,7 +149,7 @@ const EditEmployeeDialog = ({
                 <TextField
                   disabled={mode === 'edit'}
                   onChange={event => setUsername(event.target.value)}
-                  placeholder='Username'
+                  placeholder='Username - Required'
                   value={username}
                 />
               </Grid>
@@ -166,28 +167,28 @@ const EditEmployeeDialog = ({
 
               <Grid item xs={6}>
                 <TextField
-                  label='First Name'
+                  label='First Name - Required'
                   onChange={event => setFirstName(event.target.value)}
                   value={firstName}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Last Name'
+                  label='Last Name - Required'
                   onChange={event => setLastName(event.target.value)}
                   value={lastName}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Phone Number'
+                  label='Phone - Required'
                   onChange={event => setPhoneNumber(event.target.value)}
                   value={phone}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label='Address'
+                  label='Address - Required'
                   onChange={event => setAddress(event.target.value)}
                   value={address}
                 />
@@ -200,7 +201,17 @@ const EditEmployeeDialog = ({
           </div>
         </DialogContent>
 
-        <DialogActions style={{ marginRight: '20px', marginBottom: '20px' }}>
+        <DialogActions style={{ marginRight: '20px', marginLeft: '20px', marginBottom: '20px' }}>
+
+          <div style={{ flex: '1' }}>
+            <Button
+              onClick={closeEmployeeEditor}
+              variant='raised'
+            >
+              Cancel
+            </Button>
+          </div>
+
           {resetPasswordButton()}
           <Button
             color='primary'
@@ -219,6 +230,7 @@ const EditEmployeeDialog = ({
 
 EditEmployeeDialog.propTypes = {
   address: PropTypes.string.isRequired,
+  closeEmployeeEditor: PropTypes.func.isRequired,
   confirmPassword: PropTypes.string.isRequired,
   createNewEmployee: PropTypes.func.isRequired,
   editEmployee: PropTypes.func.isRequired,

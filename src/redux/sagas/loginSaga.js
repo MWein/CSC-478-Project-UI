@@ -62,10 +62,10 @@ export function* loginSaga() {
     if (requirePassword) {
       yield dispatch(appActions.setPage('settings'))
       yield dispatch(settingsActions.setRecoveryMode(true))
-      yield dispatch(errorMessageActions.displayError('Please Reset Your Password'))
+      yield dispatch(errorMessageActions.displayMessage('Please Reset Your Password'))
     } else if (response.payload.needsSecurityQuestion) {
       yield dispatch(appActions.setPage('settings'))
-      yield dispatch(errorMessageActions.displayError('Please Set a Security Question'))
+      yield dispatch(errorMessageActions.displayMessage('Please Set a Security Question'))
     } else {
       yield dispatch(appActions.openTransactionPage())
     }
