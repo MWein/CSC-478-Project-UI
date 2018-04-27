@@ -31,7 +31,7 @@ export function* processReturnsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    const responseWithSelection = response.payload.rows.map(transaction => ({
+    const responseWithSelection = response.payload.map(transaction => ({
       ...transaction,
       selected: false,
     }))

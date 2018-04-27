@@ -15,6 +15,7 @@ const ReturnContainer = ({
   setOverdueOnly,
   selectCopyID,
   deselectCopyID,
+  processReturns,
 }) => {
   const isOverdue = date => new Date() > new Date(date)
 
@@ -95,6 +96,7 @@ const ReturnContainer = ({
             <Button
               color='primary'
               disabled={openTransactions.reduce((acc, transaction) => transaction.selected ? acc + 1 : acc, 0) === 0}
+              onClick={processReturns}
               variant='raised'
             >
               Process Selected Returns
@@ -113,6 +115,7 @@ ReturnContainer.propTypes = {
   deselectCopyID: PropTypes.func.isRequired,
   openTransactions: PropTypes.array.isRequired,
   overdueOnly: PropTypes.bool.isRequired,
+  processReturns: PropTypes.func.isRequired,
   selectCopyID: PropTypes.func.isRequired,
   setOverdueOnly: PropTypes.func.isRequired,
 }
