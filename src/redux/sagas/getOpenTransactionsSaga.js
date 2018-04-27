@@ -26,7 +26,12 @@ export function* getOpenTransactionsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    yield dispatch(returnActions.setOpenTransactions(response.payload.rows))
+    const responseWithSelection = response.payload.rows.map(transaction => ({
+      ...transaction,
+      selected: false,
+    }))
+
+    yield dispatch(returnActions.setOpenTransactions(responseWithSelection))
   }
 }
 
