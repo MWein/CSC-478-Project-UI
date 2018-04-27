@@ -12,6 +12,7 @@ import TransactionContainer from './TransactionContainer'
 import UserSettingsContainer from './UserSettingsContainer'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
+import AmountDueModal from '../components/AmountDueModal'
 
 
 const AppContainer = ({
@@ -48,7 +49,9 @@ const AppContainer = ({
         </Grid>
 
         <Grid item xs={12}>
-          {router()}
+          {/*router()*/}
+
+          <AmountDueModal />
         </Grid>
       </Grid>
     </div>

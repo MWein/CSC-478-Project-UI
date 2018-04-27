@@ -1,3 +1,4 @@
+import AmountDueModal from '../components/AmountDueModal'
 import Button from 'material-ui/Button'
 import Checkbox from 'material-ui/Checkbox'
 import { FormControlLabel } from 'material-ui/Form'
@@ -69,6 +70,9 @@ const ReturnContainer = ({
 
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
+
+      <AmountDueModal />
+
       <Grid container>
         <Grid item xs={4}>
           <div style={{ fontSize: '25px' }}>
