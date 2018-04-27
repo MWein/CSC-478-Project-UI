@@ -5,6 +5,7 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import { actions as appActions } from '../actions/appActions'
+import { formattedDateString } from '../dateFunctions'
 import getServerURL from './helpers/getServerURL'
 import { getToken } from '../selectors'
 import { post } from './helpers/makeFetchCall'
@@ -29,6 +30,7 @@ export function* getOpenTransactionsSaga() {
     const responseWithSelection = response.payload.rows.map(transaction => ({
       ...transaction,
       selected: false,
+      dueDate: formattedDateString(transaction.dueDate),
     }))
 
     yield dispatch(returnActions.setOpenTransactions(responseWithSelection))

@@ -1,3 +1,4 @@
+import AmountDueModal from '../components/AmountDueModal'
 import Button from 'material-ui/Button'
 import Checkbox from 'material-ui/Checkbox'
 import { FormControlLabel } from 'material-ui/Form'
@@ -6,6 +7,7 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { isOverdue } from '../redux/dateFunctions'
 import { actions as returnActions } from '../redux/actions/returnActions'
 
 
@@ -17,8 +19,6 @@ const ReturnContainer = ({
   deselectCopyID,
   processReturns,
 }) => {
-  const isOverdue = date => new Date() > new Date(date)
-
   const selectionButton = transaction => (
     <Button
       color={transaction.selected ? 'secondary' : 'primary'}
@@ -70,6 +70,9 @@ const ReturnContainer = ({
 
   return (
     <div style={{ flex: '1', justifyContent: 'center', padding: '30px' }}>
+
+      <AmountDueModal />
+
       <Grid container>
         <Grid item xs={4}>
           <div style={{ fontSize: '25px' }}>

@@ -10,5 +10,9 @@ export const {
   selectCopyID: 'SELECT_COPY_ID',
   deselectCopyID: 'DESELECT_COPY_ID',
 
+  setReturnedTransactions: 'SET_RETURNED_TRANSACTIONS',
+  openBalanceModal: 'OPEN_BALANCE_MODAL',
+  closeBalanceModal: 'CLOSE_BALANCE_MODAL',
+
   processReturns: 'PROCESS_RETURNS',
 })

@@ -9,6 +9,7 @@ import {
   getMovieList,
   getToken,
 } from '../selectors'
+import { actions as errorMessageActions } from '../actions/errorMessageActions'
 import getServerURL from './helpers/getServerURL'
 import { post } from './helpers/makeFetchCall'
 import { actions as transactionActions } from '../actions/transactionActions'
@@ -36,6 +37,7 @@ export function* createTransactionSaga() {
   })
 
   yield dispatch(transactionActions.clearTransaction())
+  yield dispatch(errorMessageActions.displayMessage('Order Completed'))
 }
 
 export default function* () {
