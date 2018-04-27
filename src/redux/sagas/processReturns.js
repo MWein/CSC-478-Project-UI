@@ -31,10 +31,18 @@ export function* processReturnsSaga() {
   if (response.payload.error) {
     console.log('Error ', response.payload.errorMsg)
   } else {
-    const responseWithSelection = response.payload.map(transaction => ({
-      ...transaction,
-      selected: false,
-    }))
+    const responseWithSelection = response.payload.map(transaction => {
+      const dueDate = new Date(transaction.dueDate)
+
+      const month = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ][dueDate.getMonth()]
+      const dateString = `${month} ${dueDate.getDate()}, ${dueDate.getFullYear()}`
+
+      return {
+        ...transaction,
+        selected: false,
+        dueDate: dateString,
+      }
+    })
 
     yield dispatch(returnActions.setOpenTransactions(responseWithSelection))
   }
