@@ -101,6 +101,7 @@ const address = (state = '', action = {}) => {
 
 const password = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.l_name
     case editEmployeeConstants.SET_PASSWORD: return action.payload
     case editEmployeeConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
@@ -110,6 +111,7 @@ const password = (state = '', action = {}) => {
 
 const confirmPassword = (state = '', action = {}) => {
   switch (action.type) {
+    case editEmployeeConstants.OPEN_EMPLOYEE_EDITOR: return !action.payload ? '' : action.payload.l_name
     case editEmployeeConstants.SET_CONFIRM_PASSWORD: return action.payload
     case editEmployeeConstants.OPEN_RESET_PASSWORD: return ''
     case appConstants.PURGE: return ''
