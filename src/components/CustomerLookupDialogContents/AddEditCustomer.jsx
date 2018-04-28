@@ -7,7 +7,7 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../../redux/actions/customerLookupActions'
-
+import { humanReadablePhone } from '../../redux/selectors'
 
 const AddEditCustomerDialog = ({
   fName,
@@ -30,6 +30,24 @@ const AddEditCustomerDialog = ({
     />
   )
 
+
+  const changePhoneNumber = (prev, value) => {
+    const trimmedValue = prev.length > value.length && prev.substr(prev.length - 1) === '-' ? value.substr(0, value.length - 1) : value
+    const noDashesPhone = trimmedValue.replace(/-/, '').replace(/-/, '')
+
+    setPhoneNumber(noDashesPhone)
+  }
+
+  const phoneTextField = (label, phone) => (
+    <TextField
+      fullWidth
+      label={label}
+      onChange={event => changePhoneNumber(humanReadablePhone(phone), event.target.value)}
+      value={humanReadablePhone(phone)}
+    />
+  )
+
+
   return (
     <div>
       <DialogContent>
@@ -41,7 +59,7 @@ const AddEditCustomerDialog = ({
             {customTextField('Last Name - Required', event => setLastName(event.target.value), lName)}
           </Grid>
           <Grid item xs={12}>
-            {customTextField('Phone Number - Required', event => setPhoneNumber(event.target.value), phone)}
+            {phoneTextField('Phone Number - Required', phone)}
           </Grid>
           <Grid item xs={12}>
             {customTextField('Email - Required', event => setEmail(event.target.value), email)}
