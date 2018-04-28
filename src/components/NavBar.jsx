@@ -37,6 +37,7 @@ const NavBar = ({
 
   const accountMenu = () => (
     <Menu
+      anchorEl={document.getElementById('accountButton')}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -91,6 +92,7 @@ const NavBar = ({
           <Button
             color='inherit'
             disabled={!enabled}
+            id='accountButton'
             onClick={() => setMenuOpen(!accountMenuOpen)}
           >
             Account
