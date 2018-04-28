@@ -3,6 +3,10 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog'
+import {
+  humanReadablePhone,
+  validatePhone,
+} from '../redux/selectors'
 import AdminResetPasswordDialog from './AdminResetPasswordDialog'
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
@@ -43,6 +47,14 @@ const EditEmployeeDialog = ({
   setConfirmPassword,
   closeEmployeeEditor,
 }) => {
+  const changePhoneNumber = (prev, value) => {
+    const trimmedValue = prev.length > value.length && prev.substr(prev.length - 1) === '-' ? value.substr(0, value.length - 1) : value
+    const noDashesPhone = trimmedValue.replace(/-/, '').replace(/-/, '')
+
+    setPhoneNumber(noDashesPhone)
+  }
+
+
   const saveButton = () => {
     if (mode === 'add') {
       createNewEmployee()
@@ -59,7 +71,7 @@ const EditEmployeeDialog = ({
       return false
     }
 
-    return true
+    return validatePhone(phone)
   }
 
 
@@ -182,8 +194,8 @@ const EditEmployeeDialog = ({
               <Grid item xs={6}>
                 <TextField
                   label='Phone - Required'
-                  onChange={event => setPhoneNumber(event.target.value)}
-                  value={phone}
+                  onChange={event => changePhoneNumber(humanReadablePhone(phone), event.target.value)}
+                  value={humanReadablePhone(phone)}
                 />
               </Grid>
               <Grid item xs={6}>

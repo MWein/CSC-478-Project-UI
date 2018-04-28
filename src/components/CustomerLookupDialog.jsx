@@ -2,6 +2,10 @@ import Dialog, {
   DialogActions,
   DialogTitle,
 } from 'material-ui/Dialog'
+import {
+  validateEmail,
+  validatePhone,
+} from '../redux/selectors'
 import AddEditCustomerDialog from './CustomerLookupDialogContents/AddEditCustomer'
 import Button from 'material-ui/Button'
 import PropTypes from 'prop-types'
@@ -9,7 +13,6 @@ import React from 'react'
 import SearchCustomerDialog from './CustomerLookupDialogContents/SearchCustomer'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../redux/actions/customerLookupActions'
-import { validateEmail } from '../redux/selectors'
 
 
 const CustomerLookupDialog = ({
@@ -71,21 +74,24 @@ const CustomerLookupDialog = ({
         return true
       }
 
-      return !validateEmail(email)
+      return !(validateEmail(email) && validatePhone(phone))
     }
 
     switch (mode) {
       case 'add': return {
+        title: 'Create New Customer',
         text: 'Create',
         action: addCustomerAction,
         disabled: addEditFormValidation(),
       }
       case 'edit': return {
+        title: 'Verify Customer',
         text: 'Verify',
         action: editCustomerAction,
         disabled: addEditFormValidation(),
       }
       default: return {
+        title: 'Customer Lookup',
         text: 'Select',
         action: selectAction,
         disabled: selectButtonDisabled(),
@@ -97,7 +103,7 @@ const CustomerLookupDialog = ({
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
+      <DialogTitle id='form-dialog-title'>{confirmButtonProps.title}</DialogTitle>
 
       {mode === '' ? (<SearchCustomerDialog />) : (<AddEditCustomerDialog />)}
 

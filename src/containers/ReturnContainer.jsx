@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
+import { humanReadablePhone } from '../redux/selectors'
 import { isOverdue } from '../redux/dateFunctions'
 import { actions as returnActions } from '../redux/actions/returnActions'
 
@@ -50,7 +51,7 @@ const ReturnContainer = ({
             </Grid>
 
             <Grid item xs={6}>
-                Phone: {transaction.phone}
+                Phone: {humanReadablePhone(transaction.phone)}
             </Grid>
 
             <Grid item xs={6}>

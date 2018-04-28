@@ -7,6 +7,7 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as customerLookupActions } from '../../redux/actions/customerLookupActions'
+import { humanReadablePhone } from '../../redux/selectors'
 
 
 const SearchCustomerDialog = ({
@@ -32,7 +33,7 @@ const SearchCustomerDialog = ({
         style={{ width: '100%' }}
         variant={customer === selectedCustomer ? 'raised' : 'flat'}
       >
-        {customer.f_name} {customer.l_name} - {customer.phone}
+        {customer.f_name} {customer.l_name} - {humanReadablePhone(customer.phone)}
       </Button>
     ))
 

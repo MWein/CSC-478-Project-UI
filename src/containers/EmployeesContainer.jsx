@@ -10,6 +10,7 @@ import TextField from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { actions as editEmployeeActions } from '../redux/actions/editEmployeeActions'
 import { actions as employeeActions } from '../redux/actions/employeeActions'
+import { humanReadablePhone } from '../redux/selectors'
 
 const EmployeesContainer = ({
   thisAccountId,
@@ -75,7 +76,7 @@ const EmployeesContainer = ({
 
             <br />
             <div>Address: {employee.address === '' ? 'No Address Entered' : employee.address}</div>
-            <div>Phone: {employee.phone}</div>
+            <div>Phone: {humanReadablePhone(employee.phone)}</div>
 
             <div style={{ textAlign: 'right' }}>
               <Button
