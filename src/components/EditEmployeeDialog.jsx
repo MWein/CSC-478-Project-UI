@@ -173,7 +173,6 @@ const EditEmployeeDialog = ({
                 >
                   <MenuItem value={'employee'}>Employee</MenuItem>
                   <MenuItem value={'manager'}>Manager</MenuItem>
-                  <MenuItem value={'admin'}>Admin</MenuItem>
                 </Select>
               </Grid>
 
