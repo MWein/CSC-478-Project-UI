@@ -79,16 +79,19 @@ const CustomerLookupDialog = ({
 
     switch (mode) {
       case 'add': return {
+        title: 'Create New Customer',
         text: 'Create',
         action: addCustomerAction,
         disabled: addEditFormValidation(),
       }
       case 'edit': return {
+        title: 'Verify Customer',
         text: 'Verify',
         action: editCustomerAction,
         disabled: addEditFormValidation(),
       }
       default: return {
+        title: 'Customer Lookup',
         text: 'Select',
         action: selectAction,
         disabled: selectButtonDisabled(),
@@ -100,7 +103,7 @@ const CustomerLookupDialog = ({
 
   return (
     <Dialog aria-labelledby='form-dialog-title' open={open}>
-      <DialogTitle id='form-dialog-title'>Customer Lookup</DialogTitle>
+      <DialogTitle id='form-dialog-title'>{confirmButtonProps.title}</DialogTitle>
 
       {mode === '' ? (<SearchCustomerDialog />) : (<AddEditCustomerDialog />)}
 
