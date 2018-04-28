@@ -42,61 +42,64 @@ const LoginContainer = ({
     setPassword('')
   }
 
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
       <Paper style={style.paper}>
-        <ForgotPasswordDialog />
+        <form onSubmit={event => event.preventDefault()}>
+          <ForgotPasswordDialog />
 
-        <Grid container>
-          <Grid item xs={12}>
-            {loginHeader()}
-          </Grid>
+          <Grid container>
+            <Grid item xs={12}>
+              {loginHeader()}
+            </Grid>
 
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              id='name'
-              label='Username'
-              onChange={event => setUsername(event.target.value)}
-              value={username}
-            />
-          </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                id='name'
+                label='Username'
+                onChange={event => setUsername(event.target.value)}
+                value={username}
+              />
+            </Grid>
 
-          <Grid item xs={12}>
-            <TextField
-              autoComplete='current-password'
-              fullWidth
-              id='password-input'
-              label='Password'
-              onChange={event => setPassword(event.target.value)}
-              type='password'
-              value={password}
-            />
-          </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete='current-password'
+                fullWidth
+                id='password-input'
+                label='Password'
+                onChange={event => setPassword(event.target.value)}
+                type='password'
+                value={password}
+              />
+            </Grid>
 
-          <Grid item xs={8}>
-            <Button
-              color='secondary'
-              onClick={forgotPasswordAction}
-            >
-            Forgot Password
-            </Button>
-          </Grid>
-
-          <Grid item xs={4}>
-            <div style={{ textAlign: 'right' }}>
+            <Grid item xs={8}>
               <Button
-                color='primary'
-                disabled={username === '' || password === ''}
-                onClick={login}
-                variant='raised'
+                color='secondary'
+                onClick={forgotPasswordAction}
               >
-              Login
+            Forgot Password
               </Button>
-            </div>
-          </Grid>
+            </Grid>
 
-        </Grid>
+            <Grid item xs={4}>
+              <div style={{ textAlign: 'right' }}>
+                <Button
+                  color='primary'
+                  disabled={username === '' || password === ''}
+                  onClick={login}
+                  type='submit'
+                  variant='raised'
+                >
+                  Login
+                </Button>
+              </div>
+            </Grid>
+          </Grid>
+        </form>
       </Paper>
     </div>
   )
